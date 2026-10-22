@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 import pytest
 
@@ -9,16 +8,16 @@ pytest.importorskip("multipart")
 from fastapi.testclient import TestClient  # noqa: E402
 
 from co_extract import api  # noqa: E402
-from tests.factories import ScriptedProvider, co002_output, settings  # noqa: E402
+from tests.factories import SAMPLES, ScriptedProvider, co002_output, make_settings  # noqa: E402
 
-DIGITAL = Path(__file__).parent.parent / "samples" / "co_002_digital.pdf"
+DIGITAL = SAMPLES / "co_002_digital.pdf"
 
 
 @pytest.fixture
 def client(tmp_path):
     provider = ScriptedProvider(json.dumps(co002_output()))
     api.app.dependency_overrides[api.get_provider] = lambda: provider
-    api.app.dependency_overrides[api.get_settings] = lambda: settings(tmp_path)
+    api.app.dependency_overrides[api.get_settings] = lambda: make_settings(tmp_path)
     yield TestClient(api.app)
     api.app.dependency_overrides.clear()
 

@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Tesseract
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --extra api --frozen
+
+      - name: Lint
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+
+      - name: Test
+        run: uv run pytest -q
+
+      # Replays the committed LLM recordings with no API key. Only the text and digital
+      # samples: OCR output differs between Tesseract versions, which changes the request
+      # (and so the recording key) for scanned documents.
+      - name: Pipeline replays from recordings
+        run: |
+          uv run co-extract run samples/co_001_email.txt --out /tmp/outputs --replay
+          uv run co-extract run samples/co_002_digital.pdf --out /tmp/outputs --replay

@@ -1,16 +1,15 @@
 import datetime as dt
 import json
 from decimal import Decimal
-from pathlib import Path
 
 import pytest
 
 from co_extract import confidence as c
 from co_extract.assemble import assemble
+from co_extract.ingest import PageText
 from co_extract.schema import ChangeOrderRecord
-from co_extract.text_extract import PageText
 from co_extract.validate import validate
-from tests.factories import NULL, co002_extraction, f, pages
+from tests.factories import EXPECTED, NULL, co002_extraction, f, pages
 
 TODAY = dt.date(2026, 10, 21)
 DIGITAL = pages("digital_text.json")
@@ -29,7 +28,7 @@ def run(extraction, source=DIGITAL):
 def test_assembled_draft_matches_ground_truth_numbers():
     draft = assemble(co002_extraction()).draft
     truth = ChangeOrderRecord.model_validate(
-        json.loads((Path(__file__).parent.parent / "expected/co_002_digital.json").read_text())
+        json.loads((EXPECTED / "co_002_digital.json").read_text())
     )
     for name in ("change_amount", "original_contract_sum", "revised_contract_sum",
                  "date_issued", "schedule_impact_days", "currency", "status"):  # fmt: skip

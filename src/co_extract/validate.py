@@ -1,4 +1,4 @@
-"""Stage 5 - domain rules: do the extracted values make sense together?
+"""Domain rules: do the extracted values make sense together?
 
 Each rule is a pure function of a ChangeOrderDraft that returns pass, fail or
 not-applicable (when the fields it needs are missing). A failed rule never changes a

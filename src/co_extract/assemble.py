@@ -7,7 +7,7 @@ so scoring can see the difference between "absent" and "present but unreadable".
 from dataclasses import dataclass, field
 from decimal import Decimal
 
-from co_extract.llm import Extracted, LlmExtraction
+from co_extract.llm import LlmExtraction
 from co_extract.normalize import (
     parse_currency,
     parse_date,
@@ -131,7 +131,3 @@ def assemble(x: LlmExtraction) -> Assembled:
 def _percent(raw: str) -> Decimal | None:
     # the model may copy "10%" or just "10"
     return parse_percent(raw) or parse_money(raw)
-
-
-def scalar_fields(x: LlmExtraction) -> dict[str, Extracted]:
-    return {name: item for name, item in x if isinstance(item, Extracted)}

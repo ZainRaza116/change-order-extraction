@@ -1,8 +1,11 @@
-"""OCR path for scanned pages: OpenCV clean-up, Tesseract with word confidences,
-and an optional vision-LLM fallback when Tesseract's confidence is low."""
+"""OCR for scanned pages: OpenCV clean-up, Tesseract with word confidences, and an
+optional vision-LLM fallback when Tesseract's confidence is low.
+
+The fallback runs only when the caller passes a vision model; whether to pass one is a
+configuration decision made in the pipeline, not here.
+"""
 
 import base64
-import os
 from dataclasses import dataclass
 
 import cv2
@@ -175,19 +178,16 @@ def vision_transcribe(png_bytes: bytes, model: str) -> str | None:
     return text or None
 
 
-def vision_enabled() -> bool:
-    return os.getenv("CO_EXTRACT_VISION_FALLBACK", "0") == "1"
-
-
 # --- entry point ---------------------------------------------------------------
 
 
 def ocr_image(image: np.ndarray, vision_model: str | None = None) -> OcrResult:
+    """OCR one page image. With `vision_model`, low-confidence pages are re-read by it."""
     binary, skew = preprocess(image)
     text, mean_conf, words = run_tesseract(binary)
     result = OcrResult(text=text, mean_confidence=mean_conf, word_count=words, skew_degrees=skew)
 
-    if mean_conf < LOW_CONFIDENCE and vision_model and vision_enabled():
+    if vision_model and mean_conf < LOW_CONFIDENCE:
         ok, png = cv2.imencode(".png", to_gray(image))
         transcript = vision_transcribe(png.tobytes(), vision_model) if ok else None
         if transcript:

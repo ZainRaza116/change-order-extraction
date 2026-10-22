@@ -1,4 +1,4 @@
-"""Stage 2 - page text from PyMuPDF, tables from pdfplumber, OCR for scanned pages.
+"""Page text from PyMuPDF, tables from pdfplumber, OCR for scanned pages.
 
 A PDF page with fewer than MIN_TEXT_CHARS of extractable text is treated as a scan:
 it is rendered to an image and sent through the OCR path in ocr.py.
@@ -13,7 +13,7 @@ import pdfplumber
 import pymupdf
 from pydantic import BaseModel
 
-from co_extract.ocr import OCR_DPI, ocr_image
+from co_extract.ingest.ocr import OCR_DPI, ocr_image
 
 MIN_TEXT_CHARS = 50
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".tif", ".tiff"}

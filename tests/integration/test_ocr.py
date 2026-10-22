@@ -5,12 +5,11 @@ import pymupdf
 import pytest
 from PIL import Image
 
-from co_extract import ocr
-from co_extract.text_extract import extract_text, is_scanned
+from co_extract.ingest import extract_text, is_scanned, ocr
+from tests.factories import SAMPLES
 
-ROOT = Path(__file__).parent.parent
-DIGITAL = ROOT / "samples" / "co_002_digital.pdf"
-SCANNED = ROOT / "samples" / "co_003_scanned.pdf"
+DIGITAL = SAMPLES / "co_002_digital.pdf"
+SCANNED = SAMPLES / "co_003_scanned.pdf"
 
 needs_tesseract = pytest.mark.skipif(
     not ocr.tesseract_available(), reason="tesseract binary not installed"
@@ -109,8 +108,7 @@ def low_confidence(monkeypatch):
     return calls
 
 
-def test_vision_fallback_used_when_confidence_low(monkeypatch, low_confidence):
-    monkeypatch.setenv("CO_EXTRACT_VISION_FALLBACK", "1")
+def test_vision_fallback_used_when_confidence_low(low_confidence):
     result = ocr.ocr_image(render(DIGITAL, dpi=72), vision_model="claude-opus-5-5")
     assert result.method == "vision"
     assert result.text == "CHANGE ORDER CO-012"
@@ -118,15 +116,13 @@ def test_vision_fallback_used_when_confidence_low(monkeypatch, low_confidence):
     assert low_confidence and low_confidence[0][1] == "claude-opus-5-5"
 
 
-def test_vision_fallback_off_by_default(monkeypatch, low_confidence):
-    monkeypatch.delenv("CO_EXTRACT_VISION_FALLBACK", raising=False)
-    result = ocr.ocr_image(render(DIGITAL, dpi=72), vision_model="claude-opus-5-5")
+def test_no_vision_model_means_no_fallback(low_confidence):
+    result = ocr.ocr_image(render(DIGITAL, dpi=72), vision_model=None)
     assert result.method == "ocr"
     assert low_confidence == []
 
 
 def test_vision_fallback_keeps_ocr_when_model_declines(monkeypatch):
-    monkeypatch.setenv("CO_EXTRACT_VISION_FALLBACK", "1")
     monkeypatch.setattr(ocr, "run_tesseract", lambda _: ("g4rbl3d", 0.31, 1))
     monkeypatch.setattr(ocr, "vision_transcribe", lambda png, model: None)
     result = ocr.ocr_image(render(DIGITAL, dpi=72), vision_model="claude-opus-5-5")

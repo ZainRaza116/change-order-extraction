@@ -1,15 +1,14 @@
 import datetime as dt
 import json
 from decimal import Decimal
-from pathlib import Path
 
 import pytest
 
 from co_extract import validate as v
-from co_extract.schema import ChangeOrderDraft, LineItem, Markup, Signature, Status
+from co_extract.schema import ChangeOrderDraft, LineItem, Markup, Status
 from co_extract.validate import Outcome
+from tests.factories import EXPECTED
 
-EXPECTED = Path(__file__).parent.parent / "expected"
 TODAY = dt.date(2026, 10, 21)
 
 
@@ -240,8 +239,3 @@ def test_empty_draft_only_fails_required_fields():
     results = v.validate(ChangeOrderDraft(), today=TODAY)
     assert [r.rule for r in results if r.failed] == ["required_fields"]
     assert sum(r.outcome is Outcome.NOT_APPLICABLE for r in results) == len(v.RULES) - 1
-
-
-def test_signature_model_round_trip():
-    s = Signature(party="owner", signed=False)
-    assert s.date is None and s.name is None

@@ -1,15 +1,14 @@
 import json
 from decimal import Decimal
-from pathlib import Path
 
 import pytest
 
+from co_extract.ingest import PageText, extract_text
 from co_extract.normalize import parse_money
-from co_extract.text_extract import PageText, extract_text
+from tests.factories import FIXTURES, SAMPLES
 
-ROOT = Path(__file__).parent.parent
-DIGITAL = ROOT / "samples" / "co_002_digital.pdf"
-FIXTURE = Path(__file__).parent / "fixtures" / "digital_text.json"
+DIGITAL = SAMPLES / "co_002_digital.pdf"
+FIXTURE = FIXTURES / "digital_text.json"
 
 
 @pytest.fixture(scope="module")
@@ -48,7 +47,7 @@ def test_line_item_table(pages):
 
 
 def test_txt_input_is_one_page():
-    (page,) = extract_text(ROOT / "samples" / "co_001_email.txt")
+    (page,) = extract_text(SAMPLES / "co_001_email.txt")
     assert page.method == "text"
     assert "Six (6) calendar days" in page.text
 

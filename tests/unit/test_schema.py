@@ -5,8 +5,9 @@ import pytest
 from pydantic import ValidationError
 
 from co_extract.schema import ChangeOrderRecord
+from tests.factories import EXPECTED
 
-EXPECTED_DIR = Path(__file__).parent.parent / "expected"
+EXPECTED_DIR = EXPECTED
 GROUND_TRUTH = sorted(EXPECTED_DIR.glob("*.json"))
 
 

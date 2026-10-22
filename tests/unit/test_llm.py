@@ -1,10 +1,11 @@
-"""LLM stage tests. No network: a scripted provider stands in for the API."""
+"""LLM stage: output schema, retry, prompt, providers and cache. No network calls."""
 
 import json
 from types import SimpleNamespace
 
 import pytest
 
+from co_extract.ingest import PageText
 from co_extract.llm import (
     SYSTEM_PROMPT,
     AnthropicProvider,
@@ -12,14 +13,15 @@ from co_extract.llm import (
     CacheMiss,
     ExtractionFailed,
     LLMRequest,
-    LLMResponse,
+    OpenAIProvider,
     anthropic_kwargs,
     extract_fields,
+    openai_kwargs,
     output_schema,
     render_document,
     request_key,
 )
-from co_extract.text_extract import PageText
+from tests.factories import ScriptedProvider, f, minimal_output
 
 PAGES = [
     PageText(
@@ -30,39 +32,7 @@ PAGES = [
         ocr_confidence=0.82,
     )
 ]
-
-
-def field(value=None, evidence=None, page=None, alternatives=()):
-    return {"value": value, "evidence": evidence, "page": page, "alternatives": list(alternatives)}
-
-
-def valid_output(**overrides) -> dict:
-    names = [
-        "change_order_number", "project_name", "project_number", "date_issued", "contractor",
-        "owner", "architect_engineer", "description", "reason", "reason_text", "subtotal",
-        "change_amount", "currency", "original_contract_sum", "previous_changes_total",
-        "revised_contract_sum", "schedule_impact_days", "status",
-    ]  # fmt: skip
-    out = {name: field() for name in names}
-    out |= {"line_items": [], "markups": [], "signatures": [], "notes": []}
-    out["change_order_number"] = field("007", "CHANGE ORDER No. 007", 1)
-    out["change_amount"] = field(
-        "$10,763.06", "TOTAL THIS CHANGE ORDER $10,763.06", 1, ["$11,240.00"]
-    )
-    out.update(overrides)
-    return out
-
-
-class ScriptedProvider:
-    """Returns canned response texts in order and records every request."""
-
-    def __init__(self, *texts: str):
-        self.texts = list(texts)
-        self.requests: list[LLMRequest] = []
-
-    def complete(self, request: LLMRequest) -> LLMResponse:
-        self.requests.append(request)
-        return LLMResponse(text=self.texts.pop(0), model=request.model, input_tokens=100)
+VALID = json.dumps(minimal_output())
 
 
 # --- schema --------------------------------------------------------------------------
@@ -80,7 +50,7 @@ def test_schema_is_strict_everywhere():
 
 
 def test_valid_output_parses_in_one_call():
-    provider = ScriptedProvider(json.dumps(valid_output()))
+    provider = ScriptedProvider(VALID)
     result = extract_fields(PAGES, provider, "claude-sonnet-5-5")
     assert result.attempts == 1
     assert result.extraction.change_amount.value == "$10,763.06"
@@ -89,8 +59,8 @@ def test_valid_output_parses_in_one_call():
 
 
 def test_retry_once_with_errors_then_succeed():
-    bad = valid_output(owner=field("Harmon Health Partners, LLC"))  # value without evidence
-    provider = ScriptedProvider(json.dumps(bad), json.dumps(valid_output()))
+    bad = minimal_output(owner=f("Harmon Health Partners, LLC"))  # value without evidence
+    provider = ScriptedProvider(json.dumps(bad), VALID)
     result = extract_fields(PAGES, provider, "claude-sonnet-5-5")
     assert result.attempts == 2
     retry = provider.requests[1].messages
@@ -99,7 +69,7 @@ def test_retry_once_with_errors_then_succeed():
 
 
 def test_malformed_json_is_retried():
-    provider = ScriptedProvider('{"change_order_number": ', json.dumps(valid_output()))
+    provider = ScriptedProvider('{"change_order_number": ', VALID)
     assert extract_fields(PAGES, provider, "claude-sonnet-5-5").attempts == 2
 
 
@@ -112,7 +82,7 @@ def test_gives_up_after_one_retry():
 
 
 def test_wrong_enum_is_rejected():
-    bad = valid_output(status=field("maybe", "status: maybe", 1))
+    bad = minimal_output(status=f("maybe", "status: maybe"))
     provider = ScriptedProvider(json.dumps(bad), json.dumps(bad))
     with pytest.raises(ExtractionFailed):
         extract_fields(PAGES, provider, "claude-sonnet-5-5")
@@ -198,7 +168,7 @@ def test_anthropic_provider_raises_on_unusable_stop(stop_reason):
 
 
 def test_cache_records_then_replays(tmp_path):
-    inner = ScriptedProvider(json.dumps(valid_output()))
+    inner = ScriptedProvider(VALID)
     cached = CachedProvider(inner, tmp_path)
     first = extract_fields(PAGES, cached, "claude-sonnet-5-5")
     second = extract_fields(PAGES, cached, "claude-sonnet-5-5")
@@ -229,15 +199,13 @@ def test_replay_mode_never_calls_the_api(tmp_path):
 
 
 def test_refresh_mode_re_records(tmp_path):
-    inner = ScriptedProvider(json.dumps(valid_output()), json.dumps(valid_output()))
+    inner = ScriptedProvider(VALID, VALID)
     extract_fields(PAGES, CachedProvider(inner, tmp_path), "claude-sonnet-5-5")
     extract_fields(PAGES, CachedProvider(inner, tmp_path, "refresh"), "claude-sonnet-5-5")
     assert len(inner.requests) == 2
 
 
 # --- OpenAI provider (no network) ------------------------------------------------------------
-
-from co_extract.llm import OpenAIProvider, openai_kwargs  # noqa: E402
 
 
 def test_openai_kwargs_strict_schema_and_temperature():

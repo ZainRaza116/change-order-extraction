@@ -1,4 +1,4 @@
-"""Stage 6 - per-field confidence from measurable signals, not from the model's self-report.
+"""Per-field confidence from measurable signals, not from the model's self-report.
 
 Signals (each 0-1) and weights:
     evidence_match     0.35  the quoted evidence really appears in the source text (fuzzy)
@@ -20,9 +20,9 @@ from dataclasses import dataclass, field
 from rapidfuzz import fuzz
 
 from co_extract.assemble import Assembled
-from co_extract.llm import Extracted, LlmExtraction
+from co_extract.ingest import PageText
+from co_extract.llm import LlmExtraction, raw_value
 from co_extract.schema import REQUIRED_FIELDS
-from co_extract.text_extract import PageText
 from co_extract.validate import RuleResult, failed_fields
 
 WEIGHTS = {
@@ -177,13 +177,10 @@ def score_document(
     errors = assembled.parse_errors
 
     fields = {}
-    for name, item in extraction:
-        if not isinstance(item, Extracted):
-            continue
-        raw = item.value.value if hasattr(item.value, "value") else item.value
+    for name, item in extraction.scalars():
         fields[name] = score_entry(
             name,
-            raw,
+            raw_value(item),
             item.evidence,
             item.page,
             item.alternatives,

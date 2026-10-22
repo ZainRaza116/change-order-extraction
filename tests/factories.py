@@ -1,26 +1,76 @@
-"""A realistic LLM output for samples/co_002_digital.pdf, quoting its real extracted text."""
+"""Shared test builders: LLM outputs, page fixtures, settings and a scripted provider.
+
+co002_output() is a realistic model response for samples/co_002_digital.pdf whose
+evidence quotes come from that document's real extracted text.
+"""
 
 import json
 from pathlib import Path
 
-from co_extract.llm import LlmExtraction
-from co_extract.text_extract import PageText
+from co_extract.config import Settings
+from co_extract.ingest import PageText
+from co_extract.llm import LlmExtraction, LLMRequest, LLMResponse
 
+ROOT = Path(__file__).parent.parent
+SAMPLES = ROOT / "samples"
+EXPECTED = ROOT / "expected"
 FIXTURES = Path(__file__).parent / "fixtures"
 
-
-def pages(name: str) -> list[PageText]:
-    return [PageText.model_validate(p) for p in json.loads((FIXTURES / name).read_text())]
-
-
-def f(value, evidence, page=1, alternatives=()):
-    return {"value": value, "evidence": evidence, "page": page, "alternatives": list(alternatives)}
-
+SCALAR_FIELDS = (
+    "change_order_number", "project_name", "project_number", "date_issued", "contractor",
+    "owner", "architect_engineer", "description", "reason", "reason_text", "subtotal",
+    "change_amount", "currency", "original_contract_sum", "previous_changes_total",
+    "revised_contract_sum", "schedule_impact_days", "status",
+)  # fmt: skip
 
 NULL = {"value": None, "evidence": None, "page": None, "alternatives": []}
 
 
-def co002_output() -> dict:
+def pages(name: str) -> list[PageText]:
+    """Saved extractor output from tests/fixtures (digital_text.json, scanned_text.json)."""
+    return [PageText.model_validate(p) for p in json.loads((FIXTURES / name).read_text())]
+
+
+def f(value=None, evidence=None, page=1, alternatives=()) -> dict:
+    """One Extracted field as the model would return it."""
+    return {"value": value, "evidence": evidence, "page": page, "alternatives": list(alternatives)}
+
+
+def minimal_output(**overrides) -> dict:
+    """A valid model response with only the CO number and total filled in."""
+    out = {name: dict(NULL) for name in SCALAR_FIELDS}
+    out |= {"line_items": [], "markups": [], "signatures": [], "notes": []}
+    out["change_order_number"] = f("007", "CHANGE ORDER No. 007")
+    out["change_amount"] = f(
+        "$10,763.06", "TOTAL THIS CHANGE ORDER $10,763.06", alternatives=["$11,240.00"]
+    )
+    return out | overrides
+
+
+def item(description, quantity, unit, unit_cost, amount) -> dict:
+    return {
+        "description": description,
+        "quantity": quantity,
+        "unit": unit,
+        "unit_cost": unit_cost,
+        "amount": amount,
+        "evidence": f"{description} {quantity} {unit} {unit_cost} {amount}",
+        "page": 1,
+    }
+
+
+def signature(party, name, date, evidence) -> dict:
+    return {
+        "party": party,
+        "name": name,
+        "date": date,
+        "signed": True,
+        "evidence": evidence,
+        "page": 2,
+    }
+
+
+def co002_output(**overrides) -> dict:
     return {
         "change_order_number": f("CO-012", "CHANGE ORDER NO.: CO-012"),
         "project_name": f(
@@ -45,7 +95,7 @@ def co002_output() -> dict:
             ),
             item("Bond and insurance", "1", "LS", "$443.06", "$443.06"),
         ],
-        "subtotal": NULL,
+        "subtotal": dict(NULL),
         "markups": [],
         "change_amount": f("$10,763.06", "Total this Change Order: $10,763.06"),
         "currency": f("$", "Total this Change Order: $10,763.06"),
@@ -63,44 +113,21 @@ def co002_output() -> dict:
         ),
         "status": f("approved", "OWNER Riverside Health Partners LLC", 2),
         "signatures": [
-            sig("architect", "Marcus Lee", "10/7/2026", "By: /s/ Marcus Lee Date: 10/7/2026"),
-            sig(
+            signature("architect", "Marcus Lee", "10/7/2026", "By: /s/ Marcus Lee Date: 10/7/2026"),
+            signature(
                 "contractor",
                 "Dana Whitfield",
                 "10/6/2026",
                 "By: /s/ Dana Whitfield Date: 10/6/2026",
             ),
-            sig("owner", "Priya Nair", "10/9/2026", "By: /s/ Priya Nair Date: 10/9/2026"),
+            signature("owner", "Priya Nair", "10/9/2026", "By: /s/ Priya Nair Date: 10/9/2026"),
         ],
         "notes": [],
-    }
-
-
-def item(description, quantity, unit, unit_cost, amount):
-    return {
-        "description": description,
-        "quantity": quantity,
-        "unit": unit,
-        "unit_cost": unit_cost,
-        "amount": amount,
-        "evidence": f"{description} {quantity} {unit} {unit_cost} {amount}",
-        "page": 1,
-    }
-
-
-def sig(party, name, date, evidence):
-    return {
-        "party": party,
-        "name": name,
-        "date": date,
-        "signed": True,
-        "evidence": evidence,
-        "page": 2,
-    }
+    } | overrides
 
 
 def co002_extraction(**overrides) -> LlmExtraction:
-    return LlmExtraction.model_validate(co002_output() | overrides)
+    return LlmExtraction.model_validate(co002_output(**overrides))
 
 
 class ScriptedProvider:
@@ -108,24 +135,21 @@ class ScriptedProvider:
 
     def __init__(self, *texts: str):
         self.texts = list(texts)
-        self.requests = []
+        self.requests: list[LLMRequest] = []
 
-    def complete(self, request):
-        from co_extract.llm import LLMResponse
-
+    def complete(self, request: LLMRequest) -> LLMResponse:
         self.requests.append(request)
         return LLMResponse(
             text=self.texts.pop(0), model=request.model, input_tokens=4000, output_tokens=2500
         )
 
 
-def settings(tmp_path, **overrides):
-    from co_extract.config import Settings
-
+def make_settings(tmp_path: Path, **overrides) -> Settings:
     base = dict(
         model="claude-sonnet-5-5",
         escalation_model="claude-opus-5-5",
         vision_model="claude-opus-5-5",
+        vision_fallback=False,
         effort="medium",
         temperature=0.0,
         llm_mode="auto",

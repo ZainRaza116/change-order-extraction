@@ -3,6 +3,7 @@ name = "co-extract"
 version = "0.1.0"
 description = "Extract structured, validated JSON with per-field confidence from messy construction change orders."
 readme = "README.md"
+authors = [{ name = "Syed Zain Raza" }]
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.7",
@@ -11,8 +12,6 @@ dependencies = [
     "pytesseract>=0.3.10",
     "opencv-python-headless>=4.10",
     "numpy>=1.26",
-    "pillow>=10.0",
-    "python-dateutil>=2.9",
     "rapidfuzz>=3.9",
     "typer>=0.12",
     "python-dotenv>=1.0",
@@ -27,7 +26,13 @@ api = ["fastapi>=0.115", "uvicorn>=0.30", "python-multipart>=0.0.9"]
 co-extract = "co_extract.cli:app"
 
 [dependency-groups]
-dev = ["pytest>=8.0", "ruff>=0.6", "pre-commit>=3.7", "httpx>=0.27"]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "pre-commit>=3.7",
+    "httpx>=0.27",     # FastAPI TestClient
+    "pillow>=10.0",    # scripts/make_samples.py and OCR tests
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -42,6 +47,9 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["co_extract", "tests"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

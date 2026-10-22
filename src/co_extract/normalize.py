@@ -1,4 +1,4 @@
-"""Stage 3 - deterministic parsers for money, dates and day counts.
+"""Deterministic parsers for money, dates, day counts, percentages and currencies.
 
 Every parser returns None when it can't read the input rather than guessing.
 """

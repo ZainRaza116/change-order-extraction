@@ -1,0 +1,378 @@
+{
+  "$defs": {
+    "FieldResult": {
+      "properties": {
+        "value": {
+          "title": "Value"
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Raw"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Evidence"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Page"
+        },
+        "alternatives": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "flags": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "raw",
+        "confidence",
+        "evidence",
+        "page"
+      ],
+      "title": "FieldResult",
+      "type": "object"
+    },
+    "ItemResult": {
+      "properties": {
+        "value": {
+          "additionalProperties": true,
+          "title": "Value",
+          "type": "object"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Evidence"
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Page"
+        },
+        "flags": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value",
+        "confidence",
+        "evidence",
+        "page"
+      ],
+      "title": "ItemResult",
+      "type": "object"
+    },
+    "PageInfo": {
+      "properties": {
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        },
+        "method": {
+          "title": "Method",
+          "type": "string"
+        },
+        "char_count": {
+          "title": "Char Count",
+          "type": "integer"
+        },
+        "ocr_confidence": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ocr Confidence"
+        }
+      },
+      "required": [
+        "page",
+        "method",
+        "char_count"
+      ],
+      "title": "PageInfo",
+      "type": "object"
+    },
+    "RuleOutcome": {
+      "properties": {
+        "rule": {
+          "title": "Rule",
+          "type": "string"
+        },
+        "outcome": {
+          "title": "Outcome",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule",
+        "outcome",
+        "message"
+      ],
+      "title": "RuleOutcome",
+      "type": "object"
+    },
+    "RunInfo": {
+      "properties": {
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "attempts": {
+          "default": 0,
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "cached": {
+          "default": false,
+          "title": "Cached",
+          "type": "boolean"
+        },
+        "escalated": {
+          "default": false,
+          "title": "Escalated",
+          "type": "boolean"
+        },
+        "input_tokens": {
+          "default": 0,
+          "title": "Input Tokens",
+          "type": "integer"
+        },
+        "output_tokens": {
+          "default": 0,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "cost_usd": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cost Usd"
+        },
+        "seconds": {
+          "default": 0.0,
+          "title": "Seconds",
+          "type": "number"
+        },
+        "llm_seconds": {
+          "default": 0.0,
+          "title": "Llm Seconds",
+          "type": "number"
+        },
+        "pipeline_version": {
+          "default": "0.1.0",
+          "title": "Pipeline Version",
+          "type": "string"
+        }
+      },
+      "title": "RunInfo",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "source_file": {
+      "title": "Source File",
+      "type": "string"
+    },
+    "file_sha256": {
+      "title": "File Sha256",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    },
+    "pages": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PageInfo"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "fields": {
+      "additionalProperties": {
+        "$ref": "#/$defs/FieldResult"
+      },
+      "default": {},
+      "title": "Fields",
+      "type": "object"
+    },
+    "line_items": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ItemResult"
+      },
+      "title": "Line Items",
+      "type": "array"
+    },
+    "markups": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ItemResult"
+      },
+      "title": "Markups",
+      "type": "array"
+    },
+    "signatures": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ItemResult"
+      },
+      "title": "Signatures",
+      "type": "array"
+    },
+    "overall_confidence": {
+      "default": 0.0,
+      "title": "Overall Confidence",
+      "type": "number"
+    },
+    "needs_review": {
+      "default": true,
+      "title": "Needs Review",
+      "type": "boolean"
+    },
+    "review_reasons": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Review Reasons",
+      "type": "array"
+    },
+    "validation": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RuleOutcome"
+      },
+      "title": "Validation",
+      "type": "array"
+    },
+    "model_notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Model Notes",
+      "type": "array"
+    },
+    "run": {
+      "$ref": "#/$defs/RunInfo",
+      "default": {
+        "model": null,
+        "attempts": 0,
+        "cached": false,
+        "escalated": false,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": null,
+        "seconds": 0.0,
+        "llm_seconds": 0.0,
+        "pipeline_version": "0.1.0"
+      }
+    }
+  },
+  "required": [
+    "source_file",
+    "file_sha256",
+    "status"
+  ],
+  "title": "ExtractionResult",
+  "type": "object"
+}

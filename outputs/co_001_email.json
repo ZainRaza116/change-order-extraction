@@ -326,7 +326,7 @@
     "input_tokens": 5144,
     "output_tokens": 1864,
     "cost_usd": 0.00189,
-    "seconds": 0.0,
+    "seconds": 0.01,
     "llm_seconds": 31.43,
     "pipeline_version": "0.1.0"
   }

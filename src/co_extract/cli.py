@@ -14,13 +14,12 @@ import typer
 
 from co_extract import __version__
 from co_extract.config import load_settings
+from co_extract.ingest import SUPPORTED_SUFFIXES, extract_text
 from co_extract.llm import LLMError, extract_fields
 from co_extract.pipeline import build_provider, run_pipeline
-from co_extract.text_extract import extract_text
+from co_extract.result import ExtractionResult
 
 app = typer.Typer(add_completion=False, help="Extract structured JSON from change orders.")
-
-SUPPORTED_SUFFIXES = {".pdf", ".txt", ".png", ".jpg", ".jpeg", ".tif", ".tiff"}
 
 ReplayOpt = Annotated[bool, typer.Option(help="Use recorded LLM responses only; no API calls.")]
 
@@ -118,7 +117,7 @@ def text(
     out: Annotated[Path | None, typer.Option("--out", "-o", help="Write JSON here.")] = None,
 ) -> None:
     """Debug: dump the extracted page text and tables as JSON."""
-    pages = extract_text(path, vision_model=load_settings().vision_model)
+    pages = extract_text(path, vision_model=load_settings().ocr_vision_model)
     payload = json.dumps([p.model_dump() for p in pages], indent=2, ensure_ascii=False)
     if out:
         _write(out, payload)
@@ -135,7 +134,7 @@ def extract(
 ) -> None:
     """Debug: dump the raw LLM field extraction (before parsing, rules and scoring)."""
     settings = load_settings()
-    pages = extract_text(path, vision_model=settings.vision_model)
+    pages = extract_text(path, vision_model=settings.ocr_vision_model)
     try:
         result = extract_fields(
             pages,
@@ -165,6 +164,17 @@ def extract(
         typer.echo(f"wrote {out}")
     else:
         typer.echo(payload)
+
+
+@app.command()
+def schema(
+    out: Annotated[Path, typer.Option("--out", "-o", help="Where to write the schema.")] = Path(
+        "schema/extraction_result.schema.json"
+    ),
+) -> None:
+    """Export the JSON Schema of the output (one ExtractionResult per document)."""
+    _write(out, json.dumps(ExtractionResult.model_json_schema(), indent=2))
+    typer.echo(f"wrote {out}")
 
 
 @app.command()
