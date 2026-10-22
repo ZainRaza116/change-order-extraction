@@ -1,0 +1,28 @@
+{
+  "change_order_number": "CO-07",
+  "project_name": "Harborview Medical Office Building",
+  "project_number": "24-118",
+  "date_issued": "2026-09-18",
+  "contractor": "Ridgeline Builders Inc.",
+  "owner": null,
+  "architect_engineer": null,
+  "description": "Add 2-hr rated GWB at Stair 2, relocate floor drain FD-3, delete rubber base in storage rooms.",
+  "reason": "owner_request",
+  "reason_text": "Fire separation at Stair 2 upgraded after tenant layout change; FD-3 moved to suit new casework.",
+  "line_items": [
+    {"description": "Add 2-hr rated GWB at Stair 2", "quantity": "640", "unit": "SF", "unit_cost": "18.75", "amount": "12000.00"},
+    {"description": "Relocate floor drain FD-3", "quantity": "1", "unit": "LS", "unit_cost": null, "amount": "3450.00"},
+    {"description": "Credit: delete rubber base, storage rooms", "quantity": null, "unit": null, "unit_cost": null, "amount": "-2250.00"}
+  ],
+  "change_amount": "13200.00",
+  "currency": "USD",
+  "original_contract_sum": "2450000.00",
+  "previous_changes_total": "69983.56",
+  "revised_contract_sum": "2533183.56",
+  "schedule_impact_days": 6,
+  "status": "pending",
+  "signatures": [
+    {"party": "contractor", "name": "Dana Whitfield", "date": "2026-09-19", "signed": true},
+    {"party": "owner", "name": null, "date": null, "signed": false}
+  ]
+}

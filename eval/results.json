@@ -1,0 +1,879 @@
+{
+  "documents": [
+    "co_001_email",
+    "co_002_digital",
+    "co_003_scanned",
+    "co_004_real_scan"
+  ],
+  "field_accuracy": 0.9306,
+  "required_field_accuracy": 0.9286,
+  "hallucinated": 0,
+  "null_fields": 5,
+  "errors_flagged": 2,
+  "errors_total": 5,
+  "calibration": [
+    {
+      "bucket": "0.0-0.5",
+      "n": 2,
+      "accuracy": 0.5
+    },
+    {
+      "bucket": "0.5-0.8",
+      "n": 7,
+      "accuracy": 0.8571428571428571
+    },
+    {
+      "bucket": "0.8-1.0",
+      "n": 74,
+      "accuracy": 0.9594594594594594
+    }
+  ],
+  "items": [
+    {
+      "document": "co_001_email",
+      "group": "line_items",
+      "expected": 3,
+      "predicted": 3,
+      "matched": 3,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "co_001_email",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "co_002_digital",
+      "group": "line_items",
+      "expected": 4,
+      "predicted": 4,
+      "matched": 4,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "co_002_digital",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "co_003_scanned",
+      "group": "line_items",
+      "expected": 4,
+      "predicted": 4,
+      "matched": 4,
+      "entries": [
+        [
+          0.983,
+          true
+        ],
+        [
+          0.983,
+          true
+        ],
+        [
+          0.983,
+          true
+        ],
+        [
+          0.983,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "co_003_scanned",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "co_004_real_scan",
+      "group": "line_items",
+      "expected": 4,
+      "predicted": 4,
+      "matched": 3,
+      "entries": [
+        [
+          0.0,
+          false
+        ],
+        [
+          0.6,
+          true
+        ],
+        [
+          0.6,
+          true
+        ],
+        [
+          0.6,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "co_004_real_scan",
+      "group": "markups",
+      "expected": 2,
+      "predicted": 2,
+      "matched": 2,
+      "entries": [
+        [
+          0.973,
+          true
+        ],
+        [
+          0.973,
+          true
+        ]
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "document": "co_001_email",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "07",
+      "expected": "CO-07",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Harborview Medical Office Building",
+      "expected": "Harborview Medical Office Building",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "24-118",
+      "expected": "24-118",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-09-18",
+      "expected": "2026-09-18",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Ridgeline Builders Inc.",
+      "expected": "Ridgeline Builders Inc.",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "owner",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "architect_engineer",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "description",
+      "outcome": "missed",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": "Add 2-hr rated GWB at Stair 2, relocate floor drain FD-3, delete rubber base in storage rooms.",
+      "correct": false
+    },
+    {
+      "document": "co_001_email",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "reason_text",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "expected": "Fire separation at Stair 2 upgraded after tenant layout change; FD-3 moved to suit new casework.",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "13200.00",
+      "expected": "13200.00",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.3,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2450000.00",
+      "expected": "2450000.00",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "69983.56",
+      "expected": "69983.56",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2533183.56",
+      "expected": "2533183.56",
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": 6,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "document": "co_001_email",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "pending",
+      "expected": "pending",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "CO-012",
+      "expected": "CO-012",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Riverside Medical Office Building",
+      "expected": "Riverside Medical Office Building",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "24-207",
+      "expected": "24-207",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-10-06",
+      "expected": "2026-10-06",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Ridgeline Builders Inc.",
+      "expected": "Ridgeline Builders Inc.",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Riverside Health Partners LLC",
+      "expected": "Riverside Health Partners LLC",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Studio Lee Architects",
+      "expected": "Studio Lee Architects",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
+      "expected": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "reason_text",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Owner request.",
+      "expected": "Owner request.",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "10763.06",
+      "expected": "10763.06",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2450000.00",
+      "expected": "2450000.00",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "72420.50",
+      "expected": "72420.50",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2533183.56",
+      "expected": "2533183.56",
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": 6,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "document": "co_002_digital",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "CO-012",
+      "expected": "CO-012",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "Riverside Medical Office Building",
+      "expected": "Riverside Medical Office Building",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "24-207",
+      "expected": "24-207",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "2026-10-06",
+      "expected": "2026-10-06",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "Ridgeline Builders Inc.",
+      "expected": "Ridgeline Builders Inc.",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "Riverside Health Partners LLC",
+      "expected": "Riverside Health Partners LLC",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "Studio Lee Architects",
+      "expected": "Studio Lee Architects",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
+      "expected": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "reason_text",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "Owner request.",
+      "expected": "Owner request.",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "10763.06",
+      "expected": "10763.06",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.783,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "2450000.00",
+      "expected": "2450000.00",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "72420.50",
+      "expected": "72420.50",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": "2533183.56",
+      "expected": "2533183.56",
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 0.983,
+      "predicted": 6,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "document": "co_003_scanned",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 0.939,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "007",
+      "expected": "CO-007",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Riverside Medical Office Building",
+      "expected": "Riverside Medical Office Building",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "project_number",
+      "outcome": "wrong",
+      "confidence": 0.973,
+      "predicted": "24 18",
+      "expected": "24-118",
+      "correct": false
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "2026-09-18",
+      "expected": "2026-09-18",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Ridgeline Builders, Inc.",
+      "expected": "Ridgeline Builders, Inc.",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Harmon Health Partners, LLC",
+      "expected": "Harmon Health Partners, LLC",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Calloway + Finch Architects",
+      "expected": "Calloway + Finch Architects",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "description",
+      "outcome": "wrong",
+      "confidence": 0.938,
+      "predicted": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add relocated imaging equipment room (Level 2, grid lines C-D / 4-5), relocate electrical receptacle layout, and modify partition framing accordingly.",
+      "expected": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add structural support at the relocated imaging equipment room (Level 2, grid lines C-D / 4-5), relocate electrical receptacles to suit revised casework layout, and modify partition framing accordingly. Ceramic wall tile at Corridor 2B is deleted from the scope and replaced with painted gypsum board (paint by others under existing scope).",
+      "correct": false
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "reason_text",
+      "outcome": "wrong",
+      "confidence": 0.973,
+      "predicted": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42)",
+      "expected": "Owner-requested design revision.",
+      "correct": false
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "subtotal",
+      "outcome": "correct",
+      "confidence": 0.6,
+      "predicted": "9640.00",
+      "expected": "9640.00",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "10763.06",
+      "expected": "10763.06",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.773,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "2485000.00",
+      "expected": "2485000.00",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "37420.50",
+      "expected": "37420.50",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 0.933,
+      "predicted": "2533183.56",
+      "expected": "2533183.56",
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": 6,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "document": "co_004_real_scan",
+      "field": "status",
+      "outcome": "wrong",
+      "confidence": 0.6,
+      "predicted": "approved",
+      "expected": "pending",
+      "correct": false
+    }
+  ],
+  "runs": [
+    {
+      "document": "co_001_email",
+      "needs_review": true,
+      "model": "gpt-4o-mini",
+      "attempts": 2,
+      "cached": true,
+      "escalated": false,
+      "input_tokens": 5144,
+      "output_tokens": 1864,
+      "cost_usd": 0.00189,
+      "seconds": 0.0,
+      "llm_seconds": 31.43,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "co_002_digital",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "escalated": false,
+      "input_tokens": 2356,
+      "output_tokens": 1081,
+      "cost_usd": 0.001,
+      "seconds": 0.04,
+      "llm_seconds": 16.98,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "co_003_scanned",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 2,
+      "cached": true,
+      "escalated": false,
+      "input_tokens": 5478,
+      "output_tokens": 2136,
+      "cost_usd": 0.0021,
+      "seconds": 1.11,
+      "llm_seconds": 33.85,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "co_004_real_scan",
+      "needs_review": true,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "escalated": false,
+      "input_tokens": 2512,
+      "output_tokens": 1369,
+      "cost_usd": 0.0012,
+      "seconds": 1.46,
+      "llm_seconds": 21.82,
+      "pipeline_version": "0.1.0"
+    }
+  ],
+  "failed_documents": []
+}

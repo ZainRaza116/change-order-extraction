@@ -1,0 +1,20 @@
+[
+  {
+    "page": 1,
+    "text": "CHANGE ORDER\nAIA Document G701 - style form\nPROJECT: Riverside Medical Office Building CHANGE ORDER NO.: CO-012\n1450 River Road, Sacramento, CA DATE: October 6, 2026\nOWNER: Riverside Health Partners LLC PROJECT NO.: 24-207\nCONTRACTOR: Ridgeline Builders Inc. CONTRACT DATE: 02/03/26\nARCHITECT: Studio Lee Architects\nTHE CONTRACT IS CHANGED AS FOLLOWS:\nUpgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).\nReason: Owner request. .\nNo. | Description | Qty Unit Unit Cost Amount\n1 Add 2-hr rated GWB at Stair 2 640 | SF $14.25 $9,120.00\n2 Relocate floor drain FD-3 . 1 “LS $3,450.00 $3,450.00\n3 Credit: delete rubber base, storage rooms 1 : LS ($2,250.00) ($2,250.00)\n4 Bond and insurance 1 LS $443.06 $443.06\nTotal this Change Order: $10,763.06\nThe original Contract Sum was $2,450,000.00\nNet change by previously authorized Change Orders . $72,420.50\nThe Contract Sum prior to this Change Order was $2,.522,420.50\nThe Contract Sum will be increased by this Change Order in the amount of $10,763.06\nThe new Contract Sum including this Change Order will be ; $2,533,183.56\nThe Contract Time will be increased by Six (6) calendar days.\nPage 1 of 2",
+    "method": "ocr",
+    "char_count": 1219,
+    "tables": [],
+    "ocr_confidence": 0.8866,
+    "skew_degrees": 1.37
+  },
+  {
+    "page": 2,
+    "text": "CHANGE ORDER CO-012 - SIGNATURES\nARCHITECT\nStudio Lee Architects\nBy: /s/ Marcus Lee Date: 10/7/2026\nCONTRACTOR\nRidgeline Builders inc.\nBy: /s/ Dana Whitfield Date: 10/6/2026\nOWNER\nRiverside Health Partners LLC\nBy: /s/ Priya Nair Date: 10/9/2026\nPage 2 of 2",
+    "method": "ocr",
+    "char_count": 256,
+    "tables": [],
+    "ocr_confidence": 0.924,
+    "skew_degrees": 1.48
+  }
+]

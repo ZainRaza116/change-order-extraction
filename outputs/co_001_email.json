@@ -1,0 +1,333 @@
+{
+  "source_file": "co_001_email.txt",
+  "file_sha256": "e03911cf349ecc7f3aaad6a5ba00da22ca5907b6555f8eedbb43b7ff8ddddb88",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 1409,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "07",
+      "raw": "07",
+      "confidence": 1.0,
+      "evidence": "Change Order No. 07 for the Harborview Medical Office Building",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Harborview Medical Office Building",
+      "raw": "Harborview Medical Office Building",
+      "confidence": 1.0,
+      "evidence": "Harborview Medical Office Building, job #24-118",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": "24-118",
+      "raw": "24-118",
+      "confidence": 1.0,
+      "evidence": "job #24-118",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "date_issued": {
+      "value": "2026-09-18",
+      "raw": "Sept. 18, 2026",
+      "confidence": 1.0,
+      "evidence": "Date: Fri, Sept. 18, 2026 4:12 PM",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Ridgeline Builders Inc.",
+      "raw": "Ridgeline Builders Inc.",
+      "confidence": 1.0,
+      "evidence": "Dana Whitfield Project Manager, Ridgeline Builders Inc.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "architect_engineer": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "description": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "reason": {
+      "value": "owner_request",
+      "raw": "owner_request",
+      "confidence": 1.0,
+      "evidence": "Reason: owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason_text": {
+      "value": "owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "raw": "owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "confidence": 1.0,
+      "evidence": "Reason: owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "subtotal": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "change_amount": {
+      "value": "13200.00",
+      "raw": "$13,200.00",
+      "confidence": 1.0,
+      "evidence": "Total this CO                                                  $13,200.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "USD",
+      "confidence": 0.3,
+      "evidence": "Currency not explicitly stated, inferred from context",
+      "page": 1,
+      "alternatives": [],
+      "flags": [
+        "evidence not found in source"
+      ]
+    },
+    "original_contract_sum": {
+      "value": "2450000.00",
+      "raw": "$2,450,000.00",
+      "confidence": 1.0,
+      "evidence": "Original Contract Sum ............ $2,450,000.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "previous_changes_total": {
+      "value": "69983.56",
+      "raw": "$69,983.56",
+      "confidence": 1.0,
+      "evidence": "Net change by previous COs ........ $69,983.56",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "revised_contract_sum": {
+      "value": "2533183.56",
+      "raw": "$2,533,183.56",
+      "confidence": 1.0,
+      "evidence": "Revised Contract Sum ............. $2,533,183.56",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "schedule_impact_days": {
+      "value": 6,
+      "raw": "Six (6) calendar days",
+      "confidence": 1.0,
+      "evidence": "Schedule: Six (6) calendar days added to substantial completion.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "status": {
+      "value": "pending",
+      "raw": "pending",
+      "confidence": 1.0,
+      "evidence": "Still need Owner signature, I'll f/u Mon if I don't hear back.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    }
+  },
+  "line_items": [
+    {
+      "value": {
+        "description": "Add 2-hr rated GWB at Stair 2",
+        "quantity": "640",
+        "unit": "SF",
+        "unit_cost": "18.75",
+        "amount": "12000.00"
+      },
+      "confidence": 1.0,
+      "evidence": "Add 2-hr rated GWB at Stair 2 ........ 640 SF @ $18.75/SF ..... $12,000.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Relocate floor drain FD-3",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_cost": null,
+        "amount": "3450.00"
+      },
+      "confidence": 1.0,
+      "evidence": "Relocate floor drain FD-3 ............ 1 LS ..................... $3,450.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "delete rubber base, storage rms",
+        "quantity": null,
+        "unit": null,
+        "unit_cost": null,
+        "amount": "-2250.00"
+      },
+      "confidence": 1.0,
+      "evidence": "Credit: delete rubber base, storage rms ........................ ($2,250.00)",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "markups": [],
+  "signatures": [
+    {
+      "value": {
+        "party": "contractor",
+        "name": "Dana Whitfield",
+        "date": "2026-09-19",
+        "signed": true
+      },
+      "confidence": 0.8,
+      "evidence": "I signed our copy 9/19/2026 (will send scan)",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "owner",
+        "name": null,
+        "date": null,
+        "signed": false
+      },
+      "confidence": 1.0,
+      "evidence": "Still need Owner signature",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.757,
+  "needs_review": true,
+  "review_reasons": [
+    "description confidence 0.00 < 0.7",
+    "currency confidence 0.30 < 0.7",
+    "rule required_fields failed: missing: description"
+  ],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "fail",
+      "message": "missing: description"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "pass",
+      "message": "original + previous + change = revised (2,533,183.56)"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "pass",
+      "message": "items + markups = change amount (13,200.00)"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "pass",
+      "message": "1 item(s) check out"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "not_applicable",
+      "message": "no markup with a stated rate"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "not_applicable",
+      "message": "no credit or deduct items"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "pass",
+      "message": "status pending matches the signatures"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "pass",
+      "message": "6 day(s)"
+    }
+  ],
+  "model_notes": [],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 2,
+    "cached": true,
+    "escalated": false,
+    "input_tokens": 5144,
+    "output_tokens": 1864,
+    "cost_usd": 0.00189,
+    "seconds": 0.0,
+    "llm_seconds": 31.43,
+    "pipeline_version": "0.1.0"
+  }
+}
