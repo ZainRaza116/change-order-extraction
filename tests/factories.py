@@ -14,6 +14,8 @@ from co_extract.llm import LlmExtraction, LLMRequest, LLMResponse
 ROOT = Path(__file__).parent.parent
 SAMPLES = ROOT / "samples"
 EXPECTED = ROOT / "expected"
+TESTSET_EXPECTED = ROOT / "testset" / "expected"  # labelled externally
+ALL_GROUND_TRUTH = sorted([*EXPECTED.glob("*.json"), *TESTSET_EXPECTED.glob("*.json")])
 FIXTURES = Path(__file__).parent / "fixtures"
 
 SCALAR_FIELDS = (
@@ -146,14 +148,10 @@ class ScriptedProvider:
 
 def make_settings(tmp_path: Path, **overrides) -> Settings:
     base = dict(
-        model="claude-sonnet-5-5",
-        escalation_model="claude-opus-5-5",
-        vision_model="claude-opus-5-5",
-        vision_fallback=False,
+        model="gpt-4o-mini",
         effort="medium",
         temperature=0.0,
         llm_mode="auto",
-        escalate=False,
         review_threshold=0.7,
         cache_dir=tmp_path / "cassettes",
     )

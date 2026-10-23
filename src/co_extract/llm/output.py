@@ -14,6 +14,10 @@ from co_extract.schema import Reason, Status
 
 T = TypeVar("T")
 
+# Currency is normalised in code from the symbol on the amounts (assemble.py), so a bare
+# "USD" from the model is accepted instead of costing a retry.
+EVIDENCE_OPTIONAL = {"currency"}
+
 
 class _Out(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -87,7 +91,9 @@ class LlmExtraction(_Out):
     @model_validator(mode="after")
     def _values_need_evidence(self) -> "LlmExtraction":
         missing = [
-            name for name, item in self.scalars() if item.value is not None and not item.evidence
+            name
+            for name, item in self.scalars()
+            if item.value is not None and not item.evidence and name not in EVIDENCE_OPTIONAL
         ]
         if missing:
             raise ValueError(f"value given without evidence for: {', '.join(missing)}")

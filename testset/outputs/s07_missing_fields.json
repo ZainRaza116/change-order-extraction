@@ -1,0 +1,288 @@
+{
+  "source_file": "s07_missing_fields.pdf",
+  "file_sha256": "84bc6e0c16f90877b96a21f784aab24f5cf95020d4d3fb5dcc5c9b3c26d40f00",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 642,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "4",
+      "raw": "4",
+      "confidence": 1.0,
+      "evidence": "PCO No.      4",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Elm Street Townhomes",
+      "raw": "Elm Street Townhomes",
+      "confidence": 1.0,
+      "evidence": "Project        Elm Street Townhomes",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "date_issued": {
+      "value": "2026-07-22",
+      "raw": "July 22, 2026",
+      "confidence": 1.0,
+      "evidence": "Date           July 22, 2026",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Brightline Contracting",
+      "raw": "Brightline Contracting",
+      "confidence": 1.0,
+      "evidence": "Contractor       Brightline Contracting",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "architect_engineer": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "description": {
+      "value": "Add exterior frost-free hose bibs at Units 3 and 4, rear patios, including piping from nearest cold water line.",
+      "raw": "Add exterior frost-free hose bibs at Units 3 and 4, rear patios, including piping from nearest cold water line.",
+      "confidence": 1.0,
+      "evidence": "Description of work: Add exterior frost-free hose bibs at Units 3 and 4, rear patios, including piping from nearest cold water line.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "reason_text": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "subtotal": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "change_amount": {
+      "value": "1640.00",
+      "raw": "$1,640.00",
+      "confidence": 1.0,
+      "evidence": "Amount: $1,640.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "USD",
+      "confidence": 0.8,
+      "evidence": "Amount: $1,640.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": [
+        "derived: currency from '$' in change_amount"
+      ]
+    },
+    "original_contract_sum": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "previous_changes_total": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "revised_contract_sum": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "schedule_impact_days": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "status": {
+      "value": "proposed",
+      "raw": "proposed",
+      "confidence": 1.0,
+      "evidence": "PROPOSED CHANGE ORDER",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    }
+  },
+  "line_items": [],
+  "markups": [],
+  "signatures": [
+    {
+      "value": {
+        "party": "contractor",
+        "name": "Carla Jensen",
+        "date": "2026-07-22",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Submitted by: Carla Jensen   Brightline Contracting  7/22/26",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.971,
+  "needs_review": false,
+  "review_reasons": [],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "pass",
+      "message": "all required fields present"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "not_applicable",
+      "message": "needs original_contract_sum, previous_changes_total, revised_contract_sum"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "not_applicable",
+      "message": "no line items"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "not_applicable",
+      "message": "no item has both quantity and unit cost"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "not_applicable",
+      "message": "no markup with a stated rate"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "not_applicable",
+      "message": "no credit or deduct items"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "pass",
+      "message": "status proposed matches the signatures"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "not_applicable",
+      "message": "no schedule impact"
+    }
+  ],
+  "model_notes": [],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 1,
+    "cached": true,
+    "input_tokens": 1993,
+    "output_tokens": 552,
+    "cost_usd": 0.00063,
+    "seconds": 0.01,
+    "llm_seconds": 5.76,
+    "pipeline_version": "0.1.0"
+  }
+}

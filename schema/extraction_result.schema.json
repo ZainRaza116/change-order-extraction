@@ -202,11 +202,6 @@
           "title": "Cached",
           "type": "boolean"
         },
-        "escalated": {
-          "default": false,
-          "title": "Escalated",
-          "type": "boolean"
-        },
         "input_tokens": {
           "default": 0,
           "title": "Input Tokens",
@@ -358,7 +353,6 @@
         "model": null,
         "attempts": 0,
         "cached": false,
-        "escalated": false,
         "input_tokens": 0,
         "output_tokens": 0,
         "cost_usd": null,

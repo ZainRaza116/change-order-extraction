@@ -80,15 +80,13 @@
       ]
     },
     "description": {
-      "value": null,
-      "raw": null,
-      "confidence": 0.0,
-      "evidence": null,
-      "page": null,
+      "value": "owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "raw": "owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "confidence": 1.0,
+      "evidence": "Reason: owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
+      "page": 1,
       "alternatives": [],
-      "flags": [
-        "no value"
-      ]
+      "flags": []
     },
     "reason": {
       "value": "owner_request",
@@ -131,12 +129,12 @@
     "currency": {
       "value": "USD",
       "raw": "USD",
-      "confidence": 0.3,
-      "evidence": "Currency not explicitly stated, inferred from context",
+      "confidence": 0.8,
+      "evidence": "Total this CO                                                  $13,200.00",
       "page": 1,
       "alternatives": [],
       "flags": [
-        "evidence not found in source"
+        "derived: currency from '$' in change_amount"
       ]
     },
     "original_contract_sum": {
@@ -178,11 +176,13 @@
     "status": {
       "value": "pending",
       "raw": "pending",
-      "confidence": 1.0,
+      "confidence": 0.6,
       "evidence": "Still need Owner signature, I'll f/u Mon if I don't hear back.",
       "page": 1,
       "alternatives": [],
-      "flags": []
+      "flags": [
+        "validation rule failed"
+      ]
     }
   },
   "line_items": [
@@ -248,23 +248,21 @@
         "signed": false
       },
       "confidence": 1.0,
-      "evidence": "Still need Owner signature",
+      "evidence": "Still need Owner signature, I'll f/u Mon if I don't hear back.",
       "page": 1,
       "flags": []
     }
   ],
-  "overall_confidence": 0.757,
+  "overall_confidence": 0.971,
   "needs_review": true,
   "review_reasons": [
-    "description confidence 0.00 < 0.7",
-    "currency confidence 0.30 < 0.7",
-    "rule required_fields failed: missing: description"
+    "rule status_consistency failed: pending, but no approver has signed yet (a proposal)"
   ],
   "validation": [
     {
       "rule": "required_fields",
-      "outcome": "fail",
-      "message": "missing: description"
+      "outcome": "pass",
+      "message": "all required fields present"
     },
     {
       "rule": "contract_math",
@@ -303,8 +301,8 @@
     },
     {
       "rule": "status_consistency",
-      "outcome": "pass",
-      "message": "status pending matches the signatures"
+      "outcome": "fail",
+      "message": "pending, but no approver has signed yet (a proposal)"
     },
     {
       "rule": "currency_code",
@@ -320,14 +318,13 @@
   "model_notes": [],
   "run": {
     "model": "gpt-4o-mini",
-    "attempts": 2,
+    "attempts": 1,
     "cached": true,
-    "escalated": false,
-    "input_tokens": 5144,
-    "output_tokens": 1864,
-    "cost_usd": 0.00189,
-    "seconds": 0.01,
-    "llm_seconds": 31.43,
+    "input_tokens": 2203,
+    "output_tokens": 994,
+    "cost_usd": 0.00093,
+    "seconds": 0.0,
+    "llm_seconds": 10.77,
     "pipeline_version": "0.1.0"
   }
 }

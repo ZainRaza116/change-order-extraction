@@ -1,0 +1,348 @@
+{
+  "source_file": "s04_deduct_credit.pdf",
+  "file_sha256": "b8004cfccb87f87ade97aeb213d12a48c010cdec7f7e522568eb2d1ad7bfe139",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 2219,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "CO-022",
+      "raw": "CO-022",
+      "confidence": 1.0,
+      "evidence": "Change Order     CO-022",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Harbor Point Apartments – Bldg C",
+      "raw": "Harbor Point Apartments – Bldg C",
+      "confidence": 1.0,
+      "evidence": "Project            Harbor Point Apartments – Bldg C",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": "HP-C-0419",
+      "raw": "HP-C-0419",
+      "confidence": 1.0,
+      "evidence": "Job #        HP-C-0419",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "date_issued": {
+      "value": "2026-08-14",
+      "raw": "14 Aug 2026",
+      "confidence": 1.0,
+      "evidence": "Date        14 Aug 2026",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Bayside Construction Group",
+      "raw": "Bayside Construction Group",
+      "confidence": 1.0,
+      "evidence": "Bayside Construction Group - CO-022",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": "Harbor Point Residential LP",
+      "raw": "Harbor Point Residential LP",
+      "confidence": 1.0,
+      "evidence": "Owner            Harbor Point Residential LP",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "architect_engineer": {
+      "value": "Mendez Hollis Architecture",
+      "raw": "Mendez Hollis Architecture",
+      "confidence": 1.0,
+      "evidence": "Architect     Mendez Hollis Architecture",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "description": {
+      "value": "Value-engineering credits accepted by Owner at the OAC meeting of 7 Aug 2026, plus added blocking for TV mounts.",
+      "raw": "Value-engineering credits accepted by Owner at the OAC meeting of 7 Aug 2026, plus added blocking for TV mounts.",
+      "confidence": 1.0,
+      "evidence": "Scope: Value-engineering credits accepted by Owner at the OAC meeting of 7 Aug 2026, plus added blocking for TV mounts.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason": {
+      "value": "owner_request",
+      "raw": "owner_request",
+      "confidence": 1.0,
+      "evidence": "Reason: Owner-directed value engineering.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason_text": {
+      "value": "Owner-directed value engineering.",
+      "raw": "Owner-directed value engineering.",
+      "confidence": 1.0,
+      "evidence": "Reason: Owner-directed value engineering.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "subtotal": {
+      "value": "-25280.00",
+      "raw": "($25,280.00)",
+      "confidence": 0.9,
+      "evidence": "Net of items                                                                            ($25,280.00)",
+      "page": 1,
+      "alternatives": [],
+      "flags": [
+        "derived: subtotal: printed figure equal to the line items' sum (($25,280.00))"
+      ]
+    },
+    "change_amount": {
+      "value": "-25006.40",
+      "raw": "($25,006.40)",
+      "confidence": 1.0,
+      "evidence": "NET CHANGE THIS ORDER – DEDUCT                                                 ($25,006.40)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "USD",
+      "confidence": 0.8,
+      "evidence": "NET CHANGE THIS ORDER – DEDUCT                                                 ($25,006.40)",
+      "page": 1,
+      "alternatives": [],
+      "flags": [
+        "derived: currency from '$' in change_amount"
+      ]
+    },
+    "original_contract_sum": {
+      "value": "18740000.00",
+      "raw": "$18,740,000.00",
+      "confidence": 1.0,
+      "evidence": "Original Contract Sum                                                         $18,740,000.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "previous_changes_total": {
+      "value": "412315.75",
+      "raw": "$412,315.75",
+      "confidence": 1.0,
+      "evidence": "Net change by previous Change Orders                                        $412,315.75",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "revised_contract_sum": {
+      "value": "19127309.35",
+      "raw": "$19,127,309.35",
+      "confidence": 1.0,
+      "evidence": "New Contract Sum                                                           $19,127,309.35",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "schedule_impact_days": {
+      "value": 0,
+      "raw": "0 days",
+      "confidence": 1.0,
+      "evidence": "Contract Time                                                        Unchanged (0 days)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "status": {
+      "value": "approved",
+      "raw": "approved",
+      "confidence": 0.95,
+      "evidence": "L. Brandt                       T. Nakamura                     S. Mendez",
+      "page": 1,
+      "alternatives": [
+        "pending"
+      ],
+      "flags": []
+    }
+  },
+  "line_items": [
+    {
+      "value": {
+        "description": "DEDUCT: Delete specified quartz countertops, Units C101–C112; substitute plastic laminate",
+        "quantity": "12",
+        "unit": "EA",
+        "unit_cost": "-1875.00",
+        "amount": "-22500.00"
+      },
+      "confidence": 1.0,
+      "evidence": "1    DEDUCT: Delete specified quartz countertops, Units       12   EA     ($1,875.00)    ($22,500.00)",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "ADD: Wood backing for Owner-furnished TV mounts",
+        "quantity": "36",
+        "unit": "EA",
+        "unit_cost": "95.00",
+        "amount": "3420.00"
+      },
+      "confidence": 1.0,
+      "evidence": "2     ADD: Wood backing for Owner-furnished TV mounts       36   EA     $95.00        $3,420.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "DEDUCT: Omit irrigation Zone 4 (landscape revised)",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_cost": "-6200.00",
+        "amount": "-6200.00"
+      },
+      "confidence": 1.0,
+      "evidence": "3    DEDUCT: Omit irrigation Zone 4 (landscape revised)      1     LS      ($6,200.00)    ($6,200.00)",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "markups": [
+    {
+      "value": {
+        "description": "Contractor fee @ 8% (applied to ADD items only)",
+        "rate_percent": null,
+        "amount": "273.60"
+      },
+      "confidence": 1.0,
+      "evidence": "Contractor fee @ 8% (applied to ADD items only)                                      $273.60",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "signatures": [
+    {
+      "value": {
+        "party": "owner",
+        "name": "Lena Brandt, Asset Manager",
+        "date": "2026-08-21",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Lena Brandt, Asset Manager           21 Aug 2026",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "contractor",
+        "name": "Toshi Nakamura, PM",
+        "date": "2026-08-15",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Toshi Nakamura, PM                   15 Aug 2026",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "architect",
+        "name": "Sofia Mendez, AIA",
+        "date": "2026-08-18",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Sofia Mendez, AIA                     18 Aug 2026",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.971,
+  "needs_review": false,
+  "review_reasons": [],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "pass",
+      "message": "all required fields present"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "pass",
+      "message": "original + previous + change = revised (19,127,309.35)"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "pass",
+      "message": "items + markups = change amount (-25,006.40)"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "pass",
+      "message": "3 item(s) check out"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "not_applicable",
+      "message": "no markup with a stated rate"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "pass",
+      "message": "2 credit item(s) are negative"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "pass",
+      "message": "status approved matches the signatures"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "pass",
+      "message": "0 day(s)"
+    }
+  ],
+  "model_notes": [],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 1,
+    "cached": true,
+    "input_tokens": 2619,
+    "output_tokens": 1100,
+    "cost_usd": 0.00105,
+    "seconds": 0.03,
+    "llm_seconds": 10.77,
+    "pipeline_version": "0.1.0"
+  }
+}

@@ -41,10 +41,11 @@ def same_money(a: Any, b: Any) -> bool:
 
 
 def same_co_number(a: Any, b: Any) -> bool:
-    """'007' == 'CO-007' == 'CO #7'; '7A' != '7'."""
+    """'007' == 'CO-007' == 'CO #7' == 'CO-7, Revision 1'; '7A' != '7'."""
 
     def key(v: Any) -> tuple[int, str] | None:
-        m = re.search(r"(\d+)\s*([a-z]?)\s*$", str(v).lower())
+        base = re.sub(r"[,(-]?\s*rev(?:ision|\.)?\s*\d+\)?\s*$", "", str(v).lower())
+        m = re.search(r"(\d+)\s*([a-z]?)\s*$", base)
         return (int(m[1]), m[2]) if m else None
 
     return key(a) is not None and key(a) == key(b)
@@ -57,8 +58,13 @@ def same_name(a: Any, b: Any) -> bool:
     return fuzz.ratio(norm(a), norm(b)) >= NAME_MIN
 
 
+def text_similarity(a: Any, b: Any) -> float:
+    """Word-order-insensitive similarity of two texts, 0-100."""
+    return fuzz.token_sort_ratio(" ".join(_words(str(a))), " ".join(_words(str(b))))
+
+
 def same_text(a: Any, b: Any) -> bool:
-    return fuzz.token_sort_ratio(" ".join(_words(str(a))), " ".join(_words(str(b)))) >= TEXT_MIN
+    return text_similarity(a, b) >= TEXT_MIN
 
 
 def same_exact(a: Any, b: Any) -> bool:
@@ -85,6 +91,14 @@ COMPARATORS = {
     "schedule_impact_days": same_exact,
     "status": same_exact,
 }
+
+
+# Free text is paraphrased in hand-written answer files, so a string comparison measures
+# the wording, not the extraction. It is reported separately, with its similarity scores,
+# and kept out of the headline accuracy, calibration and error-flag rates.
+FREE_TEXT = ("description", "reason_text")
+STRUCTURED = tuple(name for name in COMPARATORS if name not in FREE_TEXT)
+MIN_BUCKET = 10  # fewer values than this in a calibration bucket is too few to judge
 
 
 # --- per-document scoring -------------------------------------------------------------------
@@ -179,8 +193,11 @@ class Report:
         null_truth = [c for c in self.fields if c.expected is None]
         return sum(c.outcome == "hallucinated" for c in null_truth), len(null_truth)
 
+    def structured(self) -> list[FieldCheck]:
+        return [c for c in self.fields if c.field in STRUCTURED]
+
     def calibration(self) -> list[dict]:
-        points = [(c.confidence, c.correct) for c in self.fields if c.predicted is not None]
+        points = [(c.confidence, c.correct) for c in self.structured() if c.predicted is not None]
         points += [p for i in self.items for p in i.entries]
         rows = []
         for low, high in BUCKETS:
@@ -196,16 +213,41 @@ class Report:
 
     def errors_flagged(self) -> tuple[int, int]:
         """Wrong/missed/hallucinated fields that were flagged (confidence < threshold)."""
-        bad = [c for c in self.fields if not c.correct]
+        bad = [c for c in self.structured() if not c.correct]
         return sum(c.confidence < REVIEW_THRESHOLD for c in bad), len(bad)
+
+    def document_flags(self) -> tuple[int, int, int, int]:
+        """(flagged, with an error) and (passed, clean): did review catch the bad documents?"""
+        review = {r["document"]: r["needs_review"] for r in self.runs}
+        wrong = {c.document for c in self.structured() if not c.correct}
+        wrong |= {i.document for i in self.items if i.matched < i.expected}
+        clean = set(self.documents) - wrong
+        return (
+            sum(review[d] for d in wrong),
+            len(wrong),
+            sum(not review[d] for d in clean),
+            len(clean),
+        )
+
+    def free_text(self) -> list[tuple[str, str, float]]:
+        """(document, field, similarity 0-100) for every free-text field with an answer."""
+        return [
+            (c.document, c.field, text_similarity(c.predicted or "", c.expected))
+            for c in self.fields
+            if c.field in FREE_TEXT and c.expected is not None
+        ]
 
     def to_dict(self) -> dict:
         h, n = self.hallucinations()
         flagged, bad = self.errors_flagged()
         return {
             "documents": self.documents,
-            "field_accuracy": round(self.accuracy(), 4),
-            "required_field_accuracy": round(self.accuracy(REQUIRED_FIELDS), 4),
+            "field_accuracy": round(self.accuracy(STRUCTURED), 4),
+            "required_field_accuracy": round(
+                self.accuracy(tuple(f for f in REQUIRED_FIELDS if f in STRUCTURED)), 4
+            ),
+            "document_flags": self.document_flags(),
+            "free_text_similarity": self.free_text(),
             "hallucinated": h,
             "null_fields": n,
             "errors_flagged": flagged,
@@ -254,6 +296,7 @@ def _pct(x: float | None) -> str:
 def render_markdown(report: Report) -> str:
     h, n = report.hallucinations()
     flagged, bad = report.errors_flagged()
+    doc_flag, doc_bad, doc_pass, doc_clean = report.document_flags()
     li = [i for i in report.items if i.group == "line_items"]
     mk = [i for i in report.items if i.group == "markups"]
     li_exp, li_hit = sum(i.expected for i in li), sum(i.matched for i in li)
@@ -267,14 +310,16 @@ def render_markdown(report: Report) -> str:
         "",
         "| Metric | Result |",
         "|---|---|",
-        f"| Field accuracy (all {len(COMPARATORS)} fields) | {_pct(report.accuracy())} |",
-        f"| Required-field accuracy | {_pct(report.accuracy(REQUIRED_FIELDS))} |",
+        f"| Field accuracy ({len(STRUCTURED)} structured fields) "
+        f"| {_pct(report.accuracy(STRUCTURED))} |",
+        f"| Required-field accuracy "
+        f"| {_pct(report.accuracy(tuple(f for f in REQUIRED_FIELDS if f in STRUCTURED)))} |",
         f"| Hallucinated values (value where truth is empty) | {h} of {n} |",
         f"| Line-item amounts recovered | {li_hit} of {li_exp} |",
         f"| Markup amounts recovered | {mk_hit} of {mk_exp} |",
         f"| Wrong fields flagged (confidence < {REVIEW_THRESHOLD}) | {flagged} of {bad} |",
-        f"| Documents flagged for review | "
-        f"{sum(r['needs_review'] for r in report.runs)} of {len(report.runs)} |",
+        f"| Documents with an error that were flagged for review | {doc_flag} of {doc_bad} |",
+        f"| Clean documents passed without review | {doc_pass} of {doc_clean} |",
     ]
     if costs:
         lines.append(f"| Cost per document (mean) | ${sum(costs) / len(costs):.4f} |")
@@ -285,9 +330,23 @@ def render_markdown(report: Report) -> str:
 
     lines += ["", "**Calibration** (does higher confidence mean more often right?)", ""]
     lines += ["| Confidence | Values | Accuracy |", "|---|---|---|"]
-    lines += [f"| {r['bucket']} | {r['n']} | {_pct(r['accuracy'])} |" for r in report.calibration()]
+    lines += [
+        f"| {r['bucket']} | {r['n']} | {_pct(r['accuracy'])}"
+        f"{' (too few to judge)' if 0 < r['n'] < MIN_BUCKET else ''} |"
+        for r in report.calibration()
+    ]
 
-    wrong = [c for c in report.fields if not c.correct]
+    texts = report.free_text()
+    if texts:
+        close = sum(score >= TEXT_MIN for _, _, score in texts)
+        lines += [
+            "",
+            f"**Free text** ({', '.join(FREE_TEXT)}; answers are paraphrased, so these are "
+            f"similarity scores, not pass/fail): {close} of {len(texts)} at or above {TEXT_MIN}, "
+            f"mean {sum(s for _, _, s in texts) / len(texts):.0f}.",
+        ]
+
+    wrong = [c for c in report.structured() if not c.correct]
     if wrong:
         lines += [
             "",

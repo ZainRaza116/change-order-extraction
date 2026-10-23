@@ -130,12 +130,14 @@
     },
     "currency": {
       "value": "USD",
-      "raw": "$",
-      "confidence": 1.0,
+      "raw": "USD",
+      "confidence": 0.8,
       "evidence": "Total this Change Order: $10,763.06",
       "page": 1,
       "alternatives": [],
-      "flags": []
+      "flags": [
+        "derived: currency from '$' in change_amount"
+      ]
     },
     "original_contract_sum": {
       "value": "2450000.00",
@@ -278,7 +280,7 @@
       "flags": []
     }
   ],
-  "overall_confidence": 0.971,
+  "overall_confidence": 0.943,
   "needs_review": false,
   "review_reasons": [],
   "validation": [
@@ -343,12 +345,11 @@
     "model": "gpt-4o-mini",
     "attempts": 1,
     "cached": true,
-    "escalated": false,
-    "input_tokens": 2356,
-    "output_tokens": 1081,
-    "cost_usd": 0.001,
-    "seconds": 0.04,
-    "llm_seconds": 16.98,
+    "input_tokens": 2473,
+    "output_tokens": 1071,
+    "cost_usd": 0.00101,
+    "seconds": 0.05,
+    "llm_seconds": 12.36,
     "pipeline_version": "0.1.0"
   }
 }

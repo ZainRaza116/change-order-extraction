@@ -1,0 +1,69 @@
+{
+  "change_order_number": "CO-022",
+  "project_name": "Harbor Point Apartments - Bldg C",
+  "project_number": "HP-C-0419",
+  "date_issued": "2026-08-14",
+  "contractor": "Bayside Construction Group",
+  "owner": "Harbor Point Residential LP",
+  "architect_engineer": "Mendez Hollis Architecture",
+  "description": "Value-engineering credits (delete quartz countertops units C101-C112 for laminate; omit irrigation Zone 4) plus added wood backing for owner-furnished TV mounts.",
+  "line_items": [
+    {
+      "description": "Delete quartz countertops Units C101-C112; substitute plastic laminate",
+      "quantity": "12",
+      "unit": "EA",
+      "unit_cost": "-1875.00",
+      "amount": "-22500.00"
+    },
+    {
+      "description": "Wood backing for Owner-furnished TV mounts",
+      "quantity": "36",
+      "unit": "EA",
+      "unit_cost": "95.00",
+      "amount": "3420.00"
+    },
+    {
+      "description": "Omit irrigation Zone 4",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_cost": "-6200.00",
+      "amount": "-6200.00"
+    }
+  ],
+  "subtotal": "-25280.00",
+  "markups": [
+    {
+      "description": "Contractor fee 8% on ADD items only",
+      "amount": "273.60"
+    }
+  ],
+  "change_amount": "-25006.40",
+  "currency": "USD",
+  "original_contract_sum": "18740000.00",
+  "previous_changes_total": "412315.75",
+  "revised_contract_sum": "19127309.35",
+  "schedule_impact_days": 0,
+  "status": "approved",
+  "signatures": [
+    {
+      "party": "owner",
+      "name": "Lena Brandt",
+      "date": "2026-08-21",
+      "signed": true
+    },
+    {
+      "party": "contractor",
+      "name": "Toshi Nakamura",
+      "date": "2026-08-15",
+      "signed": true
+    },
+    {
+      "party": "architect",
+      "name": "Sofia Mendez",
+      "date": "2026-08-18",
+      "signed": true
+    }
+  ],
+  "reason": "owner_request",
+  "reason_text": "Owner-directed value engineering"
+}

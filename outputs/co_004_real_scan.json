@@ -105,28 +105,26 @@
     "subtotal": {
       "value": "9640.00",
       "raw": "$9,640.00",
-      "confidence": 0.6,
+      "confidence": 0.973,
       "evidence": "Subtotal $9,640.00",
       "page": 1,
       "alternatives": [],
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     },
     "change_amount": {
       "value": "10763.06",
       "raw": "$10,763.06",
       "confidence": 0.973,
-      "evidence": "TOTAL THIS CHANGE ORDER OK per mtg @ $10,763.06",
+      "evidence": "TOTAL THIS CHANGE ORDER OK per mtg @ $10,763.06 >",
       "page": 1,
       "alternatives": [],
       "flags": []
     },
     "currency": {
       "value": "USD",
-      "raw": "USD",
-      "confidence": 0.773,
-      "evidence": "The original Contract Sum was $2,485,000.00",
+      "raw": "$",
+      "confidence": 0.973,
+      "evidence": "$10,763.06",
       "page": 1,
       "alternatives": [],
       "flags": []
@@ -168,17 +166,13 @@
       "flags": []
     },
     "status": {
-      "value": "approved",
-      "raw": "approved",
-      "confidence": 0.6,
+      "value": "pending",
+      "raw": "pending",
+      "confidence": 0.973,
       "evidence": "NOT VALID UNTIL SIGNED BY THE OWNER. CONTRACTOR AND ARCHITECT",
       "page": 1,
-      "alternatives": [
-        "pending"
-      ],
-      "flags": [
-        "validation rule failed"
-      ]
+      "alternatives": [],
+      "flags": []
     }
   },
   "line_items": [
@@ -187,15 +181,14 @@
         "description": "Fumish & install add'l structural steel beam W12x26 incl. 3 connections",
         "quantity": "3",
         "unit": "EA",
-        "unit_cost": null,
-        "amount": null,
-        "raw_amount": null
+        "unit_cost": "2850.00",
+        "amount": "8550.00"
       },
-      "confidence": 0.0,
+      "confidence": 0.6,
       "evidence": "1 Fumish & install add'l structural steel beam W12x26 incl. 3 ' EA",
       "page": 1,
       "flags": [
-        "no value"
+        "derived: amount derived: total less the other items (value unreadable in the document)"
       ]
     },
     {
@@ -206,12 +199,10 @@
         "unit_cost": "325.00",
         "amount": "1300.00"
       },
-      "confidence": 0.6,
+      "confidence": 0.973,
       "evidence": "2 Relocate duplex receptacles, incl. new boxes & wiring 4 ‘EA ' $325.00 ' $1,300.00",
       "page": 1,
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     },
     {
       "value": {
@@ -221,12 +212,10 @@
         "unit_cost": "85.00",
         "amount": "2040.00"
       },
-      "confidence": 0.6,
+      "confidence": 0.973,
       "evidence": "3 Carpentry labor - partition framing moditications | 24 | HR | $85.00 ~ $2,040.00",
       "page": 1,
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     },
     {
       "value": {
@@ -236,12 +225,10 @@
         "unit_cost": "12.50",
         "amount": "-2250.00"
       },
-      "confidence": 0.6,
+      "confidence": 0.973,
       "evidence": "4 CREDIT: Delete ceramic wall tile, Corridor 28 180 | SF ; $12.50 \" ($2,250.00)",
       "page": 1,
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     }
   ],
   "markups": [
@@ -276,26 +263,22 @@
         "date": "2026-09-19",
         "signed": true
       },
-      "confidence": 0.6,
+      "confidence": 0.973,
       "evidence": "By: Diane Calloway, AIA By: Marcus T. Reyes. Project Manager",
       "page": 1,
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     },
     {
       "value": {
         "party": "contractor",
-        "name": "Marcus T. Reyes",
+        "name": "Marcus T. Reyes, Project Manager",
         "date": "2026-09-18",
         "signed": true
       },
-      "confidence": 0.6,
+      "confidence": 0.773,
       "evidence": "By: Marcus T. Reyes. Project Manager",
       "page": 1,
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     },
     {
       "value": {
@@ -304,19 +287,16 @@
         "date": null,
         "signed": false
       },
-      "confidence": 0.6,
-      "evidence": "By:",
+      "confidence": 0.973,
+      "evidence": "waiting ¢ on CFO £19 ;",
       "page": 1,
-      "flags": [
-        "validation rule failed"
-      ]
+      "flags": []
     }
   ],
-  "overall_confidence": 0.939,
+  "overall_confidence": 0.968,
   "needs_review": true,
   "review_reasons": [
-    "rule line_items_total failed: line items sum to 1,090.00, but subtotal is 9,640.00",
-    "rule status_consistency failed: approved, but unsigned: owner"
+    "line_items[0]: amount derived: total less the other items (value unreadable in the document)"
   ],
   "validation": [
     {
@@ -331,13 +311,13 @@
     },
     {
       "rule": "line_items_total",
-      "outcome": "fail",
-      "message": "line items sum to 1,090.00, but subtotal is 9,640.00"
+      "outcome": "pass",
+      "message": "items + markups = change amount (10,763.06)"
     },
     {
       "rule": "line_item_math",
       "outcome": "pass",
-      "message": "3 item(s) check out"
+      "message": "4 item(s) check out"
     },
     {
       "rule": "markup_math",
@@ -361,8 +341,8 @@
     },
     {
       "rule": "status_consistency",
-      "outcome": "fail",
-      "message": "approved, but unsigned: owner"
+      "outcome": "pass",
+      "message": "status pending matches the signatures"
     },
     {
       "rule": "currency_code",
@@ -376,19 +356,17 @@
     }
   ],
   "model_notes": [
-    "Contractor's original proposal PCO-012 dated 08 29 2026 was submitted at $17 240 00. amount above reflects negotiated pricing per meeting ot",
-    "Note Contractor's original proposal PCO-012 dated 08 29 2026 was submitted at $17 240 00. amount above reflects negotiated pricing per meeting ot"
+    "Contractor's original proposal PCO-012 dated 08 29 2026 was submitted at $17 240 00. amount above reflects negotiated pricing per meeting ot 26 superseded - do not use"
   ],
   "run": {
     "model": "gpt-4o-mini",
     "attempts": 1,
     "cached": true,
-    "escalated": false,
-    "input_tokens": 2512,
-    "output_tokens": 1369,
+    "input_tokens": 2629,
+    "output_tokens": 1343,
     "cost_usd": 0.0012,
-    "seconds": 1.48,
-    "llm_seconds": 21.82,
+    "seconds": 1.43,
+    "llm_seconds": 13.45,
     "pipeline_version": "0.1.0"
   }
 }

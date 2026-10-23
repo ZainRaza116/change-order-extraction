@@ -7,9 +7,19 @@ import pytest
 from co_extract import confidence as c
 from co_extract.assemble import assemble
 from co_extract.ingest import PageText
+from co_extract.llm import LlmExtraction
 from co_extract.schema import ChangeOrderRecord
 from co_extract.validate import validate
-from tests.factories import EXPECTED, NULL, co002_extraction, f, pages
+from tests.factories import (
+    EXPECTED,
+    NULL,
+    co002_extraction,
+    co002_output,
+    f,
+    item,
+    minimal_output,
+    pages,
+)
 
 TODAY = dt.date(2026, 10, 21)
 DIGITAL = pages("digital_text.json")
@@ -43,8 +53,26 @@ def test_unparseable_value_becomes_none_and_is_recorded():
     assert a.parse_errors == {"date_issued": "next Monday"}
 
 
-def test_missing_currency_defaults_to_usd():
+def no_currency_mark(**overrides):
+    # amounts written without "$", and no currency field: nothing to derive from
+    money = ("change_amount", "original_contract_sum", "revised_contract_sum")
+    out = co002_output()
+    plain = {
+        k: f(out[k]["value"].replace("$", ""), out[k]["evidence"].replace("$", ""), out[k]["page"])
+        for k in money
+    }
+    return co002_extraction(currency=NULL, **plain, **overrides)
+
+
+def test_currency_derived_from_the_amounts_symbol():
+    # s07: "Amount: $1,640.00" but the model left currency empty
     a = assemble(co002_extraction(currency=NULL))
+    assert a.draft.currency == "USD" and a.defaulted == set()
+    assert "currency" in a.derived and a.derived["currency"].evidence
+
+
+def test_currency_defaults_to_usd_only_without_any_mark():
+    a = assemble(no_currency_mark())
     assert a.draft.currency == "USD" and a.defaulted == {"currency"}
 
 
@@ -79,11 +107,9 @@ def test_value_in_evidence(raw, evidence, expected):
 def test_source_quality_per_method():
     text = PageText(page=1, text="x", method="text", char_count=1)
     ocr = PageText(page=2, text="x", method="ocr", char_count=1, ocr_confidence=0.82)
-    vision = PageText(page=3, text="x", method="vision", char_count=1, ocr_confidence=0.3)
-    assert c.source_quality([text, ocr, vision], 1) == 1.0
-    assert c.source_quality([text, ocr, vision], 2) == 0.82
-    assert c.source_quality([text, ocr, vision], 3) == c.VISION_SOURCE_QUALITY
-    assert c.source_quality([text, ocr, vision], None) == 0.6  # unknown page: worst page
+    assert c.source_quality([text, ocr], 1) == 1.0
+    assert c.source_quality([text, ocr], 2) == 0.82
+    assert c.source_quality([text, ocr], None) == 0.82  # unknown page: worst page
 
 
 def test_ambiguity_counts_distinct_competitors():
@@ -165,10 +191,39 @@ def test_missing_optional_field_does_not_force_review():
     assert not score.needs_review
 
 
-def test_defaulted_currency_gets_half_confidence():
+def test_derived_currency_is_confident_and_labelled():
     _, _, score = run(co002_extraction(currency=NULL))
+    currency = score.fields["currency"]
+    assert 0.7 <= currency.confidence <= 0.9
+    assert any(cap.startswith("derived: currency from '$'") for cap in currency.caps)
+    assert not score.needs_review
+
+
+def test_defaulted_currency_gets_half_confidence():
+    _, _, score = run(no_currency_mark())
     assert score.fields["currency"].confidence == c.DEFAULTED_CONFIDENCE
     assert score.needs_review  # currency is required and 0.5 < 0.7
+
+
+@pytest.mark.parametrize(
+    "wording",
+    ["No time extension is requested.", "Contract Time: Unchanged (0 days)",
+     "There is no change to the contract time."],
+)  # fmt: skip
+def test_no_time_change_wording_gives_zero_days(wording):
+    page = PageText(page=1, text=f"Scope as discussed.\n{wording}\n", method="text",
+                    char_count=40)  # fmt: skip
+    a = assemble(co002_extraction(schedule_impact_days=NULL), [page])
+    assert a.draft.schedule_impact_days == 0
+    assert a.derived["schedule_impact_days"].evidence == wording
+
+
+def test_ten_days_is_not_read_as_zero():
+    page = PageText(page=1, text="Time: add 10 days.", method="text", char_count=18)
+    assert (
+        assemble(co002_extraction(schedule_impact_days=NULL), [page]).draft.schedule_impact_days
+        is None
+    )
 
 
 def test_unparseable_value_scores_low_and_is_reported():
@@ -197,3 +252,107 @@ def test_scores_are_deterministic():
 def test_decimal_values_survive_assembly():
     draft = assemble(co002_extraction()).draft
     assert draft.line_items[2].amount == Decimal("-2250.00")
+
+
+def test_unparseable_value_is_capped():
+    # live run: OCR read "$2,533,183.56" as "$2,533. 183.56"; the parser refuses to guess,
+    # so the typed value is empty and must not keep a high confidence
+    garbled = f("$2,533. 183.56", "The new Contract Sum including this Change Order will be")
+    _, _, score = run(co002_extraction(revised_contract_sum=garbled))
+    field = score.fields["revised_contract_sum"]
+    assert field.confidence <= c.CAP_UNPARSEABLE
+    assert "value could not be parsed" in field.caps
+    assert score.needs_review
+
+
+def test_quote_stitched_across_columns_is_found():
+    # s01 letterhead: "CHANGE ORDER" and "No. 007" sit in one column, other text between
+    source = "RIDGELINE BUILDERS, INC.      CHANGE ORDER\nGeneral Contractors      No. 007"
+    assert c.evidence_match("CHANGE ORDER No. 007", source) == 1.0
+
+
+def test_stitching_does_not_rescue_an_invented_number():
+    source = "RIDGELINE BUILDERS, INC.      CHANGE ORDER\nGeneral Contractors      No. 007"
+    assert c.evidence_match("CHANGE ORDER No. 008", source) < c.EVIDENCE_THRESHOLD
+
+
+def test_quote_built_from_scattered_words_is_not_found():
+    # every word of the fabricated quote exists, but far apart: top of page vs signature block
+    filler = " ".join(f"word{i}" for i in range(80))
+    source = f"CONTRACTOR Ridgeline Builders Inc. {filler} revised contract sum $2,533,183.56"
+    fabricated = "CONTRACTOR Ridgeline revised contract sum $2,533,183.56"
+    assert c.stitched_match(fabricated, source) == 0.0
+    assert c.evidence_match(fabricated, source) < c.EVIDENCE_THRESHOLD
+
+
+def test_smallest_window():
+    assert c._smallest_window(["a", "x", "b", "a", "b"], {"a", "b"}) == 2
+    assert c._smallest_window(["a", "x"], {"a", "b"}) is None
+
+
+# --- competing issue dates (evidence proves a date exists, not that it is the right one) --
+
+EMAIL = """Date: Mon, 5 Oct 2026 09:14:22 -0400
+Subject: RE: CO #9 - roof crickets
+Approved as revised to $13,750.00.
+Sent: Thursday, October 1, 2026 4:02 PM
+Following our walk we revised CO #9 (dated 9/28/2026)."""
+
+
+def test_email_thread_has_competing_issue_dates():
+    rivals = c.competing_issue_dates(EMAIL, dt.date(2026, 10, 5), "CO #9", set())
+    assert rivals == {dt.date(2026, 10, 1), dt.date(2026, 9, 28)}
+
+
+def test_other_kinds_of_dates_are_not_rivals():
+    text = """DATE: Sept. 18, 2026
+Contract Date: 02/03/26
+Contractor's original proposal PCO-012 dated 08/29/2026 was submitted at $11,240.00.
+This revision supersedes CO-007 dated 06/02/2026, which is void.
+By: Marcus T. Reyes  Date: 9/19/2026"""
+    signed = {dt.date(2026, 9, 19)}
+    assert c.competing_issue_dates(text, dt.date(2026, 9, 18), "007", signed) == set()
+
+
+def test_competing_date_caps_confidence_and_flags():
+    pages = [PageText(page=1, text=EMAIL, method="text", char_count=len(EMAIL))]
+    out = minimal_output(
+        change_order_number=f("CO #9", "Subject: RE: CO #9 - roof crickets"),
+        date_issued=f("Mon, 5 Oct 2026", "Date: Mon, 5 Oct 2026 09:14:22 -0400"),
+        change_amount=f("$13,750.00", "Approved as revised to $13,750.00."),
+    )
+    x = LlmExtraction.model_validate(out)
+    a = assemble(x)
+    score = c.score_document(x, a, pages, validate(a.draft, today=TODAY))
+    date = score.fields["date_issued"]
+    assert date.confidence <= c.CAP_AMBIGUOUS_DATE
+    assert any("other candidate issue dates" in cap for cap in date.caps)
+    assert score.needs_review
+
+
+def test_unquoted_model_currency_is_replaced_by_the_amounts_symbol():
+    # the model wrote "USD" with no quote; that is accepted (no retry) and code decides
+    a = assemble(co002_extraction(currency=f("USD", None)))
+    assert a.draft.currency == "USD" and "currency" in a.derived
+
+
+def test_subtotal_under_another_label_is_found():
+    # s04 prints the items' sum as "Net of items ($25,280.00)", not "Subtotal"
+    text = "1 Credit A ($22,500.00)\n2 Add B $3,420.00\n3 Credit C ($6,200.00)\n" \
+           "Net of items ($25,280.00)\nContractor fee @ 8% $273.60\n"  # fmt: skip
+    page = PageText(page=1, text=text, method="text", char_count=len(text))
+    out = co002_output(
+        line_items=[item("Credit A", "1", "LS", "($22,500.00)", "($22,500.00)"),
+                    item("Add B", "1", "LS", "$3,420.00", "$3,420.00"),
+                    item("Credit C", "1", "LS", "($6,200.00)", "($6,200.00)")],
+        markups=[{"description": "Contractor fee @ 8%", "rate_percent": "8%",
+                  "amount": "$273.60", "evidence": "Contractor fee @ 8% $273.60", "page": 1}],
+    )  # fmt: skip
+    a = assemble(LlmExtraction.model_validate(out), [page])
+    assert str(a.draft.subtotal) == "-25280.00"
+    assert a.derived["subtotal"].evidence == "Net of items ($25,280.00)"
+
+
+def test_no_subtotal_is_invented_without_markups():
+    a = assemble(co002_extraction(), pages("digital_text.json"))
+    assert a.draft.subtotal is None

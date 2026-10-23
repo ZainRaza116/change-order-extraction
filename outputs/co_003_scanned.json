@@ -60,7 +60,9 @@
       "confidence": 0.983,
       "evidence": "CONTRACTOR: Ridgeline Builders Inc.",
       "page": 1,
-      "alternatives": [],
+      "alternatives": [
+        "Ridgeline Builders inc."
+      ],
       "flags": []
     },
     "owner": {
@@ -84,8 +86,8 @@
     "description": {
       "value": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
       "raw": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
-      "confidence": 0.983,
-      "evidence": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
+      "confidence": 0.783,
+      "evidence": "THE CONTRACT IS CHANGED AS FOLLOWS: Upgrade fire separation at Stair 2...",
       "page": 1,
       "alternatives": [],
       "flags": []
@@ -132,10 +134,12 @@
       "value": "USD",
       "raw": "USD",
       "confidence": 0.783,
-      "evidence": "The Contract Sum will be increased by this Change Order in the amount of $10,763.06",
+      "evidence": "Total this Change Order: $10,763.06",
       "page": 1,
       "alternatives": [],
-      "flags": []
+      "flags": [
+        "derived: currency from '$' in change_amount"
+      ]
     },
     "original_contract_sum": {
       "value": "2450000.00",
@@ -278,7 +282,7 @@
       "flags": []
     }
   ],
-  "overall_confidence": 0.954,
+  "overall_confidence": 0.926,
   "needs_review": false,
   "review_reasons": [],
   "validation": [
@@ -341,14 +345,13 @@
   "model_notes": [],
   "run": {
     "model": "gpt-4o-mini",
-    "attempts": 2,
+    "attempts": 1,
     "cached": true,
-    "escalated": false,
-    "input_tokens": 5478,
-    "output_tokens": 2136,
-    "cost_usd": 0.0021,
-    "seconds": 1.13,
-    "llm_seconds": 33.85,
+    "input_tokens": 2305,
+    "output_tokens": 1056,
+    "cost_usd": 0.00098,
+    "seconds": 1.1,
+    "llm_seconds": 11.28,
     "pipeline_version": "0.1.0"
   }
 }

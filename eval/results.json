@@ -5,27 +5,75 @@
     "co_003_scanned",
     "co_004_real_scan"
   ],
-  "field_accuracy": 0.9306,
-  "required_field_accuracy": 0.9286,
+  "field_accuracy": 0.9688,
+  "required_field_accuracy": 1.0,
+  "document_flags": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "free_text_similarity": [
+    [
+      "co_001_email",
+      "description",
+      48.826291079812215
+    ],
+    [
+      "co_001_email",
+      "reason_text",
+      87.03703703703704
+    ],
+    [
+      "co_002_digital",
+      "description",
+      100.0
+    ],
+    [
+      "co_002_digital",
+      "reason_text",
+      100.0
+    ],
+    [
+      "co_003_scanned",
+      "description",
+      100.0
+    ],
+    [
+      "co_003_scanned",
+      "reason_text",
+      100.0
+    ],
+    [
+      "co_004_real_scan",
+      "description",
+      70.82683307332293
+    ],
+    [
+      "co_004_real_scan",
+      "reason_text",
+      43.47826086956522
+    ]
+  ],
   "hallucinated": 0,
   "null_fields": 5,
-  "errors_flagged": 2,
-  "errors_total": 5,
+  "errors_flagged": 1,
+  "errors_total": 2,
   "calibration": [
     {
       "bucket": "0.0-0.5",
-      "n": 2,
-      "accuracy": 0.5
+      "n": 0,
+      "accuracy": null
     },
     {
       "bucket": "0.5-0.8",
-      "n": 7,
-      "accuracy": 0.8571428571428571
+      "n": 3,
+      "accuracy": 0.6666666666666666
     },
     {
       "bucket": "0.8-1.0",
-      "n": 74,
-      "accuracy": 0.9594594594594594
+      "n": 73,
+      "accuracy": 0.9863013698630136
     }
   ],
   "items": [
@@ -129,22 +177,22 @@
       "group": "line_items",
       "expected": 4,
       "predicted": 4,
-      "matched": 3,
+      "matched": 4,
       "entries": [
         [
-          0.0,
-          false
-        ],
-        [
           0.6,
           true
         ],
         [
-          0.6,
+          0.973,
           true
         ],
         [
-          0.6,
+          0.973,
+          true
+        ],
+        [
+          0.973,
           true
         ]
       ]
@@ -234,9 +282,9 @@
     {
       "document": "co_001_email",
       "field": "description",
-      "outcome": "missed",
-      "confidence": 0.0,
-      "predicted": null,
+      "outcome": "wrong",
+      "confidence": 1.0,
+      "predicted": "owner-requested changes (fire separation at Stair 2 upgraded after the tenant layout change, FD-3 moved to suit new casework)",
       "expected": "Add 2-hr rated GWB at Stair 2, relocate floor drain FD-3, delete rubber base in storage rooms.",
       "correct": false
     },
@@ -280,7 +328,7 @@
       "document": "co_001_email",
       "field": "currency",
       "outcome": "correct",
-      "confidence": 0.3,
+      "confidence": 0.8,
       "predicted": "USD",
       "expected": "USD",
       "correct": true
@@ -324,11 +372,11 @@
     {
       "document": "co_001_email",
       "field": "status",
-      "outcome": "correct",
-      "confidence": 1.0,
+      "outcome": "wrong",
+      "confidence": 0.6,
       "predicted": "pending",
-      "expected": "pending",
-      "correct": true
+      "expected": "proposed",
+      "correct": false
     },
     {
       "document": "co_002_digital",
@@ -442,7 +490,7 @@
       "document": "co_002_digital",
       "field": "currency",
       "outcome": "correct",
-      "confidence": 1.0,
+      "confidence": 0.8,
       "predicted": "USD",
       "expected": "USD",
       "correct": true
@@ -559,7 +607,7 @@
       "document": "co_003_scanned",
       "field": "description",
       "outcome": "correct",
-      "confidence": 0.983,
+      "confidence": 0.783,
       "predicted": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
       "expected": "Upgrade fire separation at Stair 2 and relocate floor drain FD-3 per Owner request following the revised tenant layout (ASI-09).",
       "correct": true
@@ -748,7 +796,7 @@
       "document": "co_004_real_scan",
       "field": "subtotal",
       "outcome": "correct",
-      "confidence": 0.6,
+      "confidence": 0.973,
       "predicted": "9640.00",
       "expected": "9640.00",
       "correct": true
@@ -766,7 +814,7 @@
       "document": "co_004_real_scan",
       "field": "currency",
       "outcome": "correct",
-      "confidence": 0.773,
+      "confidence": 0.973,
       "predicted": "USD",
       "expected": "USD",
       "correct": true
@@ -810,11 +858,11 @@
     {
       "document": "co_004_real_scan",
       "field": "status",
-      "outcome": "wrong",
-      "confidence": 0.6,
-      "predicted": "approved",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "pending",
       "expected": "pending",
-      "correct": false
+      "correct": true
     }
   ],
   "runs": [
@@ -822,14 +870,13 @@
       "document": "co_001_email",
       "needs_review": true,
       "model": "gpt-4o-mini",
-      "attempts": 2,
+      "attempts": 1,
       "cached": true,
-      "escalated": false,
-      "input_tokens": 5144,
-      "output_tokens": 1864,
-      "cost_usd": 0.00189,
+      "input_tokens": 2203,
+      "output_tokens": 994,
+      "cost_usd": 0.00093,
       "seconds": 0.0,
-      "llm_seconds": 31.43,
+      "llm_seconds": 10.77,
       "pipeline_version": "0.1.0"
     },
     {
@@ -838,26 +885,24 @@
       "model": "gpt-4o-mini",
       "attempts": 1,
       "cached": true,
-      "escalated": false,
-      "input_tokens": 2356,
-      "output_tokens": 1081,
-      "cost_usd": 0.001,
-      "seconds": 0.04,
-      "llm_seconds": 16.98,
+      "input_tokens": 2473,
+      "output_tokens": 1071,
+      "cost_usd": 0.00101,
+      "seconds": 0.05,
+      "llm_seconds": 12.36,
       "pipeline_version": "0.1.0"
     },
     {
       "document": "co_003_scanned",
       "needs_review": false,
       "model": "gpt-4o-mini",
-      "attempts": 2,
+      "attempts": 1,
       "cached": true,
-      "escalated": false,
-      "input_tokens": 5478,
-      "output_tokens": 2136,
-      "cost_usd": 0.0021,
-      "seconds": 1.2,
-      "llm_seconds": 33.85,
+      "input_tokens": 2305,
+      "output_tokens": 1056,
+      "cost_usd": 0.00098,
+      "seconds": 1.1,
+      "llm_seconds": 11.28,
       "pipeline_version": "0.1.0"
     },
     {
@@ -866,12 +911,11 @@
       "model": "gpt-4o-mini",
       "attempts": 1,
       "cached": true,
-      "escalated": false,
-      "input_tokens": 2512,
-      "output_tokens": 1369,
+      "input_tokens": 2629,
+      "output_tokens": 1343,
       "cost_usd": 0.0012,
-      "seconds": 1.48,
-      "llm_seconds": 21.82,
+      "seconds": 1.43,
+      "llm_seconds": 13.45,
       "pipeline_version": "0.1.0"
     }
   ],

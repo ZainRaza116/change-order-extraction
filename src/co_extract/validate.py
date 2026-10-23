@@ -20,7 +20,13 @@ MAX_SCHEDULE_DAYS = 3650
 
 # "delete"/"omit" alone also appear in add-and-replace items, so only these count.
 _CREDIT_WORDS = re.compile(r"\b(credit|deduct|deduction)\b", re.I)
-_CO_NUMBER = re.compile(r"^(?:[A-Z]{1,4}\s*[-#]?\s*)?\d{1,4}[A-Z]?$", re.I)
+_CO_NUMBER = re.compile(
+    # optional prefix: "Change Order #", "CO-", "PCO No.", "#", "No."
+    r"^(?:(?:change\s+order|[a-z]{1,4})\s*)?(?:(?:no\.?|number)\s*)?[-#:]?\s*"
+    r"\d{1,4}[a-z]?"  # the number itself
+    r"(?:\s*[,(-]?\s*rev(?:ision|\.)?\s*\d{1,2}\)?)?$",  # ", Revision 1" / "Rev. 1"
+    re.I,
+)
 _ISO_CURRENCY = re.compile(r"^[A-Z]{3}$")
 
 
@@ -236,8 +242,15 @@ def status_consistency(co: ChangeOrderDraft) -> RuleResult:
         if unsigned:
             missing = ", ".join(s.party for s in unsigned)
             return _fail(rule, f"approved, but unsigned: {missing}", "status", "signatures")
-    if co.status in (Status.PENDING, Status.PROPOSED) and co.signatures and not unsigned:
-        return _fail(rule, f"{co.status} although every listed party signed", "status")
+    # A contractor signing its own proposal is normal; the owner's signature is what makes
+    # "pending" or "proposed" inconsistent.
+    owner_signed = any(s.party == "owner" and s.signed for s in co.signatures)
+    if co.status in (Status.PENDING, Status.PROPOSED) and owner_signed:
+        return _fail(rule, f"{co.status} although the owner signed", "status")
+    # "pending" = approvals under way; with no approver signed yet it is still a proposal
+    approvers = {s.party for s in signed} - {"contractor"}
+    if co.status is Status.PENDING and not approvers:
+        return _fail(rule, "pending, but no approver has signed yet (a proposal)", "status")
     return _pass(rule, f"status {co.status} matches the signatures", "status")
 
 

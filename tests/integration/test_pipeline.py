@@ -54,8 +54,8 @@ def test_result_is_valid_json_and_round_trips(tmp_path):
 def test_cost_and_usage_are_reported(tmp_path):
     result = run_pipeline(DIGITAL, ScriptedProvider(GOOD), make_settings(tmp_path), today=TODAY)
     assert (result.run.input_tokens, result.run.output_tokens) == (4000, 2500)
-    assert result.run.cost_usd == pytest.approx((4000 * 2 + 2500 * 10) / 1e6)
-    assert result.run.model == "claude-sonnet-5-5"
+    assert result.run.cost_usd == pytest.approx((4000 * 0.15 + 2500 * 0.60) / 1e6)
+    assert result.run.model == "gpt-4o-mini"
 
 
 def test_scanned_document_goes_through_ocr(tmp_path):
@@ -82,22 +82,6 @@ def test_llm_failure_returns_error_result_instead_of_raising(tmp_path):
     assert result.needs_review
 
 
-def test_escalation_keeps_the_better_result(tmp_path):
-    provider = ScriptedProvider(bad_total(), GOOD)  # cheap model errs, strong model is right
-    result = run_pipeline(DIGITAL, provider, make_settings(tmp_path), escalate=True, today=TODAY)
-    assert [r.model for r in provider.requests] == ["claude-sonnet-5-5", "claude-opus-5-5"]
-    assert result.run.escalated and result.run.model == "claude-opus-5-5"
-    assert not result.needs_review
-    sonnet, opus = (4000 * 2 + 2500 * 10) / 1e6, (4000 * 4 + 2500 * 20) / 1e6
-    assert result.run.cost_usd == pytest.approx(sonnet + opus)  # both calls are paid for
-
-
-def test_no_escalation_when_document_is_clean(tmp_path):
-    provider = ScriptedProvider(GOOD)
-    result = run_pipeline(DIGITAL, provider, make_settings(tmp_path), escalate=True, today=TODAY)
-    assert len(provider.requests) == 1 and not result.run.escalated
-
-
 def test_second_run_is_served_from_the_cache(tmp_path):
     inner = ScriptedProvider(GOOD)
     cached = CachedProvider(inner, tmp_path / "cassettes")
@@ -107,7 +91,7 @@ def test_second_run_is_served_from_the_cache(tmp_path):
 
 
 def test_openai_provider_selected_from_settings(tmp_path):
-    provider = build_provider(make_settings(tmp_path, provider="openai", model="gpt-4o-mini"))
+    provider = build_provider(make_settings(tmp_path))
     assert isinstance(provider.inner, OpenAIProvider)
 
 
@@ -117,7 +101,19 @@ def test_unreadable_item_does_not_hide_the_others(tmp_path):
     result = run_pipeline(
         DIGITAL, ScriptedProvider(json.dumps(out)), make_settings(tmp_path), today=TODAY
     )
+    # recovered from the total less the other items, but kept below the review threshold
     amounts = [i.value["amount"] for i in result.line_items]
-    assert amounts == [None, "3450.00", "-2250.00", "443.06"]
-    assert result.line_items[0].confidence == 0.0
+    assert amounts == ["9120.00", "3450.00", "-2250.00", "443.06"]
+    assert result.line_items[0].confidence <= 0.6
+    assert any(flag.startswith("derived: amount derived") for flag in result.line_items[0].flags)
     assert result.needs_review
+    assert any("line_items[0]: amount derived" in r for r in result.review_reasons)
+
+
+def test_two_unreadable_items_are_not_guessed(tmp_path):
+    out = co002_output()
+    out["line_items"][0]["amount"] = out["line_items"][1]["amount"] = None
+    result = run_pipeline(
+        DIGITAL, ScriptedProvider(json.dumps(out)), make_settings(tmp_path), today=TODAY
+    )
+    assert [i.value["amount"] for i in result.line_items][:2] == [None, None]

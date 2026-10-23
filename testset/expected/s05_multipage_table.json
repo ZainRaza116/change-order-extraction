@@ -1,0 +1,136 @@
+{
+  "change_order_number": "005",
+  "project_name": "Northgate Distribution Center",
+  "project_number": "NDC-118",
+  "date_issued": "2026-07-30",
+  "contractor": "Summit Industrial Builders LLC",
+  "owner": "Northgate Logistics Inc.",
+  "architect_engineer": "PLR Engineering Group",
+  "description": "Changes to warehouse floor slab, dock areas and racking support required by Owner's revised racking layout (Bulletin 4).",
+  "line_items": [
+    {
+      "description": "Additional concrete slab thickening at racking lines",
+      "quantity": "46",
+      "unit": "CY",
+      "unit_cost": "285.00",
+      "amount": "13110.00"
+    },
+    {
+      "description": "Additional #5 rebar at thickened slab",
+      "quantity": "3.2",
+      "unit": "TON",
+      "unit_cost": "2150.00",
+      "amount": "6880.00"
+    },
+    {
+      "description": "Anchor bolts 1\" x 18\" with templates",
+      "quantity": "120",
+      "unit": "EA",
+      "unit_cost": "42.50",
+      "amount": "5100.00"
+    },
+    {
+      "description": "Additional saw-cut control joints",
+      "quantity": "860",
+      "unit": "LF",
+      "unit_cost": "3.75",
+      "amount": "3225.00"
+    },
+    {
+      "description": "Dock leveler pit modifications",
+      "quantity": "4",
+      "unit": "EA",
+      "unit_cost": "2640.00",
+      "amount": "10560.00"
+    },
+    {
+      "description": "6\" pipe bollards, concrete filled",
+      "quantity": "18",
+      "unit": "EA",
+      "unit_cost": "685.00",
+      "amount": "12330.00"
+    },
+    {
+      "description": "Electrical: dock lighting circuits and fixtures",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_cost": "7450.00",
+      "amount": "7450.00"
+    },
+    {
+      "description": "Fire sprinkler head relocations at racking",
+      "quantity": "22",
+      "unit": "EA",
+      "unit_cost": "210.00",
+      "amount": "4620.00"
+    },
+    {
+      "description": "Paint bollards and floor striping",
+      "quantity": "1",
+      "unit": "LS",
+      "unit_cost": "2180.00",
+      "amount": "2180.00"
+    },
+    {
+      "description": "CREDIT: delete exterior site benches",
+      "quantity": "2",
+      "unit": "EA",
+      "unit_cost": "-1150.00",
+      "amount": "-2300.00"
+    },
+    {
+      "description": "Equipment rental - telehandler",
+      "quantity": "3",
+      "unit": "WK",
+      "unit_cost": "1925.00",
+      "amount": "5775.00"
+    },
+    {
+      "description": "Supervision / general conditions extension",
+      "quantity": "2",
+      "unit": "WK",
+      "unit_cost": "3400.00",
+      "amount": "6800.00"
+    }
+  ],
+  "subtotal": "75730.00",
+  "markups": [
+    {
+      "description": "Overhead & Profit 12%",
+      "amount": "9087.60"
+    },
+    {
+      "description": "Insurance 1%",
+      "amount": "848.18"
+    }
+  ],
+  "change_amount": "85665.78",
+  "currency": "USD",
+  "original_contract_sum": "6920000.00",
+  "previous_changes_total": "148602.10",
+  "revised_contract_sum": "7154267.88",
+  "schedule_impact_days": 12,
+  "status": "approved",
+  "signatures": [
+    {
+      "party": "owner",
+      "name": "Rachel Kim",
+      "date": "2026-08-04",
+      "signed": true
+    },
+    {
+      "party": "contractor",
+      "name": "Owen Pratt",
+      "date": "2026-07-30",
+      "signed": true
+    },
+    {
+      "party": "engineer",
+      "name": "Vikram Iyer",
+      "date": "2026-08-02",
+      "signed": true
+    }
+  ],
+  "reason": "owner_request",
+  "reason_text": "Owner-requested design revision (revised racking layout)"
+}

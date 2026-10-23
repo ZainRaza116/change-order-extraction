@@ -10,20 +10,17 @@ from co_extract.llm.extract import ExtractionFailed, LlmResult, extract_fields
 from co_extract.llm.output import Extracted, LlmExtraction, output_schema, raw_value
 from co_extract.llm.prompt import PROMPT_VERSION, SYSTEM_PROMPT, render_document
 from co_extract.llm.providers import (
-    AnthropicProvider,
     LLMError,
     LLMProvider,
     LLMRequest,
     LLMResponse,
     OpenAIProvider,
-    anthropic_kwargs,
     openai_kwargs,
 )
 
 __all__ = [
     "PROMPT_VERSION",
     "SYSTEM_PROMPT",
-    "AnthropicProvider",
     "CacheMiss",
     "CachedProvider",
     "Extracted",
@@ -35,7 +32,6 @@ __all__ = [
     "LlmExtraction",
     "LlmResult",
     "OpenAIProvider",
-    "anthropic_kwargs",
     "extract_fields",
     "openai_kwargs",
     "output_schema",

@@ -8,13 +8,11 @@ import pytest
 from co_extract.ingest import PageText
 from co_extract.llm import (
     SYSTEM_PROMPT,
-    AnthropicProvider,
     CachedProvider,
     CacheMiss,
     ExtractionFailed,
     LLMRequest,
     OpenAIProvider,
-    anthropic_kwargs,
     extract_fields,
     openai_kwargs,
     output_schema,
@@ -51,7 +49,7 @@ def test_schema_is_strict_everywhere():
 
 def test_valid_output_parses_in_one_call():
     provider = ScriptedProvider(VALID)
-    result = extract_fields(PAGES, provider, "claude-sonnet-5-5")
+    result = extract_fields(PAGES, provider, "gpt-4o-mini")
     assert result.attempts == 1
     assert result.extraction.change_amount.value == "$10,763.06"
     assert result.extraction.change_amount.alternatives == ["$11,240.00"]
@@ -61,7 +59,7 @@ def test_valid_output_parses_in_one_call():
 def test_retry_once_with_errors_then_succeed():
     bad = minimal_output(owner=f("Harmon Health Partners, LLC"))  # value without evidence
     provider = ScriptedProvider(json.dumps(bad), VALID)
-    result = extract_fields(PAGES, provider, "claude-sonnet-5-5")
+    result = extract_fields(PAGES, provider, "gpt-4o-mini")
     assert result.attempts == 2
     retry = provider.requests[1].messages
     assert [m["role"] for m in retry] == ["user", "assistant", "user"]
@@ -70,13 +68,13 @@ def test_retry_once_with_errors_then_succeed():
 
 def test_malformed_json_is_retried():
     provider = ScriptedProvider('{"change_order_number": ', VALID)
-    assert extract_fields(PAGES, provider, "claude-sonnet-5-5").attempts == 2
+    assert extract_fields(PAGES, provider, "gpt-4o-mini").attempts == 2
 
 
 def test_gives_up_after_one_retry():
     provider = ScriptedProvider("not json", "still not json")
     with pytest.raises(ExtractionFailed) as err:
-        extract_fields(PAGES, provider, "claude-sonnet-5-5")
+        extract_fields(PAGES, provider, "gpt-4o-mini")
     assert len(err.value.responses) == 2
     assert len(provider.requests) == 2
 
@@ -85,7 +83,7 @@ def test_wrong_enum_is_rejected():
     bad = minimal_output(status=f("maybe", "status: maybe"))
     provider = ScriptedProvider(json.dumps(bad), json.dumps(bad))
     with pytest.raises(ExtractionFailed):
-        extract_fields(PAGES, provider, "claude-sonnet-5-5")
+        extract_fields(PAGES, provider, "gpt-4o-mini")
 
 
 # --- prompt --------------------------------------------------------------------------
@@ -122,56 +120,14 @@ def request(model: str) -> LLMRequest:
     return LLMRequest(model=model, system="s", messages=[], schema={"type": "object"})
 
 
-@pytest.mark.parametrize("model", ["claude-sonnet-5-5", "claude-opus-5-5", "claude-haiku-5-5"])
-def test_temperature_not_sent_to_models_that_reject_it(model):
-    assert "temperature" not in anthropic_kwargs(request(model))
-
-
-def test_temperature_zero_sent_where_supported():
-    assert anthropic_kwargs(request("claude-haiku-4-5"))["temperature"] == 0.0
-
-
-def test_structured_output_and_effort_are_set():
-    kwargs = anthropic_kwargs(request("claude-sonnet-5-5"))
-    assert kwargs["output_config"]["format"]["type"] == "json_schema"
-    assert kwargs["output_config"]["effort"] == "medium"
-    assert kwargs["fallbacks"] == "default"
-
-
-def fake_message(stop_reason="end_turn", text='{"ok": true}'):
-    return SimpleNamespace(
-        stop_reason=stop_reason,
-        stop_details=None,
-        model="claude-sonnet-5-5",
-        content=[SimpleNamespace(type="text", text=text)],
-        usage=SimpleNamespace(input_tokens=1200, output_tokens=300),
-    )
-
-
-def test_anthropic_provider_reads_text_and_usage():
-    create = lambda **kw: fake_message()  # noqa: E731
-    client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(create=create)))
-    response = AnthropicProvider(client).complete(request("claude-sonnet-5-5"))
-    assert response.text == '{"ok": true}'
-    assert (response.input_tokens, response.output_tokens) == (1200, 300)
-
-
-@pytest.mark.parametrize("stop_reason", ["refusal", "max_tokens"])
-def test_anthropic_provider_raises_on_unusable_stop(stop_reason):
-    create = lambda **kw: fake_message(stop_reason)  # noqa: E731
-    client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(create=create)))
-    with pytest.raises(RuntimeError):
-        AnthropicProvider(client).complete(request("claude-sonnet-5-5"))
-
-
 # --- record / replay cache ---------------------------------------------------------------
 
 
 def test_cache_records_then_replays(tmp_path):
     inner = ScriptedProvider(VALID)
     cached = CachedProvider(inner, tmp_path)
-    first = extract_fields(PAGES, cached, "claude-sonnet-5-5")
-    second = extract_fields(PAGES, cached, "claude-sonnet-5-5")
+    first = extract_fields(PAGES, cached, "gpt-4o-mini")
+    second = extract_fields(PAGES, cached, "gpt-4o-mini")
     assert len(inner.requests) == 1  # second run never reached the provider
     assert not first.responses[0].cached and second.responses[0].cached
     assert second.extraction == first.extraction
@@ -195,13 +151,13 @@ def test_cache_key_changes_with_document_text():
 
 def test_replay_mode_never_calls_the_api(tmp_path):
     with pytest.raises(CacheMiss):
-        extract_fields(PAGES, CachedProvider(None, tmp_path, "replay"), "claude-sonnet-5-5")
+        extract_fields(PAGES, CachedProvider(None, tmp_path, "replay"), "gpt-4o-mini")
 
 
 def test_refresh_mode_re_records(tmp_path):
     inner = ScriptedProvider(VALID, VALID)
-    extract_fields(PAGES, CachedProvider(inner, tmp_path), "claude-sonnet-5-5")
-    extract_fields(PAGES, CachedProvider(inner, tmp_path, "refresh"), "claude-sonnet-5-5")
+    extract_fields(PAGES, CachedProvider(inner, tmp_path), "gpt-4o-mini")
+    extract_fields(PAGES, CachedProvider(inner, tmp_path, "refresh"), "gpt-4o-mini")
     assert len(inner.requests) == 2
 
 
@@ -256,3 +212,9 @@ def test_openai_missing_key_is_a_clear_error(monkeypatch):
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
         OpenAIProvider().complete(request("gpt-4o-mini"))
+
+
+def test_currency_without_evidence_does_not_cost_a_retry():
+    out = minimal_output(currency=f("USD", None))
+    provider = ScriptedProvider(json.dumps(out))
+    assert extract_fields(PAGES, provider, "gpt-4o-mini").attempts == 1

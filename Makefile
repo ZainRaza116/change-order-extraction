@@ -19,14 +19,17 @@ format:  ## Auto-fix style and formatting
 test:  ## Run the test suite
 	uv run pytest -q
 
-run:  ## Extract every sample into outputs/ (calls the LLM for uncached documents)
+run:  ## Extract the dev samples and the test set (calls the LLM for unrecorded documents)
 	uv run co-extract run samples/ --out outputs/
+	uv run co-extract run testset/samples/ --out testset/outputs/
 
 replay:  ## Same as run, from recorded responses only (no API key needed)
 	uv run co-extract run samples/ --out outputs/ --replay
+	uv run co-extract run testset/samples/ --out testset/outputs/ --replay
 
-eval:  ## Score outputs/ against expected/ and write eval/report.md
+eval:  ## Score both sets against their answer files (eval/ and eval/testset/)
 	uv run co-extract eval
+	uv run co-extract eval --outputs testset/outputs --expected testset/expected --report-dir eval/testset
 
 samples:  ## Regenerate the synthetic sample PDFs
 	uv run python scripts/make_samples.py

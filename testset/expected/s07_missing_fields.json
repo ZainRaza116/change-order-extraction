@@ -1,0 +1,30 @@
+{
+  "change_order_number": "4",
+  "project_name": "Elm Street Townhomes",
+  "project_number": null,
+  "date_issued": "2026-07-22",
+  "contractor": "Brightline Contracting",
+  "owner": null,
+  "architect_engineer": null,
+  "description": "Add exterior frost-free hose bibs at Units 3 and 4 rear patios, including piping from nearest cold water line.",
+  "line_items": [],
+  "change_amount": "1640.00",
+  "currency": "USD",
+  "original_contract_sum": null,
+  "previous_changes_total": null,
+  "revised_contract_sum": null,
+  "schedule_impact_days": null,
+  "status": "proposed",
+  "signatures": [
+    {
+      "party": "contractor",
+      "name": "Carla Jensen",
+      "date": "2026-07-22",
+      "signed": true
+    }
+  ],
+  "reason": null,
+  "reason_text": null,
+  "subtotal": null,
+  "markups": []
+}

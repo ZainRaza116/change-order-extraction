@@ -1,0 +1,14 @@
+{
+  "key": "d74b99f9d76d533a9db6123f32336b5ba97a9d8592528b61b92f7b43ecc3e95a",
+  "prompt_version": "v3",
+  "model": "gpt-4o-mini",
+  "response": {
+    "text": "{\"change_order_number\":{\"value\":\"4\",\"evidence\":\"PCO No.      4\",\"page\":1,\"alternatives\":[]},\"project_name\":{\"value\":\"Elm Street Townhomes\",\"evidence\":\"Project        Elm Street Townhomes\",\"page\":1,\"alternatives\":[]},\"project_number\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"date_issued\":{\"value\":\"July 22, 2026\",\"evidence\":\"Date           July 22, 2026\",\"page\":1,\"alternatives\":[]},\"contractor\":{\"value\":\"Brightline Contracting\",\"evidence\":\"Contractor       Brightline Contracting\",\"page\":1,\"alternatives\":[]},\"owner\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"architect_engineer\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"description\":{\"value\":\"Add exterior frost-free hose bibs at Units 3 and 4, rear patios, including piping from nearest cold water line.\",\"evidence\":\"Description of work: Add exterior frost-free hose bibs at Units 3 and 4, rear patios, including piping from nearest cold water line.\",\"page\":1,\"alternatives\":[]},\"reason\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"reason_text\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"line_items\":[],\"subtotal\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"markups\":[],\"change_amount\":{\"value\":\"$1,640.00\",\"evidence\":\"Amount: $1,640.00\",\"page\":1,\"alternatives\":[]},\"currency\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"original_contract_sum\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"previous_changes_total\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"revised_contract_sum\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"schedule_impact_days\":{\"value\":null,\"evidence\":null,\"page\":null,\"alternatives\":[]},\"status\":{\"value\":\"proposed\",\"evidence\":\"PROPOSED CHANGE ORDER\",\"page\":1,\"alternatives\":[]},\"signatures\":[{\"party\":\"contractor\",\"name\":\"Carla Jensen\",\"date\":\"7/22/26\",\"signed\":true,\"evidence\":\"Submitted by: Carla Jensen   Brightline Contracting  7/22/26\",\"page\":1}],\"notes\":[]}",
+    "model": "gpt-4o-mini-2024-07-18",
+    "stop_reason": "stop",
+    "input_tokens": 1993,
+    "output_tokens": 552,
+    "latency_s": 5.76,
+    "cached": false
+  }
+}

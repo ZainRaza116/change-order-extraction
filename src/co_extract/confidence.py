@@ -11,17 +11,21 @@ Caps applied after the weighted sum:
     no value                      -> 0
     evidence not found in source  -> at most 0.3 (likely hallucination)
     a cross-field rule failed     -> at most 0.6 (below the review threshold)
+    present but unparseable       -> at most 0.3 (the typed value is empty)
     filled by a default           -> 0.5
+    issue date with a competing labelled date in the document -> at most 0.65
 """
 
+import datetime as dt
 import re
 from dataclasses import dataclass, field
 
 from rapidfuzz import fuzz
 
-from co_extract.assemble import Assembled
+from co_extract.assemble import Assembled, Derivation
 from co_extract.ingest import PageText
 from co_extract.llm import LlmExtraction, raw_value
+from co_extract.normalize import find_dates
 from co_extract.schema import REQUIRED_FIELDS
 from co_extract.validate import RuleResult, failed_fields
 
@@ -35,8 +39,10 @@ WEIGHTS = {
 EVIDENCE_THRESHOLD = 0.85  # fuzzy match below this = evidence not found in the source
 CAP_EVIDENCE_NOT_FOUND = 0.3
 CAP_RULE_FAILED = 0.6
+CAP_UNPARSEABLE = 0.3
+CAP_AMBIGUOUS_DATE = 0.65
+PROXIMITY_SLACK = 15  # extra tokens allowed between the words of a stitched quote
 DEFAULTED_CONFIDENCE = 0.5
-VISION_SOURCE_QUALITY = 0.6  # no word confidences from a vision transcript; assume middling
 DEFAULT_REVIEW_THRESHOLD = 0.7
 MAPPED_FIELDS = {"reason", "status"}
 
@@ -74,11 +80,51 @@ def page_text(pages: list[PageText], page: int | None) -> str:
     return "\n".join(p.text for p in chosen)
 
 
+def _tokens(text: str) -> list[str]:
+    return re.findall(r"[a-z0-9]+", text.lower())
+
+
+def _smallest_window(page: list[str], needed: set[str]) -> int | None:
+    """Length of the shortest run of page tokens that contains every needed token."""
+    counts: dict[str, int] = {}
+    have, best, left = 0, None, 0
+    for right, token in enumerate(page):
+        if token in needed:
+            counts[token] = counts.get(token, 0) + 1
+            have += counts[token] == 1
+        while have == len(needed):
+            size = right - left + 1
+            best = size if best is None else min(best, size)
+            dropped = page[left]
+            if dropped in needed:
+                counts[dropped] -= 1
+                have -= counts[dropped] == 0
+            left += 1
+    return best
+
+
+def stitched_match(evidence: str, source: str) -> float:
+    """1.0 if every word of the quote occurs on the page within a short span, else 0.0.
+
+    Catches quotes the model stitched together from a multi-column layout (label in one
+    column, value in another), which no contiguous match finds. The span limit (the
+    quote's own length + PROXIMITY_SLACK tokens) keeps a quote assembled from words
+    scattered across the page from passing; a number not on the page always fails.
+    """
+    needed = set(_tokens(evidence))
+    if not needed:
+        return 0.0
+    window = _smallest_window(_tokens(source), needed)
+    return 1.0 if window is not None and window <= len(needed) + PROXIMITY_SLACK else 0.0
+
+
 def evidence_match(evidence: str | None, source: str) -> float:
-    """Best fuzzy alignment of the evidence quote anywhere in the source, 0-1."""
+    """How well the evidence quote is supported by the source text, 0-1: the better of a
+    contiguous fuzzy match and a stitched match across nearby words."""
     if not evidence or not source:
         return 0.0
-    return fuzz.partial_ratio(_squash(evidence), _squash(source)) / 100
+    contiguous = fuzz.partial_ratio(_squash(evidence), _squash(source)) / 100
+    return max(contiguous, stitched_match(evidence, source))
 
 
 def value_in_evidence(raw: str | None, evidence: str | None) -> float:
@@ -100,8 +146,6 @@ def source_quality(pages: list[PageText], page: int | None) -> float:
     for p in chosen:
         if p.method == "text":
             scores.append(1.0)
-        elif p.method == "vision":
-            scores.append(VISION_SOURCE_QUALITY)
         else:
             scores.append(p.ocr_confidence if p.ocr_confidence is not None else 0.0)
     return min(scores) if scores else 0.0
@@ -151,8 +195,53 @@ def score_entry(
         confidence = min(confidence, CAP_RULE_FAILED)
         caps.append("validation rule failed")
     if not parsed_ok:
+        confidence = min(confidence, CAP_UNPARSEABLE)
         caps.append("value could not be parsed")
     return FieldScore(name, round(confidence, 3), signals, caps)
+
+
+_DATE_LABEL = re.compile(
+    r"(?:(\w+)\s+)?\b(date|dated|sent|issued)\b[\s:,-]*(?:[a-z]+,?\s*)?$"  # "Sent: Thursday, "
+)
+# "Contract Date:", "Substantial Completion Date" etc. name some other date
+_OTHER_DATE_WORDS = {"contract", "completion", "substantial", "due", "bid", "start", "effective"}
+_SUPERSEDED = re.compile(r"supersed|\bvoid|replac", re.I)
+
+
+def competing_issue_dates(
+    text: str, chosen: dt.date, co_number: str | None, other_dates: set[dt.date]
+) -> set[dt.date]:
+    """Labelled dates in the document that could also be this change order's issue date.
+
+    Counts dates after a "Date:", "Sent:" or "Issued" label, and "dated X" when this CO's
+    number sits just before it. Skips other kinds of date (contract, completion), dates of
+    superseded documents, and `other_dates` (signature dates). Evidence matching cannot see
+    this kind of error: a wrong date that is really on the page still passes every check.
+    """
+    co_digits = re.search(r"\d+", co_number or "")
+    found = set()
+    for start, date in find_dates(text):
+        before = text[max(0, start - 40) : start].split("\n")[-1].lower()
+        label = _DATE_LABEL.search(before)
+        if not label or label[1] in _OTHER_DATE_WORDS or date in other_dates:
+            continue
+        if label[2] == "dated":
+            mentions_co = co_digits and re.search(rf"\b0*{int(co_digits[0])}\b", before)
+            if not mentions_co or _SUPERSEDED.search(text[max(0, start - 60) : start]):
+                continue
+        found.add(date)
+    return found - {chosen}
+
+
+def _score_derived(
+    name: str, d: Derivation, pages: list[PageText], rule_failed: bool
+) -> FieldScore:
+    """A value filled by code: scored on the evidence it came from, capped by its kind."""
+    score = score_entry(name, d.raw, d.evidence, d.page, [], pages, parsed_ok=True,
+                        rule_failed=rule_failed)  # fmt: skip
+    score.confidence = min(score.confidence, d.cap)
+    score.caps.append(f"derived: {d.note}")
+    return score
 
 
 # --- document -----------------------------------------------------------------------
@@ -177,25 +266,48 @@ def score_document(
     errors = assembled.parse_errors
 
     fields = {}
+    draft = assembled.draft
+    rivals: set[dt.date] = set()
+    if draft.date_issued:
+        signed_on = {sig.date for sig in draft.signatures if sig.date}
+        text = "\n".join(p.text for p in pages)
+        rivals = competing_issue_dates(
+            text, draft.date_issued, draft.change_order_number, signed_on
+        )
+
+    derived = assembled.derived
     for name, item in extraction.scalars():
+        if name in derived:
+            fields[name] = _score_derived(name, derived[name], pages, name in failed)
+            continue
+        alternatives = list(item.alternatives)
+        if name == "date_issued":
+            alternatives += [d.isoformat() for d in sorted(rivals)]
         fields[name] = score_entry(
             name,
             raw_value(item),
             item.evidence,
             item.page,
-            item.alternatives,
+            alternatives,
             pages,
             parsed_ok=name not in errors,
             rule_failed=name in failed,
             defaulted=name in assembled.defaulted,
             mapped=name in MAPPED_FIELDS,
         )
+    if rivals:
+        date_score = fields["date_issued"]
+        date_score.confidence = min(date_score.confidence, CAP_AMBIGUOUS_DATE)
+        listed = ", ".join(d.isoformat() for d in sorted(rivals))
+        date_score.caps.append(f"other candidate issue dates in the document: {listed}")
 
     items: dict[str, list[FieldScore]] = {}
     for group in ("line_items", "markups", "signatures"):
         entries = getattr(extraction, group)
         items[group] = [
-            score_entry(
+            _score_derived(f"{group}[{i}]", derived[f"{group}[{i}]"], pages, group in failed)
+            if f"{group}[{i}]" in derived
+            else score_entry(
                 f"{group}[{i}]",
                 _row_raw(group, e),
                 e.evidence,
@@ -218,4 +330,5 @@ def score_document(
     ]
     reasons += [f"rule {r.rule} failed: {r.message}" for r in rules if r.failed]
     reasons += [f"could not parse {path}: {raw!r}" for path, raw in errors.items()]
+    reasons += [f"{path}: {d.note}" for path, d in derived.items() if d.cap < review_threshold]
     return DocumentScore(fields, items, overall, bool(reasons), reasons)

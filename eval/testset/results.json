@@ -1,0 +1,2011 @@
+{
+  "documents": [
+    "s01_clean_g701",
+    "s02_scanned_messy",
+    "s03_letter_format",
+    "s04_deduct_credit",
+    "s05_multipage_table",
+    "s06_email_thread.pdf",
+    "s06_email_thread.txt",
+    "s07_missing_fields",
+    "s08_conflicting_amounts"
+  ],
+  "field_accuracy": 0.9861,
+  "required_field_accuracy": 1.0,
+  "document_flags": [
+    2,
+    2,
+    5,
+    7
+  ],
+  "free_text_similarity": [
+    [
+      "s01_clean_g701",
+      "description",
+      65.5072463768116
+    ],
+    [
+      "s01_clean_g701",
+      "reason_text",
+      77.5
+    ],
+    [
+      "s02_scanned_messy",
+      "description",
+      67.54966887417218
+    ],
+    [
+      "s02_scanned_messy",
+      "reason_text",
+      61.654135338345874
+    ],
+    [
+      "s03_letter_format",
+      "description",
+      93.63295880149812
+    ],
+    [
+      "s03_letter_format",
+      "reason_text",
+      51.13636363636363
+    ],
+    [
+      "s04_deduct_credit",
+      "description",
+      55.430711610486895
+    ],
+    [
+      "s04_deduct_credit",
+      "reason_text",
+      100.0
+    ],
+    [
+      "s05_multipage_table",
+      "description",
+      85.60885608856088
+    ],
+    [
+      "s05_multipage_table",
+      "reason_text",
+      100.0
+    ],
+    [
+      "s06_email_thread.pdf",
+      "description",
+      81.4516129032258
+    ],
+    [
+      "s06_email_thread.pdf",
+      "reason_text",
+      61.29032258064516
+    ],
+    [
+      "s06_email_thread.txt",
+      "description",
+      81.4516129032258
+    ],
+    [
+      "s06_email_thread.txt",
+      "reason_text",
+      61.29032258064516
+    ],
+    [
+      "s07_missing_fields",
+      "description",
+      100.0
+    ],
+    [
+      "s08_conflicting_amounts",
+      "description",
+      68.44919786096257
+    ],
+    [
+      "s08_conflicting_amounts",
+      "reason_text",
+      100.0
+    ]
+  ],
+  "hallucinated": 0,
+  "null_fields": 27,
+  "errors_flagged": 1,
+  "errors_total": 2,
+  "calibration": [
+    {
+      "bucket": "0.0-0.5",
+      "n": 0,
+      "accuracy": null
+    },
+    {
+      "bucket": "0.5-0.8",
+      "n": 4,
+      "accuracy": 0.75
+    },
+    {
+      "bucket": "0.8-1.0",
+      "n": 150,
+      "accuracy": 0.9733333333333334
+    }
+  ],
+  "items": [
+    {
+      "document": "s01_clean_g701",
+      "group": "line_items",
+      "expected": 4,
+      "predicted": 4,
+      "matched": 4,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s01_clean_g701",
+      "group": "markups",
+      "expected": 2,
+      "predicted": 2,
+      "matched": 2,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s02_scanned_messy",
+      "group": "line_items",
+      "expected": 4,
+      "predicted": 4,
+      "matched": 4,
+      "entries": [
+        [
+          0.6,
+          true
+        ],
+        [
+          0.973,
+          true
+        ],
+        [
+          0.973,
+          true
+        ],
+        [
+          0.973,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s02_scanned_messy",
+      "group": "markups",
+      "expected": 2,
+      "predicted": 2,
+      "matched": 2,
+      "entries": [
+        [
+          0.973,
+          true
+        ],
+        [
+          0.973,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s03_letter_format",
+      "group": "line_items",
+      "expected": 0,
+      "predicted": 1,
+      "matched": 0,
+      "entries": [
+        [
+          1.0,
+          false
+        ]
+      ]
+    },
+    {
+      "document": "s03_letter_format",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "s04_deduct_credit",
+      "group": "line_items",
+      "expected": 3,
+      "predicted": 3,
+      "matched": 3,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s04_deduct_credit",
+      "group": "markups",
+      "expected": 1,
+      "predicted": 1,
+      "matched": 1,
+      "entries": [
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s05_multipage_table",
+      "group": "line_items",
+      "expected": 12,
+      "predicted": 12,
+      "matched": 12,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s05_multipage_table",
+      "group": "markups",
+      "expected": 2,
+      "predicted": 2,
+      "matched": 2,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "group": "line_items",
+      "expected": 0,
+      "predicted": 1,
+      "matched": 0,
+      "entries": [
+        [
+          1.0,
+          false
+        ]
+      ]
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "group": "line_items",
+      "expected": 0,
+      "predicted": 1,
+      "matched": 0,
+      "entries": [
+        [
+          1.0,
+          false
+        ]
+      ]
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "s07_missing_fields",
+      "group": "line_items",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "s07_missing_fields",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "group": "line_items",
+      "expected": 3,
+      "predicted": 3,
+      "matched": 3,
+      "entries": [
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ],
+        [
+          1.0,
+          true
+        ]
+      ]
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "group": "markups",
+      "expected": 0,
+      "predicted": 0,
+      "matched": 0,
+      "entries": []
+    }
+  ],
+  "fields": [
+    {
+      "document": "s01_clean_g701",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "007",
+      "expected": "007",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Riverside Medical Office Building",
+      "expected": "Riverside Medical Office Building",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "24-118",
+      "expected": "24-118",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-09-18",
+      "expected": "2026-09-18",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Ridgeline Builders, Inc.",
+      "expected": "Ridgeline Builders, Inc.",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Harmon Health Partners, LLC",
+      "expected": "Harmon Health Partners, LLC",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Calloway + Finch Architects",
+      "expected": "Calloway + Finch Architects",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "description",
+      "outcome": "wrong",
+      "confidence": 0.8,
+      "predicted": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add structural support at the relocated imaging equipment room (Level 2, grid lines C-D / 4-5), relocate electrical receptacles to suit revised casework layout, and modify partition framing accordingly. Ceramic wall tile at Corridor 2B is deleted from the scope and replaced with painted gypsum board (paint by others under existing scope). Reason for change: Owner-requested design revision.",
+      "expected": "Add structural support at relocated imaging equipment room (Level 2), relocate electrical receptacles for revised casework layout, modify partition framing; delete ceramic wall tile at Corridor 2B (replaced with painted gypsum board).",
+      "correct": false
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "reason_text",
+      "outcome": "wrong",
+      "confidence": 1.0,
+      "predicted": "Owner-requested design revision.",
+      "expected": "Owner-requested design revision per ASI-09 / RFI #42",
+      "correct": false
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "subtotal",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "9640.00",
+      "expected": "9640.00",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "10763.06",
+      "expected": "10763.06",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2485000.00",
+      "expected": "2485000.00",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "37420.50",
+      "expected": "37420.50",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2533183.56",
+      "expected": "2533183.56",
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": 6,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "document": "s01_clean_g701",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "pending",
+      "expected": "pending",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "007",
+      "expected": "007",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Riverside Medical Office Building",
+      "expected": "Riverside Medical Office Building",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "project_number",
+      "outcome": "wrong",
+      "confidence": 0.973,
+      "predicted": "24 18",
+      "expected": "24-118",
+      "correct": false
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "2026-09-18",
+      "expected": "2026-09-18",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Ridgeline Builders, Inc.",
+      "expected": "Ridgeline Builders, Inc.",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Harmon Health Partners, LLC",
+      "expected": "Harmon Health Partners, LLC",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "Calloway + Finch Architects",
+      "expected": "Calloway + Finch Architects",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "description",
+      "outcome": "wrong",
+      "confidence": 0.938,
+      "predicted": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add relocated imaging equipment room (Level 2, grid lines C-D / 4-5), relocate electrical receptacle layout, and modify partition framing accordingly.",
+      "expected": "Add structural support at relocated imaging equipment room (Level 2), relocate electrical receptacles for revised casework layout, modify partition framing; delete ceramic wall tile at Corridor 2B (replaced with painted gypsum board).",
+      "correct": false
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "reason_text",
+      "outcome": "wrong",
+      "confidence": 0.973,
+      "predicted": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42)",
+      "expected": "Owner-requested design revision per ASI-09 / RFI #42",
+      "correct": false
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "subtotal",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "9640.00",
+      "expected": "9640.00",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "10763.06",
+      "expected": "10763.06",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "2485000.00",
+      "expected": "2485000.00",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "37420.50",
+      "expected": "37420.50",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 0.933,
+      "predicted": "2533183.56",
+      "expected": "2533183.56",
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": 6,
+      "expected": 6,
+      "correct": true
+    },
+    {
+      "document": "s02_scanned_messy",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 0.973,
+      "predicted": "pending",
+      "expected": "pending",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "#3",
+      "expected": "3",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Lakeview Elementary Gym Renovation",
+      "expected": "Lakeview Elementary Gym Renovation",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "LUSD-2025-07",
+      "expected": "LUSD-2025-07",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-10-02",
+      "expected": "2026-10-02",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Keystone Mechanical Corp.",
+      "expected": "Keystone Mechanical Corp.",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Lakeview Unified School District",
+      "expected": "Lakeview Unified School District",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "architect_engineer",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Furnish and install a new prefabricated roof curb, replace the two corroded support angles, and make the associated ductwork transitions",
+      "expected": "Furnish and install new prefabricated roof curb at RTU-2, replace two corroded support angles, and make associated ductwork transitions.",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "unforeseen_condition",
+      "expected": "unforeseen_condition",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "reason_text",
+      "outcome": "wrong",
+      "confidence": 1.0,
+      "predicted": "this condition was concealed and could not have been identified before the roofing was removed",
+      "expected": "Concealed corrosion of roof curb and supporting steel discovered during demolition",
+      "correct": false
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "42680.00",
+      "expected": "42680.00",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "original_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "previous_changes_total",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "revised_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 0.96,
+      "predicted": 10,
+      "expected": 10,
+      "correct": true
+    },
+    {
+      "document": "s03_letter_format",
+      "field": "status",
+      "outcome": "wrong",
+      "confidence": 0.6,
+      "predicted": "pending",
+      "expected": "proposed",
+      "correct": false
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "CO-022",
+      "expected": "CO-022",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Harbor Point Apartments \u2013 Bldg C",
+      "expected": "Harbor Point Apartments - Bldg C",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "HP-C-0419",
+      "expected": "HP-C-0419",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-08-14",
+      "expected": "2026-08-14",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Bayside Construction Group",
+      "expected": "Bayside Construction Group",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Harbor Point Residential LP",
+      "expected": "Harbor Point Residential LP",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Mendez Hollis Architecture",
+      "expected": "Mendez Hollis Architecture",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "description",
+      "outcome": "wrong",
+      "confidence": 1.0,
+      "predicted": "Value-engineering credits accepted by Owner at the OAC meeting of 7 Aug 2026, plus added blocking for TV mounts.",
+      "expected": "Value-engineering credits (delete quartz countertops units C101-C112 for laminate; omit irrigation Zone 4) plus added wood backing for owner-furnished TV mounts.",
+      "correct": false
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "reason_text",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Owner-directed value engineering.",
+      "expected": "Owner-directed value engineering",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "subtotal",
+      "outcome": "correct",
+      "confidence": 0.9,
+      "predicted": "-25280.00",
+      "expected": "-25280.00",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "-25006.40",
+      "expected": "-25006.40",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "18740000.00",
+      "expected": "18740000.00",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "412315.75",
+      "expected": "412315.75",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "19127309.35",
+      "expected": "19127309.35",
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": 0,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "document": "s04_deduct_credit",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "005",
+      "expected": "005",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Northgate Distribution Center",
+      "expected": "Northgate Distribution Center",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "NDC-118",
+      "expected": "NDC-118",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-07-30",
+      "expected": "2026-07-30",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Summit Industrial Builders LLC",
+      "expected": "Summit Industrial Builders LLC",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Northgate Logistics Inc.",
+      "expected": "Northgate Logistics Inc.",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "PLR Engineering Group",
+      "expected": "PLR Engineering Group",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "Changes to warehouse floor slab, dock areas, and racking support required by Owner's revised racking layout (Bulletin 4) issued after slab design was finalized.",
+      "expected": "Changes to warehouse floor slab, dock areas and racking support required by Owner's revised racking layout (Bulletin 4).",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "owner_request",
+      "expected": "owner_request",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "reason_text",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Owner-requested design revision (revised racking layout).",
+      "expected": "Owner-requested design revision (revised racking layout)",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "subtotal",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "75730.00",
+      "expected": "75730.00",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "85665.78",
+      "expected": "85665.78",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "6920000.00",
+      "expected": "6920000.00",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "148602.10",
+      "expected": "148602.10",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "7154267.88",
+      "expected": "7154267.88",
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": 12,
+      "expected": 12,
+      "correct": true
+    },
+    {
+      "document": "s05_multipage_table",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "CO #9",
+      "expected": "9",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Pinecrest Library Expansion",
+      "expected": "Pinecrest Library Expansion",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "project_number",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 0.65,
+      "predicted": "2026-09-28",
+      "expected": "2026-09-28",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Alder & Stone Builders",
+      "expected": "Alder & Stone Builders",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "City of Pinecrest",
+      "expected": "City of Pinecrest",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "architect_engineer",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "tapered insulation crickets at roof drains RD-1 through RD-4 plus new walkway pads at the RTU access path",
+      "expected": "Tapered insulation crickets at roof drains RD-1 through RD-4 plus new walkway pads at RTU access path (north parapet cricket removed in revision).",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "code_requirement",
+      "expected": "code_requirement",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "reason_text",
+      "outcome": "wrong",
+      "confidence": 1.0,
+      "predicted": "code/inspector requirement (ponding)",
+      "expected": "Ponding flagged by inspector",
+      "correct": false
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "13750.00",
+      "expected": "13750.00",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "original_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "previous_changes_total",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "revised_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": 0,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "CO #9",
+      "expected": "9",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Pinecrest Library Expansion",
+      "expected": "Pinecrest Library Expansion",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "project_number",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 0.65,
+      "predicted": "2026-09-28",
+      "expected": "2026-09-28",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Alder & Stone Builders",
+      "expected": "Alder & Stone Builders",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "City of Pinecrest",
+      "expected": "City of Pinecrest",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "architect_engineer",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "tapered insulation crickets at roof drains RD-1 through RD-4 plus new walkway pads at the RTU access path",
+      "expected": "Tapered insulation crickets at roof drains RD-1 through RD-4 plus new walkway pads at RTU access path (north parapet cricket removed in revision).",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "code_requirement",
+      "expected": "code_requirement",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "reason_text",
+      "outcome": "wrong",
+      "confidence": 1.0,
+      "predicted": "code/inspector requirement (ponding)",
+      "expected": "Ponding flagged by inspector",
+      "correct": false
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "13750.00",
+      "expected": "13750.00",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "original_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "previous_changes_total",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "revised_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": 0,
+      "expected": 0,
+      "correct": true
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "4",
+      "expected": "4",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Elm Street Townhomes",
+      "expected": "Elm Street Townhomes",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "project_number",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-07-22",
+      "expected": "2026-07-22",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Brightline Contracting",
+      "expected": "Brightline Contracting",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "owner",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "architect_engineer",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "description",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Add exterior frost-free hose bibs at Units 3 and 4, rear patios, including piping from nearest cold water line.",
+      "expected": "Add exterior frost-free hose bibs at Units 3 and 4 rear patios, including piping from nearest cold water line.",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "reason",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "reason_text",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "subtotal",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "1640.00",
+      "expected": "1640.00",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 0.8,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "original_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "previous_changes_total",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "revised_contract_sum",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "schedule_impact_days",
+      "outcome": "correct_null",
+      "confidence": 0.0,
+      "predicted": null,
+      "expected": null,
+      "correct": true
+    },
+    {
+      "document": "s07_missing_fields",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "proposed",
+      "expected": "proposed",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "change_order_number",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "CO-011",
+      "expected": "CO-011 Rev 1",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "project_name",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Mill Creek Wastewater Plant Upgrade",
+      "expected": "Mill Creek Wastewater Plant Upgrade",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "project_number",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "MC-2203",
+      "expected": "MC-2203",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "date_issued",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "2026-06-19",
+      "expected": "2026-06-19",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "contractor",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Ironwood Civil Constructors",
+      "expected": "Ironwood Civil Constructors",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "owner",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Mill Creek Utility District",
+      "expected": "Mill Creek Utility District",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "architect_engineer",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Hydra Engineering, PC",
+      "expected": "Hydra Engineering, PC",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "description",
+      "outcome": "wrong",
+      "confidence": 0.8,
+      "predicted": "Unforeseen rock encountered at Influent Pump Station excavation below elevation 412.0, requiring rock excavation, extended dewatering, and replacement with imported select backfill. Quantities revised after joint field measurement on 06/15/2026.",
+      "expected": "Rock excavation, extended dewatering and imported select backfill at Influent Pump Station due to unforeseen rock below elevation 412.0.",
+      "correct": false
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "reason",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "unforeseen_condition",
+      "expected": "unforeseen_condition",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "reason_text",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "Differing site condition (unforeseen rock).",
+      "expected": "Differing site condition (unforeseen rock)",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "subtotal",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "45950.00",
+      "expected": "45950.00",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "change_amount",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "45950.00",
+      "expected": "45950.00",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "currency",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "USD",
+      "expected": "USD",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "original_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "12300000.00",
+      "expected": "12300000.00",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "previous_changes_total",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "286410.00",
+      "expected": "286410.00",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "revised_contract_sum",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": "12632360.00",
+      "expected": "12632360.00",
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "schedule_impact_days",
+      "outcome": "correct",
+      "confidence": 1.0,
+      "predicted": 9,
+      "expected": 9,
+      "correct": true
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "field": "status",
+      "outcome": "correct",
+      "confidence": 0.95,
+      "predicted": "approved",
+      "expected": "approved",
+      "correct": true
+    }
+  ],
+  "runs": [
+    {
+      "document": "s01_clean_g701",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2868,
+      "output_tokens": 1326,
+      "cost_usd": 0.00123,
+      "seconds": 0.06,
+      "llm_seconds": 13.05,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s02_scanned_messy",
+      "needs_review": true,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2629,
+      "output_tokens": 1343,
+      "cost_usd": 0.0012,
+      "seconds": 1.44,
+      "llm_seconds": 13.45,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s03_letter_format",
+      "needs_review": true,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2185,
+      "output_tokens": 762,
+      "cost_usd": 0.00078,
+      "seconds": 0.03,
+      "llm_seconds": 8.38,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s04_deduct_credit",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2619,
+      "output_tokens": 1100,
+      "cost_usd": 0.00105,
+      "seconds": 0.03,
+      "llm_seconds": 10.77,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s05_multipage_table",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 3217,
+      "output_tokens": 1863,
+      "cost_usd": 0.0016,
+      "seconds": 0.05,
+      "llm_seconds": 20.52,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s06_email_thread.pdf",
+      "needs_review": true,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2272,
+      "output_tokens": 737,
+      "cost_usd": 0.00078,
+      "seconds": 0.03,
+      "llm_seconds": 8.54,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s06_email_thread.txt",
+      "needs_review": true,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2267,
+      "output_tokens": 775,
+      "cost_usd": 0.00081,
+      "seconds": 0.0,
+      "llm_seconds": 8.28,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s07_missing_fields",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 1993,
+      "output_tokens": 552,
+      "cost_usd": 0.00063,
+      "seconds": 0.01,
+      "llm_seconds": 5.76,
+      "pipeline_version": "0.1.0"
+    },
+    {
+      "document": "s08_conflicting_amounts",
+      "needs_review": false,
+      "model": "gpt-4o-mini",
+      "attempts": 1,
+      "cached": true,
+      "input_tokens": 2594,
+      "output_tokens": 1064,
+      "cost_usd": 0.00103,
+      "seconds": 0.03,
+      "llm_seconds": 11.15,
+      "pipeline_version": "0.1.0"
+    }
+  ],
+  "failed_documents": []
+}

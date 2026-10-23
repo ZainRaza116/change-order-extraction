@@ -60,6 +60,22 @@ def parse_date(text: str) -> date | None:
     return None
 
 
+def find_dates(text: str) -> list[tuple[int, date]]:
+    """Every explicit date in `text`, as (start offset, date), in reading order."""
+    found: dict[int, date] = {}
+    patterns = (
+        (_ISO, lambda m: (int(m[1]), int(m[2]), int(m[3]))),
+        (_NUMERIC, lambda m: (int(m[3]), int(m[1]), int(m[2]))),
+        (_MONTH_FIRST, lambda m: (int(m[3]), _MONTHS[m[1].lower()], int(m[2]))),
+        (_DAY_FIRST, lambda m: (int(m[3]), _MONTHS[m[2].lower()], int(m[1]))),
+    )
+    for pattern, parts in patterns:
+        for m in pattern.finditer(text):
+            if (d := _make_date(*parts(m))) and not any(abs(m.start() - s) < 3 for s in found):
+                found[m.start()] = d
+    return sorted(found.items())
+
+
 _NUMBER_WORDS = {
     "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
     "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,

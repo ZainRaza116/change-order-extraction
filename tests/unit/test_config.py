@@ -5,34 +5,25 @@ from co_extract.config import load_settings
 
 @pytest.fixture(autouse=True)
 def clean_env(monkeypatch):
-    for name in ("CO_EXTRACT_PROVIDER", "CO_EXTRACT_MODEL", "CO_EXTRACT_ESCALATION_MODEL",
-                 "CO_EXTRACT_LLM_MODE", "CO_EXTRACT_VISION_FALLBACK"):  # fmt: skip
+    for name in ("CO_EXTRACT_MODEL", "CO_EXTRACT_LLM_MODE", "CO_EXTRACT_REVIEW_THRESHOLD"):
         monkeypatch.delenv(name, raising=False)
     monkeypatch.setattr("co_extract.config.load_dotenv", lambda: None)  # ignore a local .env
 
 
-def test_openai_is_the_default_provider():
-    # the committed recordings were made with gpt-4o-mini, so defaults must match them
+def test_defaults_match_the_recordings():
+    # the committed cassettes were recorded with gpt-4o-mini, so the default must match
     s = load_settings()
-    assert (s.provider, s.model, s.escalation_model) == ("openai", "gpt-4o-mini", "gpt-4o")
+    assert (s.model, s.llm_mode, s.review_threshold) == ("gpt-4o-mini", "auto", 0.7)
 
 
-def test_anthropic_defaults(monkeypatch):
-    monkeypatch.setenv("CO_EXTRACT_PROVIDER", "anthropic")
+def test_environment_overrides(monkeypatch):
+    monkeypatch.setenv("CO_EXTRACT_MODEL", "gpt-4o")
+    monkeypatch.setenv("CO_EXTRACT_REVIEW_THRESHOLD", "0.8")
     s = load_settings()
-    assert (s.model, s.escalation_model) == ("claude-sonnet-5-5", "claude-opus-5-5")
+    assert (s.model, s.review_threshold) == ("gpt-4o", 0.8)
 
 
-def test_vision_fallback_is_off_unless_enabled(monkeypatch):
-    assert load_settings().ocr_vision_model is None
-    monkeypatch.setenv("CO_EXTRACT_VISION_FALLBACK", "1")
-    assert load_settings().ocr_vision_model == "claude-opus-5-5"
-
-
-@pytest.mark.parametrize(
-    ("name", "value"), [("CO_EXTRACT_PROVIDER", "gemini"), ("CO_EXTRACT_LLM_MODE", "live")]
-)
-def test_invalid_values_are_rejected(monkeypatch, name, value):
-    monkeypatch.setenv(name, value)
-    with pytest.raises(ValueError, match=name):
+def test_invalid_mode_is_rejected(monkeypatch):
+    monkeypatch.setenv("CO_EXTRACT_LLM_MODE", "live")
+    with pytest.raises(ValueError, match="CO_EXTRACT_LLM_MODE"):
         load_settings()

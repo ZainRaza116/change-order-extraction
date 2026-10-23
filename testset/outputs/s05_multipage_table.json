@@ -1,0 +1,478 @@
+{
+  "source_file": "s05_multipage_table.pdf",
+  "file_sha256": "6d05cc99a41ae83db4c1d9a969e766bad725595173f456143063631d1f9ce36c",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 1873,
+      "ocr_confidence": null
+    },
+    {
+      "page": 2,
+      "method": "text",
+      "char_count": 2062,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "005",
+      "raw": "005",
+      "confidence": 1.0,
+      "evidence": "CHANGE ORDER No. 005",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Northgate Distribution Center",
+      "raw": "Northgate Distribution Center",
+      "confidence": 1.0,
+      "evidence": "Project:       Northgate Distribution Center",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": "NDC-118",
+      "raw": "NDC-118",
+      "confidence": 1.0,
+      "evidence": "Project No.:    NDC-118",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "date_issued": {
+      "value": "2026-07-30",
+      "raw": "07/30/2026",
+      "confidence": 1.0,
+      "evidence": "Date:         07/30/2026",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Summit Industrial Builders LLC",
+      "raw": "Summit Industrial Builders LLC",
+      "confidence": 1.0,
+      "evidence": "SUMMIT INDUSTRIAL BUILDERS LLC",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": "Northgate Logistics Inc.",
+      "raw": "Northgate Logistics Inc.",
+      "confidence": 1.0,
+      "evidence": "Owner:       Northgate Logistics Inc.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "architect_engineer": {
+      "value": "PLR Engineering Group",
+      "raw": "PLR Engineering Group",
+      "confidence": 1.0,
+      "evidence": "Engineer:     PLR Engineering Group",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "description": {
+      "value": "Changes to warehouse floor slab, dock areas, and racking support required by Owner's revised racking layout (Bulletin 4) issued after slab design was finalized.",
+      "raw": "Changes to warehouse floor slab, dock areas, and racking support required by Owner's revised racking layout (Bulletin 4) issued after slab design was finalized.",
+      "confidence": 0.8,
+      "evidence": "Description: Changes to warehouse floor slab, dock areas, and racking support required by Owner's revised racking layout",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason": {
+      "value": "owner_request",
+      "raw": "owner_request",
+      "confidence": 1.0,
+      "evidence": "Reason: Owner-requested design revision (revised racking layout).",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason_text": {
+      "value": "Owner-requested design revision (revised racking layout).",
+      "raw": "Owner-requested design revision (revised racking layout).",
+      "confidence": 1.0,
+      "evidence": "Reason: Owner-requested design revision (revised racking layout).",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "subtotal": {
+      "value": "75730.00",
+      "raw": "$75,730.00",
+      "confidence": 1.0,
+      "evidence": "Subtotal                                                                             $75,730.00",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "change_amount": {
+      "value": "85665.78",
+      "raw": "$85,665.78",
+      "confidence": 1.0,
+      "evidence": "Total this Change Order                                                              $85,665.78",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "$",
+      "confidence": 1.0,
+      "evidence": "$85,665.78",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "original_contract_sum": {
+      "value": "6920000.00",
+      "raw": "$6,920,000.00",
+      "confidence": 1.0,
+      "evidence": "Original Contract Sum                                                         $6,920,000.00",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "previous_changes_total": {
+      "value": "148602.10",
+      "raw": "$148,602.10",
+      "confidence": 1.0,
+      "evidence": "Net change by previous Change Orders (001-004)                               $148,602.10",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "revised_contract_sum": {
+      "value": "7154267.88",
+      "raw": "$7,154,267.88",
+      "confidence": 1.0,
+      "evidence": "Revised Contract Sum                                                         $7,154,267.88",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "schedule_impact_days": {
+      "value": 12,
+      "raw": "12 calendar days",
+      "confidence": 1.0,
+      "evidence": "Contract Time increase                                                  12 calendar days",
+      "page": 2,
+      "alternatives": [],
+      "flags": []
+    },
+    "status": {
+      "value": "approved",
+      "raw": "approved",
+      "confidence": 0.95,
+      "evidence": "Rachel Kim              Owen Pratt                    V. Iyer",
+      "page": 2,
+      "alternatives": [
+        "pending"
+      ],
+      "flags": []
+    }
+  },
+  "line_items": [
+    {
+      "value": {
+        "description": "Additional concrete slab thickening at racking lines",
+        "quantity": "46",
+        "unit": "CY",
+        "unit_cost": "285.00",
+        "amount": "13110.00"
+      },
+      "confidence": 1.0,
+      "evidence": "1       Additional concrete slab thickening at racking lines      46    CY     $285.00       $13,110.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Additional #5 rebar at thickened slab",
+        "quantity": "3.2",
+        "unit": "TON",
+        "unit_cost": "2150.00",
+        "amount": "6880.00"
+      },
+      "confidence": 1.0,
+      "evidence": "2       Additional #5 rebar at thickened slab                     3.2    TON   $2,150.00      $6,880.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Anchor bolts 1\" x 18\" with templates",
+        "quantity": "120",
+        "unit": "EA",
+        "unit_cost": "42.50",
+        "amount": "5100.00"
+      },
+      "confidence": 1.0,
+      "evidence": "3     Anchor bolts 1\" x 18\" with templates                  120    EA     $42.50        $5,100.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Additional saw-cut control joints",
+        "quantity": "860",
+        "unit": "LF",
+        "unit_cost": "3.75",
+        "amount": "3225.00"
+      },
+      "confidence": 1.0,
+      "evidence": "4       Additional saw-cut control joints                     860    LF     $3.75          $3,225.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Dock leveler pit modifications",
+        "quantity": "4",
+        "unit": "EA",
+        "unit_cost": "2640.00",
+        "amount": "10560.00"
+      },
+      "confidence": 1.0,
+      "evidence": "5     Dock leveler pit modifications                       4     EA     $2,640.00     $10,560.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "6\" pipe bollards, concrete filled",
+        "quantity": "18",
+        "unit": "EA",
+        "unit_cost": "685.00",
+        "amount": "12330.00"
+      },
+      "confidence": 1.0,
+      "evidence": "6      6\" pipe bollards, concrete filled                      18     EA     $685.00       $12,330.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Electrical: dock lighting circuits and fixtures",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_cost": "7450.00",
+        "amount": "7450.00"
+      },
+      "confidence": 1.0,
+      "evidence": "7       Electrical: dock lighting circuits and fixtures            1      LS     $7,450.00      $7,450.00",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Fire sprinkler head relocations at racking",
+        "quantity": "22",
+        "unit": "EA",
+        "unit_cost": "210.00",
+        "amount": "4620.00"
+      },
+      "confidence": 1.0,
+      "evidence": "8     Fire sprinkler head relocations at racking              22     EA     $210.00       $4,620.00",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Paint bollards and floor striping",
+        "quantity": "1",
+        "unit": "LS",
+        "unit_cost": "2180.00",
+        "amount": "2180.00"
+      },
+      "confidence": 1.0,
+      "evidence": "9      Paint bollards and floor striping                      1      LS     $2,180.00      $2,180.00",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "CREDIT: delete exterior site benches",
+        "quantity": "2",
+        "unit": "EA",
+        "unit_cost": "-1150.00",
+        "amount": "-2300.00"
+      },
+      "confidence": 1.0,
+      "evidence": "10    CREDIT: delete exterior site benches                 2     EA     ($1,150.00)    ($2,300.00)",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Equipment rental - telehandler",
+        "quantity": "3",
+        "unit": "WK",
+        "unit_cost": "1925.00",
+        "amount": "5775.00"
+      },
+      "confidence": 1.0,
+      "evidence": "11    Equipment rental - telehandler                      3    WK    $1,925.00      $5,775.00",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Supervision / general conditions extension",
+        "quantity": "2",
+        "unit": "WK",
+        "unit_cost": "3400.00",
+        "amount": "6800.00"
+      },
+      "confidence": 1.0,
+      "evidence": "12     Supervision / general conditions extension             2    WK    $3,400.00      $6,800.00",
+      "page": 2,
+      "flags": []
+    }
+  ],
+  "markups": [
+    {
+      "value": {
+        "description": "Overhead & Profit @ 12%",
+        "rate_percent": "12",
+        "amount": "9087.60"
+      },
+      "confidence": 1.0,
+      "evidence": "Overhead & Profit @ 12%                                                               $9,087.60",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Insurance @ 1%",
+        "rate_percent": "1",
+        "amount": "848.18"
+      },
+      "confidence": 1.0,
+      "evidence": "Insurance @ 1%                                                                    $848.18",
+      "page": 2,
+      "flags": []
+    }
+  ],
+  "signatures": [
+    {
+      "value": {
+        "party": "owner",
+        "name": "Rachel Kim, VP Real Estate",
+        "date": "2026-08-04",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Rachel Kim, VP Real Estate        Owen Pratt, Sr. PM                  Vikram Iyer, PE\n 08/04/2026                          07/30/2026                          08/02/2026",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "contractor",
+        "name": "Owen Pratt, Sr. PM",
+        "date": "2026-07-30",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Rachel Kim, VP Real Estate        Owen Pratt, Sr. PM                  Vikram Iyer, PE\n 08/04/2026                          07/30/2026                          08/02/2026",
+      "page": 2,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "architect",
+        "name": "Vikram Iyer, PE",
+        "date": "2026-08-02",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "Rachel Kim, VP Real Estate        Owen Pratt, Sr. PM                  Vikram Iyer, PE\n 08/04/2026                          07/30/2026                          08/02/2026",
+      "page": 2,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.971,
+  "needs_review": false,
+  "review_reasons": [],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "pass",
+      "message": "all required fields present"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "pass",
+      "message": "original + previous + change = revised (7,154,267.88)"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "pass",
+      "message": "items + markups = change amount (85,665.78)"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "pass",
+      "message": "12 item(s) check out"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "pass",
+      "message": "2 markup(s) check out"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "pass",
+      "message": "1 credit item(s) are negative"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "pass",
+      "message": "status approved matches the signatures"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "pass",
+      "message": "12 day(s)"
+    }
+  ],
+  "model_notes": [],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 1,
+    "cached": true,
+    "input_tokens": 3217,
+    "output_tokens": 1863,
+    "cost_usd": 0.0016,
+    "seconds": 0.05,
+    "llm_seconds": 20.52,
+    "pipeline_version": "0.1.0"
+  }
+}

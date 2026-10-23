@@ -36,3 +36,7 @@ jobs:
         run: |
           uv run co-extract run samples/co_001_email.txt --out /tmp/outputs --replay
           uv run co-extract run samples/co_002_digital.pdf --out /tmp/outputs --replay
+          for f in testset/samples/*; do
+            case "$f" in *s02_scanned*) continue ;; esac  # OCR: Tesseract-version dependent
+            uv run co-extract run "$f" --out /tmp/testset --replay
+          done

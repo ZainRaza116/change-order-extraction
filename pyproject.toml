@@ -15,7 +15,6 @@ dependencies = [
     "rapidfuzz>=3.9",
     "typer>=0.12",
     "python-dotenv>=1.0",
-    "anthropic>=1.17",
     "openai>=1.50",
 ]
 

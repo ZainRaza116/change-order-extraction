@@ -1,0 +1,334 @@
+{
+  "source_file": "s08_conflicting_amounts.pdf",
+  "file_sha256": "b6e81cda1df3851e1208bf04eeff4b1f1f5e2dc61d833582c9f61530e057a159",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 2417,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "CO-011",
+      "raw": "CO-011",
+      "confidence": 0.95,
+      "evidence": "CHANGE ORDER CO-011, REVISION 1",
+      "page": 1,
+      "alternatives": [
+        "CO-011 dated 06/02/2026"
+      ],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Mill Creek Wastewater Plant Upgrade",
+      "raw": "Mill Creek Wastewater Plant Upgrade",
+      "confidence": 1.0,
+      "evidence": "Project            Mill Creek Wastewater Plant Upgrade",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": "MC-2203",
+      "raw": "MC-2203",
+      "confidence": 1.0,
+      "evidence": "Contract No.     MC-2203",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "date_issued": {
+      "value": "2026-06-19",
+      "raw": "06/19/2026",
+      "confidence": 1.0,
+      "evidence": "Revision Date   06/19/2026",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Ironwood Civil Constructors",
+      "raw": "Ironwood Civil Constructors",
+      "confidence": 1.0,
+      "evidence": "IRONWOOD CIVIL CONSTRUCTORS",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": "Mill Creek Utility District",
+      "raw": "Mill Creek Utility District",
+      "confidence": 1.0,
+      "evidence": "Owner            Mill Creek Utility District",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "architect_engineer": {
+      "value": "Hydra Engineering, PC",
+      "raw": "Hydra Engineering, PC",
+      "confidence": 1.0,
+      "evidence": "Engineer        Hydra Engineering, PC",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "description": {
+      "value": "Unforeseen rock encountered at Influent Pump Station excavation below elevation 412.0, requiring rock excavation, extended dewatering, and replacement with imported select backfill. Quantities revised after joint field measurement on 06/15/2026.",
+      "raw": "Unforeseen rock encountered at Influent Pump Station excavation below elevation 412.0, requiring rock excavation, extended dewatering, and replacement with imported select backfill. Quantities revised after joint field measurement on 06/15/2026.",
+      "confidence": 0.8,
+      "evidence": "Description: Unforeseen rock encountered at Influent Pump Station excavation below elevation 412.0",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason": {
+      "value": "unforeseen_condition",
+      "raw": "unforeseen_condition",
+      "confidence": 1.0,
+      "evidence": "Reason: Differing site condition (unforeseen rock).",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason_text": {
+      "value": "Differing site condition (unforeseen rock).",
+      "raw": "Differing site condition (unforeseen rock).",
+      "confidence": 1.0,
+      "evidence": "Reason: Differing site condition (unforeseen rock).",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "subtotal": {
+      "value": "45950.00",
+      "raw": "$45,950.00",
+      "confidence": 1.0,
+      "evidence": "TOTAL (all markups included)                                                       $45,950.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "change_amount": {
+      "value": "45950.00",
+      "raw": "$45,950.00",
+      "confidence": 1.0,
+      "evidence": "This CO (Rev 1)                                                             $45,950.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "$",
+      "confidence": 1.0,
+      "evidence": "$45,950.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "original_contract_sum": {
+      "value": "12300000.00",
+      "raw": "$12,300,000.00",
+      "confidence": 1.0,
+      "evidence": "Original Contract Amount                                                      $12,300,000.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "previous_changes_total": {
+      "value": "286410.00",
+      "raw": "$286,410.00",
+      "confidence": 1.0,
+      "evidence": "Previous Change Orders (CO-001 to CO-010)                                   $286,410.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "revised_contract_sum": {
+      "value": "12632360.00",
+      "raw": "$12,632,360.00",
+      "confidence": 1.0,
+      "evidence": "Revised Contract Amount                                                     $12,632,360.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "schedule_impact_days": {
+      "value": 9,
+      "raw": "9 calendar days",
+      "confidence": 1.0,
+      "evidence": "Contract Time Extension                                                9 calendar days",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "status": {
+      "value": "approved",
+      "raw": "approved",
+      "confidence": 0.95,
+      "evidence": "M. Osei                             J. Carver                   H. Lindqvist",
+      "page": 1,
+      "alternatives": [
+        "pending"
+      ],
+      "flags": []
+    }
+  },
+  "line_items": [
+    {
+      "value": {
+        "description": "Additional excavation in rock, Influent Pump Station",
+        "quantity": "140",
+        "unit": "CY",
+        "unit_cost": "185.00",
+        "amount": "25900.00"
+      },
+      "confidence": 1.0,
+      "evidence": "1       Additional excavation in rock, Influent Pump Station     140   CY     $185.00       $25,900.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Dewatering, extended duration",
+        "quantity": "10",
+        "unit": "DAY",
+        "unit_cost": "1249.00",
+        "amount": "12490.00"
+      },
+      "confidence": 1.0,
+      "evidence": "2      Dewatering, extended duration                      10    DAY    $1,249.00     $12,490.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Imported select backfill",
+        "quantity": "210",
+        "unit": "CY",
+        "unit_cost": "36.00",
+        "amount": "7560.00"
+      },
+      "confidence": 1.0,
+      "evidence": "3      Imported select backfill                            210   CY     $36.00        $7,560.00",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "markups": [],
+  "signatures": [
+    {
+      "value": {
+        "party": "owner",
+        "name": "Martin Osei, General Manager",
+        "date": "2026-06-24",
+        "signed": true
+      },
+      "confidence": 0.8,
+      "evidence": "M. Osei                             J. Carver                   H. Lindqvist",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "contractor",
+        "name": "Jill Carver, Project Manager",
+        "date": "2026-06-19",
+        "signed": true
+      },
+      "confidence": 0.8,
+      "evidence": "M. Osei                             J. Carver                   H. Lindqvist",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "architect",
+        "name": "Hanna Lindqvist, PE",
+        "date": "2026-06-22",
+        "signed": true
+      },
+      "confidence": 0.8,
+      "evidence": "M. Osei                             J. Carver                   H. Lindqvist",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.964,
+  "needs_review": false,
+  "review_reasons": [],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "pass",
+      "message": "all required fields present"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "pass",
+      "message": "original + previous + change = revised (12,632,360.00)"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "pass",
+      "message": "items + markups = change amount (45,950.00)"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "pass",
+      "message": "3 item(s) check out"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "not_applicable",
+      "message": "no markup with a stated rate"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "not_applicable",
+      "message": "no credit or deduct items"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "pass",
+      "message": "status approved matches the signatures"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "pass",
+      "message": "9 day(s)"
+    }
+  ],
+  "model_notes": [],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 1,
+    "cached": true,
+    "input_tokens": 2594,
+    "output_tokens": 1064,
+    "cost_usd": 0.00103,
+    "seconds": 0.03,
+    "llm_seconds": 11.15,
+    "pipeline_version": "0.1.0"
+  }
+}

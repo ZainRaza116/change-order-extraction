@@ -1,0 +1,368 @@
+{
+  "source_file": "s01_clean_g701.pdf",
+  "file_sha256": "f8f95d465b3293fd809681cc63871e88e73be9072b7c96e61a32fd2f63e116e9",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 3694,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "007",
+      "raw": "007",
+      "confidence": 1.0,
+      "evidence": "CHANGE ORDER No. 007",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Riverside Medical Office Building",
+      "raw": "Riverside Medical Office Building",
+      "confidence": 1.0,
+      "evidence": "PROJECT: Riverside Medical Office Building",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": "24-118",
+      "raw": "24-118",
+      "confidence": 1.0,
+      "evidence": "Project No.: 24-118",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "date_issued": {
+      "value": "2026-09-18",
+      "raw": "Sept. 18, 2026",
+      "confidence": 1.0,
+      "evidence": "DATE: Sept. 18, 2026",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Ridgeline Builders, Inc.",
+      "raw": "Ridgeline Builders, Inc.",
+      "confidence": 1.0,
+      "evidence": "CONTRACTOR Ridgeline Builders, Inc.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": "Harmon Health Partners, LLC",
+      "raw": "Harmon Health Partners, LLC",
+      "confidence": 1.0,
+      "evidence": "OWNER: Harmon Health Partners, LLC",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "architect_engineer": {
+      "value": "Calloway + Finch Architects",
+      "raw": "Calloway + Finch Architects",
+      "confidence": 1.0,
+      "evidence": "ARCHITECT: Calloway + Finch Architects",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "description": {
+      "value": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add structural support at the relocated imaging equipment room (Level 2, grid lines C-D / 4-5), relocate electrical receptacles to suit revised casework layout, and modify partition framing accordingly. Ceramic wall tile at Corridor 2B is deleted from the scope and replaced with painted gypsum board (paint by others under existing scope). Reason for change: Owner-requested design revision.",
+      "raw": "Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add structural support at the relocated imaging equipment room (Level 2, grid lines C-D / 4-5), relocate electrical receptacles to suit revised casework layout, and modify partition framing accordingly. Ceramic wall tile at Corridor 2B is deleted from the scope and replaced with painted gypsum board (paint by others under existing scope). Reason for change: Owner-requested design revision.",
+      "confidence": 0.8,
+      "evidence": "DESCRIPTION OF CHANGE Per Owner request and Architect's Supplemental Instruction ASI-09 (response to RFI #42), add structural support...",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason": {
+      "value": "owner_request",
+      "raw": "owner_request",
+      "confidence": 1.0,
+      "evidence": "Reason for change: Owner-requested design revision.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason_text": {
+      "value": "Owner-requested design revision.",
+      "raw": "Owner-requested design revision.",
+      "confidence": 1.0,
+      "evidence": "Reason for change: Owner-requested design revision.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "subtotal": {
+      "value": "9640.00",
+      "raw": "$9,640.00",
+      "confidence": 1.0,
+      "evidence": "Subtotal $9,640.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "change_amount": {
+      "value": "10763.06",
+      "raw": "$10,763.06",
+      "confidence": 1.0,
+      "evidence": "TOTAL THIS CHANGE ORDER $10,763.06",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "$",
+      "confidence": 1.0,
+      "evidence": "TOTAL THIS CHANGE ORDER $10,763.06",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "original_contract_sum": {
+      "value": "2485000.00",
+      "raw": "$2,485,000.00",
+      "confidence": 1.0,
+      "evidence": "The original Contract Sum was $2,485,000.00",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "previous_changes_total": {
+      "value": "37420.50",
+      "raw": "$37,420.50",
+      "confidence": 1.0,
+      "evidence": "Net change by previously authorized Change Orders (CO-001 thru CO-006) $37,420.50",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "revised_contract_sum": {
+      "value": "2533183.56",
+      "raw": "$2,533,183.56",
+      "confidence": 1.0,
+      "evidence": "The new Contract Sum including this Change Order will be $2,533,183.56",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "schedule_impact_days": {
+      "value": 6,
+      "raw": "Six (6) calendar days",
+      "confidence": 1.0,
+      "evidence": "The Contract Time will be increased by Six (6) calendar days",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "status": {
+      "value": "pending",
+      "raw": "pending",
+      "confidence": 1.0,
+      "evidence": "NOT VALID UNTIL SIGNED BY THE OWNER, CONTRACTOR AND ARCHITECT.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    }
+  },
+  "line_items": [
+    {
+      "value": {
+        "description": "Furnish & install add'l structural steel beam W12x26 incl. connections",
+        "quantity": "3",
+        "unit": "EA",
+        "unit_cost": "2850.00",
+        "amount": "8550.00"
+      },
+      "confidence": 1.0,
+      "evidence": "1 Furnish & install add'l structural steel beam W12x26 incl. connections 3 EA $2,850.00 $8,550.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Relocate duplex receptacles, incl. new boxes & wiring (Electrical sub)",
+        "quantity": "4",
+        "unit": "EA",
+        "unit_cost": "325.00",
+        "amount": "1300.00"
+      },
+      "confidence": 1.0,
+      "evidence": "2 Relocate duplex receptacles, incl. new boxes & wiring (Electrical sub) 4 EA $325.00 $1,300.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Carpentry labor - partition framing modifications",
+        "quantity": "24",
+        "unit": "HR",
+        "unit_cost": "85.00",
+        "amount": "2040.00"
+      },
+      "confidence": 1.0,
+      "evidence": "3 Carpentry labor - partition framing modifications 24 HR $85.00 $2,040.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "CREDIT: Delete ceramic wall tile, Corridor 2B",
+        "quantity": "180",
+        "unit": "SF",
+        "unit_cost": "12.50",
+        "amount": "-2250.00"
+      },
+      "confidence": 1.0,
+      "evidence": "4 CREDIT: Delete ceramic wall tile, Corridor 2B 180 SF $12.50 ($2,250.00)",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "markups": [
+    {
+      "value": {
+        "description": "Overhead & Profit @ 10%",
+        "rate_percent": "10",
+        "amount": "964.00"
+      },
+      "confidence": 1.0,
+      "evidence": "Overhead & Profit @ 10% $964.00",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "description": "Bond @ 1.5%",
+        "rate_percent": "1.5",
+        "amount": "159.06"
+      },
+      "confidence": 1.0,
+      "evidence": "Bond @ 1.5% $159.06",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "signatures": [
+    {
+      "value": {
+        "party": "architect",
+        "name": "Diane Calloway, AIA",
+        "date": "2026-09-19",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "By: Diane Calloway, AIA Date: 9/19/2026",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "contractor",
+        "name": "Marcus T. Reyes",
+        "date": "2026-09-18",
+        "signed": true
+      },
+      "confidence": 1.0,
+      "evidence": "By: Marcus T. Reyes, Project Manager Date: 09/18/26",
+      "page": 1,
+      "flags": []
+    },
+    {
+      "value": {
+        "party": "owner",
+        "name": null,
+        "date": null,
+        "signed": false
+      },
+      "confidence": 1.0,
+      "evidence": "By: ______________________",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.971,
+  "needs_review": false,
+  "review_reasons": [],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "pass",
+      "message": "all required fields present"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "pass",
+      "message": "original + previous + change = revised (2,533,183.56)"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "pass",
+      "message": "items + markups = change amount (10,763.06)"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "pass",
+      "message": "4 item(s) check out"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "pass",
+      "message": "2 markup(s) check out"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "pass",
+      "message": "1 credit item(s) are negative"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "pass",
+      "message": "status pending matches the signatures"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "pass",
+      "message": "6 day(s)"
+    }
+  ],
+  "model_notes": [
+    "Contractor's original proposal PCO-012 dated 08/29/2026 was submitted at $11,240.00; amount above reflects negotiated pricing per meeting of 9/11/26."
+  ],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 1,
+    "cached": true,
+    "input_tokens": 2868,
+    "output_tokens": 1326,
+    "cost_usd": 0.00123,
+    "seconds": 0.06,
+    "llm_seconds": 13.05,
+    "pipeline_version": "0.1.0"
+  }
+}

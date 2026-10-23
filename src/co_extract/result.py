@@ -10,7 +10,7 @@ from typing import Any, Literal
 from pydantic import BaseModel
 
 from co_extract import __version__
-from co_extract.assemble import Assembled
+from co_extract.assemble import Assembled, Derivation
 from co_extract.confidence import DocumentScore, FieldScore
 from co_extract.ingest import PageText
 from co_extract.llm import LlmExtraction, raw_value
@@ -52,7 +52,6 @@ class RunInfo(BaseModel):
     model: str | None = None
     attempts: int = 0
     cached: bool = False
-    escalated: bool = False
     input_tokens: int = 0
     output_tokens: int = 0
     cost_usd: float | None = None
@@ -80,7 +79,12 @@ class ExtractionResult(BaseModel):
 
 
 def _items(
-    raw_entries, typed_entries, kept: list[int], scores: list[FieldScore]
+    group: str,
+    raw_entries,
+    typed_entries,
+    kept: list[int],
+    scores: list[FieldScore],
+    derived: dict[str, Derivation],
 ) -> list[ItemResult]:
     """One ItemResult per raw entry. Entries that assemble() dropped (unreadable amount)
     keep their raw text with amount None, so every other entry still gets its typed value."""
@@ -96,8 +100,8 @@ def _items(
             ItemResult(
                 value=value,
                 confidence=score.confidence,
-                evidence=raw.evidence,
-                page=raw.page,
+                evidence=raw.evidence or getattr(derived.get(f"{group}[{i}]"), "evidence", None),
+                page=raw.page or getattr(derived.get(f"{group}[{i}]"), "page", None),
                 flags=score.caps,
             )
         )
@@ -115,24 +119,26 @@ def build_result(
     run: RunInfo,
 ) -> ExtractionResult:
     draft = assembled.draft.model_dump(mode="json")
-    fields = {
-        name: FieldResult(
+    fields = {}
+    for name, item in extraction.scalars():
+        d = assembled.derived.get(name)
+        fields[name] = FieldResult(
             value=draft.get(name),
-            raw=raw_value(item),
+            raw=d.raw if d else raw_value(item),
             confidence=score.fields[name].confidence,
-            evidence=item.evidence,
-            page=item.page,
+            evidence=d.evidence if d else item.evidence,
+            page=d.page if d else item.page,
             alternatives=item.alternatives,
             flags=score.fields[name].caps,
         )
-        for name, item in extraction.scalars()
-    }
     groups = {
         group: _items(
+            group,
             getattr(extraction, group),
             getattr(assembled.draft, group),
             assembled.kept[group],
             score.items[group],
+            assembled.derived,
         )
         for group in ("line_items", "markups", "signatures")
     }

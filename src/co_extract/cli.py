@@ -15,7 +15,6 @@ import typer
 from co_extract import __version__
 from co_extract.config import load_settings
 from co_extract.ingest import SUPPORTED_SUFFIXES, extract_text
-from co_extract.llm import LLMError, extract_fields
 from co_extract.pipeline import build_provider, run_pipeline
 from co_extract.result import ExtractionResult
 
@@ -38,10 +37,6 @@ def run(
         "outputs"
     ),
     replay: ReplayOpt = False,
-    escalate: Annotated[
-        bool | None,
-        typer.Option(help="Re-run doubtful documents on the escalation model (extra cost)."),
-    ] = None,
 ) -> None:
     """Run the full pipeline on PATH and write one JSON result per document into OUT."""
     files = (
@@ -55,13 +50,15 @@ def run(
 
     settings = load_settings()
     provider = build_provider(settings, replay=replay)
-    escalate = settings.escalate if escalate is None else escalate
 
     typer.echo(f"{'file':32} {'status':6} {'overall':>7}  {'review':6} {'cost':>8}  cached")
     errors = 0
+    stems = [f.stem for f in files]
     for file in files:
-        result = run_pipeline(file, provider, settings, escalate=escalate)
-        _write(out / f"{file.stem}.json", result.model_dump_json(indent=2))
+        result = run_pipeline(file, provider, settings)
+        # a.pdf and a.txt would both write a.json; keep the extension when stems collide
+        name = file.stem if stems.count(file.stem) == 1 else f"{file.stem}.{file.suffix[1:]}"
+        _write(out / f"{name}.json", result.model_dump_json(indent=2))
         errors += result.status == "error"
         cost = f"${result.run.cost_usd:.4f}" if result.run.cost_usd is not None else "-"
         typer.echo(
@@ -111,57 +108,15 @@ def eval_cmd(
 
 @app.command()
 def text(
-    path: Annotated[
-        Path, typer.Argument(exists=True, dir_okay=False, help="A PDF, image or .txt file.")
-    ],
+    path: Annotated[Path, typer.Argument(exists=True, dir_okay=False, help="A PDF or .txt file.")],
     out: Annotated[Path | None, typer.Option("--out", "-o", help="Write JSON here.")] = None,
 ) -> None:
     """Debug: dump the extracted page text and tables as JSON."""
-    pages = extract_text(path, vision_model=load_settings().ocr_vision_model)
+    pages = extract_text(path)
     payload = json.dumps([p.model_dump() for p in pages], indent=2, ensure_ascii=False)
     if out:
         _write(out, payload)
         typer.echo(f"wrote {len(pages)} page(s) to {out}")
-    else:
-        typer.echo(payload)
-
-
-@app.command()
-def extract(
-    path: Annotated[Path, typer.Argument(exists=True, dir_okay=False, help="A change order.")],
-    out: Annotated[Path | None, typer.Option("--out", "-o", help="Write JSON here.")] = None,
-    replay: ReplayOpt = False,
-) -> None:
-    """Debug: dump the raw LLM field extraction (before parsing, rules and scoring)."""
-    settings = load_settings()
-    pages = extract_text(path, vision_model=settings.ocr_vision_model)
-    try:
-        result = extract_fields(
-            pages,
-            build_provider(settings, replay=replay),
-            settings.model,
-            temperature=settings.temperature,
-            effort=settings.effort,
-        )
-    except LLMError as exc:
-        typer.echo(f"extraction failed: {exc}", err=True)
-        raise typer.Exit(1) from exc
-    payload = json.dumps(
-        {
-            "source_file": path.name,
-            "model": settings.model,
-            "attempts": result.attempts,
-            "cached": all(r.cached for r in result.responses),
-            "input_tokens": result.input_tokens,
-            "output_tokens": result.output_tokens,
-            "extraction": result.extraction.model_dump(mode="json"),
-        },
-        indent=2,
-        ensure_ascii=False,
-    )
-    if out:
-        _write(out, payload)
-        typer.echo(f"wrote {out}")
     else:
         typer.echo(payload)
 

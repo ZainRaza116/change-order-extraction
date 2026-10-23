@@ -1,0 +1,296 @@
+{
+  "source_file": "s03_letter_format.pdf",
+  "file_sha256": "742aa2da30193a5b651985c71e751c20df7e125401ced9962dd08a58e979b7aa",
+  "status": "ok",
+  "error": null,
+  "pages": [
+    {
+      "page": 1,
+      "method": "text",
+      "char_count": 1606,
+      "ocr_confidence": null
+    }
+  ],
+  "fields": {
+    "change_order_number": {
+      "value": "#3",
+      "raw": "#3",
+      "confidence": 1.0,
+      "evidence": "Change Order #3, Rooftop Unit RTU-2",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_name": {
+      "value": "Lakeview Elementary Gym Renovation",
+      "raw": "Lakeview Elementary Gym Renovation",
+      "confidence": 1.0,
+      "evidence": "Lakeview Elementary Gym Renovation (Proj. LUSD-2025-07)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "project_number": {
+      "value": "LUSD-2025-07",
+      "raw": "LUSD-2025-07",
+      "confidence": 1.0,
+      "evidence": "(Proj. LUSD-2025-07)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "date_issued": {
+      "value": "2026-10-02",
+      "raw": "October 2, 2026",
+      "confidence": 1.0,
+      "evidence": "October 2, 2026",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "contractor": {
+      "value": "Keystone Mechanical Corp.",
+      "raw": "Keystone Mechanical Corp.",
+      "confidence": 1.0,
+      "evidence": "KEYSTONE MECHANICAL CORP.",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "owner": {
+      "value": "Lakeview Unified School District",
+      "raw": "Lakeview Unified School District",
+      "confidence": 1.0,
+      "evidence": "Lakeview Unified School District",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "architect_engineer": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "description": {
+      "value": "Furnish and install a new prefabricated roof curb, replace the two corroded support angles, and make the associated ductwork transitions",
+      "raw": "Furnish and install a new prefabricated roof curb, replace the two corroded support angles, and make the associated ductwork transitions",
+      "confidence": 1.0,
+      "evidence": "We propose to furnish and install a new prefabricated roof curb, replace the two corroded support angles, and make the associated ductwork transitions",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason": {
+      "value": "unforeseen_condition",
+      "raw": "unforeseen_condition",
+      "confidence": 1.0,
+      "evidence": "this condition was concealed and could not have been identified before the roofing was removed",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "reason_text": {
+      "value": "this condition was concealed and could not have been identified before the roofing was removed",
+      "raw": "this condition was concealed and could not have been identified before the roofing was removed",
+      "confidence": 1.0,
+      "evidence": "this condition was concealed and could not have been identified before the roofing was removed",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "subtotal": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "change_amount": {
+      "value": "42680.00",
+      "raw": "$42,680.00",
+      "confidence": 1.0,
+      "evidence": "for a lump sum of Forty-Two Thousand Six Hundred Eighty Dollars ($42,680.00)",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "currency": {
+      "value": "USD",
+      "raw": "USD",
+      "confidence": 0.8,
+      "evidence": "for a lump sum of Forty-Two Thousand Six Hundred Eighty Dollars ($42,680.00)",
+      "page": 1,
+      "alternatives": [],
+      "flags": [
+        "derived: currency from '$' in change_amount"
+      ]
+    },
+    "original_contract_sum": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "previous_changes_total": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "revised_contract_sum": {
+      "value": null,
+      "raw": null,
+      "confidence": 0.0,
+      "evidence": null,
+      "page": null,
+      "alternatives": [],
+      "flags": [
+        "no value"
+      ]
+    },
+    "schedule_impact_days": {
+      "value": 10,
+      "raw": "10 working days",
+      "confidence": 0.96,
+      "evidence": "This work will require an additional ten (10) working days to the contract schedule",
+      "page": 1,
+      "alternatives": [],
+      "flags": []
+    },
+    "status": {
+      "value": "pending",
+      "raw": "pending",
+      "confidence": 0.6,
+      "evidence": "ACCEPTED BY OWNER: ____________________________  Date: ______________",
+      "page": 1,
+      "alternatives": [],
+      "flags": [
+        "validation rule failed"
+      ]
+    }
+  },
+  "line_items": [
+    {
+      "value": {
+        "description": "Furnish and install a new prefabricated roof curb, replace the two corroded support angles, and make the associated ductwork transitions",
+        "quantity": "1",
+        "unit": "lump sum",
+        "unit_cost": null,
+        "amount": "42680.00"
+      },
+      "confidence": 1.0,
+      "evidence": "for a lump sum of Forty-Two Thousand Six Hundred Eighty Dollars ($42,680.00)",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "markups": [],
+  "signatures": [
+    {
+      "value": {
+        "party": "owner",
+        "name": "Lakeview Unified School District",
+        "date": null,
+        "signed": false
+      },
+      "confidence": 0.8,
+      "evidence": "ACCEPTED BY OWNER: ____________________________  Date: ______________",
+      "page": 1,
+      "flags": []
+    }
+  ],
+  "overall_confidence": 0.971,
+  "needs_review": true,
+  "review_reasons": [
+    "rule status_consistency failed: pending, but no approver has signed yet (a proposal)"
+  ],
+  "validation": [
+    {
+      "rule": "required_fields",
+      "outcome": "pass",
+      "message": "all required fields present"
+    },
+    {
+      "rule": "contract_math",
+      "outcome": "not_applicable",
+      "message": "needs original_contract_sum, previous_changes_total, revised_contract_sum"
+    },
+    {
+      "rule": "line_items_total",
+      "outcome": "pass",
+      "message": "items + markups = change amount (42,680.00)"
+    },
+    {
+      "rule": "line_item_math",
+      "outcome": "not_applicable",
+      "message": "no item has both quantity and unit cost"
+    },
+    {
+      "rule": "markup_math",
+      "outcome": "not_applicable",
+      "message": "no markup with a stated rate"
+    },
+    {
+      "rule": "credit_signs",
+      "outcome": "not_applicable",
+      "message": "no credit or deduct items"
+    },
+    {
+      "rule": "date_sanity",
+      "outcome": "pass",
+      "message": "dates are plausible and in order"
+    },
+    {
+      "rule": "co_number_format",
+      "outcome": "pass",
+      "message": "looks like a change order number"
+    },
+    {
+      "rule": "status_consistency",
+      "outcome": "fail",
+      "message": "pending, but no approver has signed yet (a proposal)"
+    },
+    {
+      "rule": "currency_code",
+      "outcome": "pass",
+      "message": "USD is a valid code"
+    },
+    {
+      "rule": "schedule_days",
+      "outcome": "pass",
+      "message": "10 day(s)"
+    }
+  ],
+  "model_notes": [],
+  "run": {
+    "model": "gpt-4o-mini",
+    "attempts": 1,
+    "cached": true,
+    "input_tokens": 2185,
+    "output_tokens": 762,
+    "cost_usd": 0.00078,
+    "seconds": 0.03,
+    "llm_seconds": 8.38,
+    "pipeline_version": "0.1.0"
+  }
+}

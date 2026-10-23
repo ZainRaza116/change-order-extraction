@@ -5,10 +5,10 @@ import pytest
 from pydantic import ValidationError
 
 from co_extract.schema import ChangeOrderRecord
-from tests.factories import EXPECTED
+from tests.factories import ALL_GROUND_TRUTH, EXPECTED
 
 EXPECTED_DIR = EXPECTED
-GROUND_TRUTH = sorted(EXPECTED_DIR.glob("*.json"))
+GROUND_TRUTH = ALL_GROUND_TRUTH
 
 
 def load(path: Path) -> dict:

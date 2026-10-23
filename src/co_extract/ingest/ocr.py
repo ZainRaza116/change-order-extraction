@@ -1,11 +1,5 @@
-"""OCR for scanned pages: OpenCV clean-up, Tesseract with word confidences, and an
-optional vision-LLM fallback when Tesseract's confidence is low.
+"""OCR for scanned pages: OpenCV clean-up, then Tesseract with word confidences."""
 
-The fallback runs only when the caller passes a vision model; whether to pass one is a
-configuration decision made in the pipeline, not here.
-"""
-
-import base64
 from dataclasses import dataclass
 
 import cv2
@@ -13,7 +7,6 @@ import numpy as np
 import pytesseract
 
 OCR_DPI = 300
-LOW_CONFIDENCE = 0.60  # below this mean word confidence, try the vision fallback
 MAX_DESKEW_DEGREES = 10.0
 
 
@@ -23,7 +16,6 @@ class OcrResult:
     mean_confidence: float  # 0-1, mean of Tesseract word confidences
     word_count: int
     skew_degrees: float
-    method: str = "ocr"  # "ocr" or "vision"
 
 
 # --- preprocessing -------------------------------------------------------------
@@ -134,63 +126,11 @@ def run_tesseract(binary: np.ndarray) -> tuple[str, float, int]:
     return text, mean, len(confidences)
 
 
-# --- vision fallback -----------------------------------------------------------
-
-VISION_PROMPT = (
-    "Transcribe all text on this scanned construction document page exactly as written. "
-    "Keep the reading order and line breaks, and keep numbers, currency symbols, "
-    "parentheses and punctuation exactly as they appear. Do not summarise, correct, or "
-    "add anything. If a word is illegible, write [illegible]. Output only the transcription."
-)
-
-
-def vision_transcribe(png_bytes: bytes, model: str) -> str | None:
-    """Ask a vision-capable Claude model to transcribe the page. None if it declines."""
-    import anthropic
-
-    client = anthropic.Anthropic()
-    response = client.beta.messages.create(
-        model=model,
-        max_tokens=16000,
-        output_config={"effort": "low"},
-        betas=["server-side-fallback-2026-07-01"],
-        fallbacks="default",
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": "image/png",
-                            "data": base64.standard_b64encode(png_bytes).decode("ascii"),
-                        },
-                    },
-                    {"type": "text", "text": VISION_PROMPT},
-                ],
-            }
-        ],
-    )
-    if response.stop_reason == "refusal":
-        return None
-    text = "".join(b.text for b in response.content if b.type == "text").strip()
-    return text or None
-
-
 # --- entry point ---------------------------------------------------------------
 
 
-def ocr_image(image: np.ndarray, vision_model: str | None = None) -> OcrResult:
-    """OCR one page image. With `vision_model`, low-confidence pages are re-read by it."""
+def ocr_image(image: np.ndarray) -> OcrResult:
+    """OCR one page image: clean it up, then read it with Tesseract."""
     binary, skew = preprocess(image)
     text, mean_conf, words = run_tesseract(binary)
-    result = OcrResult(text=text, mean_confidence=mean_conf, word_count=words, skew_degrees=skew)
-
-    if vision_model and mean_conf < LOW_CONFIDENCE:
-        ok, png = cv2.imencode(".png", to_gray(image))
-        transcript = vision_transcribe(png.tobytes(), vision_model) if ok else None
-        if transcript:
-            result.text = transcript
-            result.method = "vision"
-    return result
+    return OcrResult(text=text, mean_confidence=mean_conf, word_count=words, skew_degrees=skew)

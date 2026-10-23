@@ -1,0 +1,64 @@
+{
+  "change_order_number": "CO-011 Rev 1",
+  "project_name": "Mill Creek Wastewater Plant Upgrade",
+  "project_number": "MC-2203",
+  "date_issued": "2026-06-19",
+  "contractor": "Ironwood Civil Constructors",
+  "owner": "Mill Creek Utility District",
+  "architect_engineer": "Hydra Engineering, PC",
+  "description": "Rock excavation, extended dewatering and imported select backfill at Influent Pump Station due to unforeseen rock below elevation 412.0.",
+  "line_items": [
+    {
+      "description": "Additional excavation in rock, Influent Pump Station",
+      "quantity": "140",
+      "unit": "CY",
+      "unit_cost": "185.00",
+      "amount": "25900.00"
+    },
+    {
+      "description": "Dewatering, extended duration",
+      "quantity": "10",
+      "unit": "DAY",
+      "unit_cost": "1249.00",
+      "amount": "12490.00"
+    },
+    {
+      "description": "Imported select backfill",
+      "quantity": "210",
+      "unit": "CY",
+      "unit_cost": "36.00",
+      "amount": "7560.00"
+    }
+  ],
+  "subtotal": "45950.00",
+  "markups": [],
+  "change_amount": "45950.00",
+  "currency": "USD",
+  "original_contract_sum": "12300000.00",
+  "previous_changes_total": "286410.00",
+  "revised_contract_sum": "12632360.00",
+  "schedule_impact_days": 9,
+  "status": "approved",
+  "signatures": [
+    {
+      "party": "owner",
+      "name": "Martin Osei",
+      "date": "2026-06-24",
+      "signed": true
+    },
+    {
+      "party": "contractor",
+      "name": "Jill Carver",
+      "date": "2026-06-19",
+      "signed": true
+    },
+    {
+      "party": "engineer",
+      "name": "Hanna Lindqvist",
+      "date": "2026-06-22",
+      "signed": true
+    }
+  ],
+  "reason": "unforeseen_condition",
+  "reason_text": "Differing site condition (unforeseen rock)"
+}

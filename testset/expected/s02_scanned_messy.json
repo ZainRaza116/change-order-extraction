@@ -1,0 +1,80 @@
+{
+  "change_order_number": "007",
+  "project_name": "Riverside Medical Office Building",
+  "project_number": "24-118",
+  "date_issued": "2026-09-18",
+  "contractor": "Ridgeline Builders, Inc.",
+  "owner": "Harmon Health Partners, LLC",
+  "architect_engineer": "Calloway + Finch Architects",
+  "description": "Add structural support at relocated imaging equipment room (Level 2), relocate electrical receptacles for revised casework layout, modify partition framing; delete ceramic wall tile at Corridor 2B (replaced with painted gypsum board).",
+  "line_items": [
+    {
+      "description": "Additional structural steel beam W12x26 incl. connections",
+      "quantity": "3",
+      "unit": "EA",
+      "unit_cost": "2850.00",
+      "amount": "8550.00"
+    },
+    {
+      "description": "Relocate duplex receptacles incl. new boxes & wiring",
+      "quantity": "4",
+      "unit": "EA",
+      "unit_cost": "325.00",
+      "amount": "1300.00"
+    },
+    {
+      "description": "Carpentry labor - partition framing modifications",
+      "quantity": "24",
+      "unit": "HR",
+      "unit_cost": "85.00",
+      "amount": "2040.00"
+    },
+    {
+      "description": "CREDIT: Delete ceramic wall tile, Corridor 2B",
+      "quantity": "180",
+      "unit": "SF",
+      "unit_cost": "12.50",
+      "amount": "-2250.00"
+    }
+  ],
+  "subtotal": "9640.00",
+  "markups": [
+    {
+      "description": "Overhead & Profit @ 10%",
+      "amount": "964.00"
+    },
+    {
+      "description": "Bond @ 1.5%",
+      "amount": "159.06"
+    }
+  ],
+  "change_amount": "10763.06",
+  "currency": "USD",
+  "original_contract_sum": "2485000.00",
+  "previous_changes_total": "37420.50",
+  "revised_contract_sum": "2533183.56",
+  "schedule_impact_days": 6,
+  "status": "pending",
+  "signatures": [
+    {
+      "party": "architect",
+      "name": "Diane Calloway",
+      "date": "2026-09-19",
+      "signed": true
+    },
+    {
+      "party": "contractor",
+      "name": "Marcus T. Reyes",
+      "date": "2026-09-18",
+      "signed": true
+    },
+    {
+      "party": "owner",
+      "name": null,
+      "date": null,
+      "signed": false
+    }
+  ],
+  "reason": "owner_request",
+  "reason_text": "Owner-requested design revision per ASI-09 / RFI #42"
+}

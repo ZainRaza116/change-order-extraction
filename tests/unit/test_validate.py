@@ -5,9 +5,9 @@ from decimal import Decimal
 import pytest
 
 from co_extract import validate as v
-from co_extract.schema import ChangeOrderDraft, LineItem, Markup, Status
+from co_extract.schema import ChangeOrderDraft, LineItem, Markup, Signature, Status
 from co_extract.validate import Outcome
-from tests.factories import EXPECTED
+from tests.factories import ALL_GROUND_TRUTH, EXPECTED
 
 TODAY = dt.date(2026, 10, 21)
 
@@ -29,9 +29,10 @@ def change(co: ChangeOrderDraft, **updates) -> ChangeOrderDraft:
 # --- ground truth is internally consistent ----------
 
 
-@pytest.mark.parametrize("path", sorted(EXPECTED.glob("*.json")), ids=lambda p: p.name)
+@pytest.mark.parametrize("path", ALL_GROUND_TRUTH, ids=lambda p: p.name)
 def test_no_rule_fails_on_ground_truth(path):
-    results = v.validate(load(path.name), today=TODAY)
+    co = ChangeOrderDraft.model_validate(json.loads(path.read_text()))
+    results = v.validate(co, today=TODAY)
     assert [r for r in results if r.failed] == []
     assert len(results) == len(v.RULES)
 
@@ -178,7 +179,11 @@ def test_signature_before_issue_date_fails(co):
 # --- CO number, status, currency, schedule ----------
 
 
-@pytest.mark.parametrize("number", ["CO-007", "007", "PCO #7", "CO 12", "CO-012A"])
+@pytest.mark.parametrize(
+    "number",
+    ["CO-007", "007", "PCO #7", "CO 12", "CO-012A", "Change Order #3", "CO #9",
+     "Change Order No. 007", "CO-011, REVISION 1", "CO-011 Rev. 1", "#3", "No. 4"],
+)  # fmt: skip
 def test_co_number_accepted(co, number):
     assert v.co_number_format(change(co, change_order_number=number)).outcome is Outcome.PASS
 
@@ -194,9 +199,37 @@ def test_approved_with_unsigned_owner_fails(co):
     assert "owner" in result.message
 
 
-def test_pending_with_all_signed_fails(co):
+def test_pending_with_owner_signed_fails(co):
     signed = [s.model_copy(update={"signed": True}) for s in co.signatures]
     assert v.status_consistency(change(co, signatures=signed)).failed
+
+
+def test_pending_signed_only_by_contractor_fails():
+    # s03: a contractor's letter awaiting the owner is a proposal, not "pending"
+    co = ChangeOrderDraft(
+        status=Status.PENDING,
+        signatures=[
+            Signature(party="contractor", signed=True),
+            Signature(party="owner", signed=False),
+        ],
+    )
+    assert v.status_consistency(co).failed
+
+
+def test_pending_with_no_signature_at_all_fails():
+    # s03 as extracted: only the unsigned owner line was listed
+    co = ChangeOrderDraft(
+        status=Status.PENDING, signatures=[Signature(party="owner", signed=False)]
+    )
+    assert v.status_consistency(co).failed
+
+
+def test_proposal_signed_only_by_contractor_passes():
+    # s07: the contractor submits and signs; the owner has not acted yet
+    co = ChangeOrderDraft(
+        status=Status.PROPOSED, signatures=[Signature(party="contractor", signed=True)]
+    )
+    assert v.status_consistency(co).outcome is Outcome.PASS
 
 
 def test_approved_without_any_signature_fails():

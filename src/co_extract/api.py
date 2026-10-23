@@ -56,7 +56,7 @@ async def extract(
         # keep only the suffix from the client's filename; never use it as a path
         path = Path(tmp) / f"upload{suffix}"
         path.write_bytes(data)
-        result = run_pipeline(path, provider, settings, escalate=settings.escalate)
+        result = run_pipeline(path, provider, settings)
     result.source_file = Path(file.filename or path.name).name
     if result.status == "error":
         raise HTTPException(422, detail=result.model_dump(mode="json"))

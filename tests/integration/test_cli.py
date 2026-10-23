@@ -73,3 +73,13 @@ def test_committed_schema_is_up_to_date(tmp_path):
         "output contract changed: run `co-extract schema` and commit the result"
     )
     assert json.loads(out.read_text()) == ExtractionResult.model_json_schema()
+
+
+def test_same_stem_different_types_both_kept(tmp_path, cli_env):
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    (docs / "co.pdf").write_bytes(DIGITAL.read_bytes())
+    (docs / "co.txt").write_text((SAMPLES / "co_001_email.txt").read_text())
+    out = tmp_path / "out"
+    assert invoke("run", str(docs), "--out", str(out)).exit_code == 0
+    assert sorted(p.name for p in out.iterdir()) == ["co.pdf.json", "co.txt.json"]

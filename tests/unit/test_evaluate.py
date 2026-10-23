@@ -10,6 +10,8 @@ from co_extract import evaluate as ev
     [
         ("007", "CO-007", True),
         ("PCO #7", "CO-007", True),
+        ("CO-011, REVISION 1", "CO-011", True),
+        ("Change Order #3", "CO-003", True),
         ("CO-07A", "CO-07", False),
         ("CO-012", "CO-021", False),
     ],
@@ -132,3 +134,27 @@ def test_documents_without_ground_truth_are_skipped(tmp_path):
     write(exp, "a", {"change_amount": "1"})
     write(out, "b", result_doc({"change_amount": ("1", 1.0)}))
     assert ev.evaluate(out, exp).documents == []
+
+
+def test_free_text_is_kept_out_of_the_headline(tmp_path):
+    out, exp = tmp_path / "outputs", tmp_path / "expected"
+    write(exp, "a", {"change_amount": "1.00", "description": "Paraphrased scope summary"})
+    got = {"change_amount": ("1.00", 0.95), "description": ("Verbatim scope from page", 0.95)}
+    write(out, "a", result_doc(got))
+    report = ev.evaluate(out, exp)
+    assert report.errors_flagged() == (0, 0)  # the description mismatch is not an "error"
+    assert [(d, f) for d, f, _ in report.free_text()] == [("a", "description")]
+    assert "too few to judge" in ev.render_markdown(report)
+
+
+def test_document_flags(tmp_path):
+    out, exp = tmp_path / "outputs", tmp_path / "expected"
+    for name, got, review in (
+        ("bad", "2.00", True),
+        ("missed", "2.00", False),
+        ("ok", "1.00", False),
+    ):
+        write(exp, name, {"change_amount": "1.00"})
+        write(out, name, result_doc({"change_amount": (got, 0.9)}, needs_review=review))
+    # 2 documents with an error, 1 of them flagged; 1 clean document, passed
+    assert ev.evaluate(out, exp).document_flags() == (1, 2, 1, 1)
